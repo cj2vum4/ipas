@@ -28,8 +28,9 @@ export NBLM_CHROMIUM_PATH=/opt/pw-browsers/chromium/chrome-linux/chrome
 ## 使用流程
 
 ```bash
-# 1. 一次性登入（會開啟瀏覽器視窗，完成 Google 登入 + 2FA）
-#    完成後 session 會存到 auth_state.json
+# 1. 一次性登入。會用你電腦上「真正的 Edge」開啟一個視窗。
+#    在那個視窗完成 Google 登入 + 2FA，看到筆記本後回終端機按 ENTER。
+#    登入狀態存進持久化 profile（.nblm_profile/），之後不用再登入。
 python main.py login
 
 # 2. 列出你帳號裡的筆記本，取得 notebook id
@@ -42,15 +43,24 @@ python main.py extract <notebook_id>
 python main.py extract-all
 ```
 
-### 登入需要「看得到」的瀏覽器
+### 為什麼用真正的 Edge/Chrome，而不是內建 Chromium？
 
-`login` 必須用有視窗的瀏覽器讓你完成 Google 登入。在無頭伺服器（例如本雲端環境）
-上有兩種作法：
+Google 會偵測「被自動化控制的瀏覽器」，在內建 Chromium 上登入常被擋，顯示
+**「這個瀏覽器或應用程式可能不安全」**。因此本工具預設改用你電腦上**真正安裝的
+Microsoft Edge**（`channel=msedge`），並關閉 `navigator.webdriver` 自動化旗標，
+Google 較不會攔阻。
 
-1. 在**桌機**上執行 `python main.py login`，把產生的 `auth_state.json` 複製到伺服器；
-2. 或在伺服器上搭配 X display / VNC，並設定 `NBLM_HEADLESS=0` 執行。
+- 想改用 Chrome：`set NBLM_BROWSER_CHANNEL=chrome`（PowerShell：`$env:NBLM_BROWSER_CHANNEL="chrome"`）
+- 想用內建 Chromium：把 `NBLM_BROWSER_CHANNEL` 設為空字串。
 
-擷取（`list` / `extract` / `extract-all`）則可完全無頭執行，重複使用已存的 session。
+### 登入務必「在跳出來的那個視窗」操作
+
+`login` 會開一個由程式控制的視窗。**一定要在那個視窗裡登入**——如果你另外開自己的
+Edge/Chrome 登入，程式這邊拿不到 session，會失敗。登入完看到筆記本後，回終端機按
+**ENTER** 存檔即可。
+
+登入是持久化的：狀態存在 `.nblm_profile/`，之後 `list` / `extract` 都能無頭
+（headless）重複使用，不用再登入。
 
 ## 輸出格式
 
@@ -88,10 +98,11 @@ python main.py debug-dump <notebook_id>
 
 | 變數 | 預設 | 說明 |
 |------|------|------|
-| `NBLM_AUTH_STATE` | `./auth_state.json` | 登入 session 檔路徑 |
+| `NBLM_BROWSER_CHANNEL` | `msedge` | 要驅動的真實瀏覽器（`msedge`／`chrome`／空=內建 Chromium）|
+| `NBLM_USER_DATA_DIR` | `./.nblm_profile` | 持久化登入 profile 資料夾 |
 | `NBLM_DATA_DIR` | `./data` | 輸出資料夾 |
 | `NBLM_HEADLESS` | `1` | 擷取是否無頭（`0` 顯示視窗）|
-| `NBLM_CHROMIUM_PATH` | 無 | 指定 Chromium 執行檔 |
+| `NBLM_CHROMIUM_PATH` | 無 | 指定 Chromium 執行檔（未用 channel 時）|
 | `NBLM_BASE_URL` | `https://notebooklm.google.com` | NotebookLM 網址 |
 | `NBLM_NAV_TIMEOUT_MS` | `60000` | 導覽逾時 |
 
@@ -111,7 +122,7 @@ data/                       # 擷取結果（已被 gitignore）
 
 ## 注意事項
 
-- **`auth_state.json` 含登入 cookie，切勿 commit**（已列入 `.gitignore`）。
+- **`.nblm_profile/` 含你的 Google 登入 session，切勿 commit 或外流**（已列入 `.gitignore`）。
 - 瀏覽器自動化屬灰色地帶，請遵守 Google 服務條款，僅擷取你有權存取的資料，
   並避免高頻率請求。
 - 選擇器與流程會隨 NotebookLM 改版而需要維護。

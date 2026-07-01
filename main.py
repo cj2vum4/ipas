@@ -41,7 +41,7 @@ def _add_headless_flag(p: argparse.ArgumentParser) -> None:
 
 
 def cmd_login(args: argparse.Namespace) -> int:
-    auth.login(timeout_seconds=args.timeout)
+    auth.login()
     return 0
 
 
@@ -100,9 +100,6 @@ def build_parser() -> argparse.ArgumentParser:
     sub = parser.add_subparsers(dest="command", required=True)
 
     p_login = sub.add_parser("login", help="Interactive sign-in; saves session.")
-    p_login.add_argument(
-        "--timeout", type=int, default=300, help="Seconds to wait for sign-in."
-    )
     p_login.set_defaults(func=cmd_login)
 
     p_list = sub.add_parser("list", help="List visible notebooks.")

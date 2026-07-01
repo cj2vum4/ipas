@@ -20,7 +20,7 @@ from typing import Optional
 from playwright.sync_api import Page, TimeoutError as PWTimeout
 
 from . import config
-from .browser import browser_context
+from .browser import persistent_context
 from .models import Note, Notebook, NotebookRef, Source
 
 # --- Candidate selectors (ordered by likelihood) ---------------------------
@@ -76,9 +76,11 @@ def _is_signed_in(page: Page) -> bool:
 
 
 def _require_auth() -> None:
-    if not config.AUTH_STATE_PATH.exists():
+    # The persistent profile holds the login; treat an empty/missing dir as
+    # "not signed in yet".
+    if not config.USER_DATA_DIR.exists() or not any(config.USER_DATA_DIR.iterdir()):
         raise RuntimeError(
-            f"No saved session at {config.AUTH_STATE_PATH}. Run `login` first."
+            f"No signed-in profile at {config.USER_DATA_DIR}. Run `login` first."
         )
 
 
@@ -87,7 +89,7 @@ def list_notebooks(headless: Optional[bool] = None) -> list[NotebookRef]:
     """Return the notebooks visible on the NotebookLM home page."""
     headless = config.HEADLESS_DEFAULT if headless is None else headless
     _require_auth()
-    with browser_context(headless=headless, use_auth=True) as context:
+    with persistent_context(headless=headless) as context:
         page = context.new_page()
         page.goto(config.BASE_URL, wait_until="domcontentloaded")
         _settle(page)
@@ -95,7 +97,7 @@ def list_notebooks(headless: Optional[bool] = None) -> list[NotebookRef]:
         if not _is_signed_in(page):
             raise RuntimeError(
                 "Session is not signed in (redirected to Google login). "
-                "Run `login` again to refresh auth_state.json."
+                "Run `login` again and sign in fully before pressing ENTER."
             )
 
         refs: dict[str, NotebookRef] = {}
@@ -131,7 +133,7 @@ def extract_notebook(
     """Open a single notebook and pull out title, summary, sources and notes."""
     headless = config.HEADLESS_DEFAULT if headless is None else headless
     _require_auth()
-    with browser_context(headless=headless, use_auth=True) as context:
+    with persistent_context(headless=headless) as context:
         page = context.new_page()
         page.goto(config.notebook_url(notebook_id), wait_until="domcontentloaded")
         _settle(page)
@@ -156,7 +158,7 @@ def debug_dump(notebook_id: Optional[str], headless: Optional[bool] = None) -> s
     """Return the rendered page text — use it to rediscover selectors."""
     headless = config.HEADLESS_DEFAULT if headless is None else headless
     target = config.notebook_url(notebook_id) if notebook_id else config.BASE_URL
-    with browser_context(headless=headless, use_auth=True) as context:
+    with persistent_context(headless=headless) as context:
         page = context.new_page()
         page.goto(target, wait_until="domcontentloaded")
         _settle(page)

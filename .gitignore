@@ -3,6 +3,9 @@ auth_state.json
 *.auth.json
 .auth/
 
+# Persistent browser profile created by `login` (contains your Google session)
+.nblm_profile/
+
 # Extracted notebook data output
 data/*.json
 data/*.jsonl

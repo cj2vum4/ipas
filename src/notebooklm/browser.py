@@ -17,6 +17,40 @@ def _launch_kwargs(headless: bool) -> dict:
 
 
 @contextmanager
+def persistent_context(*, headless: bool) -> Iterator[BrowserContext]:
+    """Yield a BrowserContext backed by a persistent, real-browser profile.
+
+    This is the reliable path for NotebookLM: it drives a genuine installed
+    browser (Edge/Chrome via ``BROWSER_CHANNEL``) with a persistent profile
+    directory, so a one-time sign-in survives across runs and Google is far
+    less likely to block login as "insecure".
+    """
+    config.USER_DATA_DIR.mkdir(parents=True, exist_ok=True)
+    with sync_playwright() as pw:
+        kwargs: dict = {
+            "user_data_dir": str(config.USER_DATA_DIR),
+            "headless": headless,
+            "user_agent": config.USER_AGENT,
+            # Hide the navigator.webdriver flag that trips Google's automation
+            # detection.
+            "args": ["--disable-blink-features=AutomationControlled"],
+        }
+        if config.BROWSER_CHANNEL:
+            # Drive the user's real Edge/Chrome install.
+            kwargs["channel"] = config.BROWSER_CHANNEL
+        elif config.CHROMIUM_EXECUTABLE:
+            kwargs["executable_path"] = config.CHROMIUM_EXECUTABLE
+
+        context = pw.chromium.launch_persistent_context(**kwargs)
+        context.set_default_navigation_timeout(config.NAV_TIMEOUT_MS)
+        context.set_default_timeout(config.ACTION_TIMEOUT_MS)
+        try:
+            yield context
+        finally:
+            context.close()
+
+
+@contextmanager
 def browser_context(
     *,
     headless: bool,

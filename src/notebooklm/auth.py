@@ -1,65 +1,48 @@
-"""Interactive login: open a real browser, let the user sign in, save session.
+"""Interactive login using a real browser + persistent profile.
 
-NotebookLM has no public API, so we authenticate the way a human does — through
-the Google sign-in flow — and persist the resulting cookies/localStorage to
-``auth_state.json``. Every later extraction reuses that state headlessly.
+NotebookLM has no public API, so we authenticate the way a human does. To avoid
+Google's "this browser or app may not be secure" block, we drive a *genuine*
+installed browser (Edge/Chrome via ``BROWSER_CHANNEL``) with a persistent
+profile directory. You sign in once; the session lives in the profile and every
+later extraction reuses it headlessly.
 """
 from __future__ import annotations
 
-from playwright.sync_api import sync_playwright
-
 from . import config
+from .browser import persistent_context
 
 
-def login(timeout_seconds: int = 300) -> None:
-    """Open a headed browser and wait until the user has reached NotebookLM.
+def login() -> None:
+    """Open a real browser, let the user sign in, persist the profile.
 
-    We consider the login complete once the page URL is on the NotebookLM app
-    (not accounts.google.com) and the notebook list has rendered. The user
-    drives the actual Google authentication (password, 2FA, consent).
+    We do NOT try to guess when sign-in finished from the URL (that was flaky
+    and saved empty sessions). Instead you drive the Google flow in the window
+    and press ENTER here once you can see your notebooks.
     """
-    if config.HEADLESS_DEFAULT:
-        print(
-            "NOTE: login needs a visible browser. If you are on a headless "
-            "server, run with NBLM_HEADLESS=0 and an X display / VNC, or copy "
-            "an auth_state.json produced on a desktop machine.\n"
-        )
+    channel = config.BROWSER_CHANNEL or "bundled Chromium"
+    print(
+        f"Launching {channel} with a persistent profile at:\n"
+        f"  {config.USER_DATA_DIR}\n"
+    )
+    print(
+        "IMPORTANT: sign in *inside the window that just opened* — not in your\n"
+        "normal browser. A separate login elsewhere will NOT be picked up.\n"
+    )
 
-    launch_kwargs: dict = {"headless": False}
-    if config.CHROMIUM_EXECUTABLE:
-        launch_kwargs["executable_path"] = config.CHROMIUM_EXECUTABLE
-
-    with sync_playwright() as pw:
-        browser = pw.chromium.launch(**launch_kwargs)
-        context = browser.new_context(user_agent=config.USER_AGENT)
-        page = context.new_page()
-        page.set_default_navigation_timeout(config.NAV_TIMEOUT_MS)
-
-        print(f"Opening {config.BASE_URL} — please sign in with your Google account...")
+    with persistent_context(headless=False) as context:
+        page = context.pages[0] if context.pages else context.new_page()
         page.goto(config.BASE_URL)
 
-        print(
-            f"Waiting up to {timeout_seconds}s for you to finish signing in.\n"
-            "When you can see your notebooks, come back here — it saves "
-            "automatically."
-        )
+        print(f"Opened {config.BASE_URL}. Complete the Google sign-in there.")
         try:
-            # Poll until we are on the NotebookLM origin and signed in.
-            page.wait_for_url(
-                lambda url: "notebooklm.google.com" in url
-                and "accounts.google.com" not in url,
-                timeout=timeout_seconds * 1000,
+            input(
+                "\n>>> When you can SEE YOUR NOTEBOOKS, come back here and press "
+                "ENTER to save... "
             )
-            # Give the SPA a moment to hydrate the session in localStorage.
-            page.wait_for_timeout(3000)
-        except Exception:
-            print(
-                "Timed out waiting for sign-in. Saving whatever state exists — "
-                "if extraction fails, re-run `login` and complete sign-in fully."
-            )
+        except (EOFError, KeyboardInterrupt):
+            print("\nAborted; nothing new saved.")
+            return
 
-        config.AUTH_STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
-        context.storage_state(path=str(config.AUTH_STATE_PATH))
-        print(f"\nSaved session to {config.AUTH_STATE_PATH}")
-        context.close()
-        browser.close()
+        # Persistent context flushes the profile to disk on close.
+        print(f"\nSaved session to profile: {config.USER_DATA_DIR}")
+        print("You can now run:  python main.py list")

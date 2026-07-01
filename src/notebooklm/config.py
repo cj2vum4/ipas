@@ -14,8 +14,17 @@ DATA_DIR = Path(os.environ.get("NBLM_DATA_DIR", PROJECT_ROOT / "data"))
 
 # File that stores the logged-in browser session (cookies + localStorage).
 # Produced by `login`, consumed by every extraction command.
+# NOTE: kept for backwards compatibility / non-persistent flows. The default
+# login now uses a persistent browser profile (USER_DATA_DIR) instead, which is
+# far more reliable against Google's automation checks.
 AUTH_STATE_PATH = Path(
     os.environ.get("NBLM_AUTH_STATE", PROJECT_ROOT / "auth_state.json")
+)
+
+# Persistent browser profile directory. When you sign in once, the session is
+# stored here (like a normal browser profile) and reused on every later run.
+USER_DATA_DIR = Path(
+    os.environ.get("NBLM_USER_DATA_DIR", PROJECT_ROOT / ".nblm_profile")
 )
 
 # --- NotebookLM URLs -------------------------------------------------------
@@ -45,6 +54,13 @@ def _autodetect_chromium() -> str | None:
 # Chromium binary shipped with the environment (falls back to Playwright's own
 # managed download when neither the env var nor autodetection finds one).
 CHROMIUM_EXECUTABLE = os.environ.get("NBLM_CHROMIUM_PATH") or _autodetect_chromium()
+
+# Real installed browser to drive instead of the bundled Chromium. Google trusts
+# a genuine branded browser and is far less likely to block sign-in with the
+# "this browser or app may not be secure" error. Common values on Windows:
+#   "msedge"  -> Microsoft Edge   "chrome" -> Google Chrome
+# Set to an empty string to fall back to the bundled/auto-detected Chromium.
+BROWSER_CHANNEL = os.environ.get("NBLM_BROWSER_CHANNEL", "msedge") or None
 
 # Headless is fine for extraction, but the *first* login must be headed so the
 # user can complete the Google sign-in flow (password, 2FA, consent).
