@@ -1,0 +1,21 @@
+# Playwright auth / session state (contains login cookies — NEVER commit)
+auth_state.json
+*.auth.json
+.auth/
+
+# Extracted notebook data output
+data/*.json
+data/*.jsonl
+!data/.gitkeep
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+
+# Logs / screenshots / traces
+*.log
+screenshots/
+traces/
