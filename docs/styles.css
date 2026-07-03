@@ -445,6 +445,74 @@ main {
   padding: 0 12px 12px;
 }
 
+.option-list {
+  display: grid;
+  gap: 6px;
+  padding: 0 12px 12px;
+}
+
+.option-button {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  text-align: left;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.option-button:hover:not(:disabled) {
+  border-color: var(--teal-strong);
+}
+
+.option-button:disabled {
+  cursor: default;
+}
+
+.option-key {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  font-weight: 800;
+  font-size: 0.85em;
+}
+
+.option-button.is-correct {
+  border-color: var(--teal);
+  background: rgba(13, 148, 136, 0.12);
+}
+
+.option-button.is-correct .option-key {
+  border-color: var(--teal);
+  background: var(--teal);
+  color: white;
+}
+
+.option-button.is-incorrect {
+  border-color: var(--red);
+  background: rgba(185, 28, 28, 0.08);
+}
+
+.option-button.is-incorrect .option-key {
+  border-color: var(--red);
+  background: var(--red);
+  color: white;
+}
+
+.option-explanation {
+  padding: 0 12px 12px;
+  font-weight: 700;
+}
+
 .question-actions,
 .mistake-actions {
   display: flex;

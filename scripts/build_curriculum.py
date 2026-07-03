@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import random
 import re
 from collections import Counter
 from datetime import datetime, timezone
@@ -584,13 +585,16 @@ def _quiz_questions(day: dict[str, Any], guide: dict[str, Any], count: int) -> l
     for index in range(count):
         concept = concepts[index % len(concepts)]
         term = concept["term"]
+        qid = f"{day['date']}-q{index + 1}"
         questions.append(
-            {
-                "id": f"{day['date']}-q{index + 1}",
-                "type": "short_answer" if index % 3 == 0 else "scenario",
-                "prompt": _question_prompt(day, term, index),
-                "answer": _answer_for(day, concept),
-            }
+            _build_choice_question(
+                qid=qid,
+                question_type="short_answer" if index % 3 == 0 else "scenario",
+                prompt=_question_prompt(day, term, index),
+                correct_text=concept["explanation"],
+                distractor_texts=_distractor_texts(concepts, concept, index),
+                seed=qid,
+            )
         )
     return questions
 
@@ -598,23 +602,59 @@ def _quiz_questions(day: dict[str, Any], guide: dict[str, Any], count: int) -> l
 def _question_prompt(day: dict[str, Any], term: str, index: int) -> str:
     if day["focus"] == "考試範圍盤點與診斷":
         prompts = [
-            f"請說明「{term}」如何幫助你安排讀書順序。",
-            f"如果今天診斷後發現 L22 與 L23 都偏弱，你會如何分配下週時間？",
-            f"請列出一個容易讓你誤判進度的指標，並說明如何修正。",
+            f"關於「{term}」如何幫助你安排讀書順序，下列敘述何者正確？",
+            "若診斷後發現 L22 與 L23 都偏弱，下列何者是較合理的下週時間分配？",
+            "下列何者最容易讓你誤判讀書進度，需要特別修正？",
         ]
         return prompts[index % len(prompts)]
     if index % 3 == 0:
-        return f"請用 2 句話說明「{term}」，並指出它在「{day['focus']}」中的用途。"
+        return f"關於「{term}」在「{day['focus']}」中的用途，下列敘述何者正確？"
     if index % 3 == 1:
-        return f"情境題：企業想導入與「{day['focus']}」相關的 AI 專案，第一個要確認的條件是什麼？為什麼？"
-    return f"比較題：請列出「{term}」常被混淆的一個觀念，並說明如何分辨。"
+        return f"情境題：企業想導入與「{day['focus']}」相關的 AI 專案，下列敘述何者正確？"
+    return f"比較題：下列關於「{term}」的敘述，何者正確？"
 
 
-def _answer_for(day: dict[str, Any], concept: dict[str, str]) -> str:
-    return (
-        f"參考答案：{concept['explanation']} 作答時要回到題目場景，說明資料條件、適用限制與評估方式；"
-        f"若是情境題，還要補上風險或治理考量。"
-    )
+def _distractor_texts(concepts: list[dict[str, str]], concept: dict[str, str], index: int) -> list[str]:
+    others = [item["explanation"] for item in concepts if item["term"] != concept["term"]]
+    picks: list[str] = []
+    for step in range(1, len(others) + 1):
+        candidate = others[(index + step) % len(others)]
+        if candidate not in picks:
+            picks.append(candidate)
+        if len(picks) == 3:
+            break
+    while len(picks) < 3:
+        picks.append("此為干擾選項，內容與本題重點不符。")
+    return picks
+
+
+def _build_choice_question(
+    qid: str,
+    question_type: str,
+    prompt: str,
+    correct_text: str,
+    distractor_texts: list[str],
+    seed: str,
+) -> dict[str, Any]:
+    rng = random.Random(seed)
+    options = [(correct_text, True)] + [(text, False) for text in distractor_texts]
+    rng.shuffle(options)
+    keys = ["A", "B", "C", "D"]
+    labeled = []
+    correct_key = ""
+    for key, (text, is_correct) in zip(keys, options):
+        labeled.append({"key": key, "text": text})
+        if is_correct:
+            correct_key = key
+    return {
+        "id": qid,
+        "type": "multiple_choice",
+        "questionType": question_type,
+        "prompt": prompt,
+        "options": labeled,
+        "correctKey": correct_key,
+        "answer": f"正確答案 {correct_key}：{correct_text}",
+    }
 
 
 def _expanded_concepts(concepts: list[dict[str, str]]) -> list[dict[str, str]]:
@@ -634,29 +674,41 @@ def _expanded_concepts(concepts: list[dict[str, str]]) -> list[dict[str, str]]:
 
 def _review_questions(day: dict[str, Any]) -> list[dict[str, Any]]:
     return [
-        {
-            "id": f"{day['date']}-r1",
-            "type": "reflection",
-            "prompt": "本週最常錯的 3 個觀念是什麼？各自錯因是觀念、題幹、公式還是情境判斷？",
-            "answer": "把錯題分群，優先補同一錯因重複出現的觀念。",
-        },
-        {
-            "id": f"{day['date']}-r2",
-            "type": "reflection",
-            "prompt": "挑一題錯題，重寫題幹關鍵字與正確判斷流程。",
-            "answer": "答案不只寫選項，要寫出排除其他選項的理由。",
-        },
+        _build_choice_question(
+            qid=f"{day['date']}-r1",
+            question_type="reflection",
+            prompt="整理本週錯題時，下列做法何者最有效？",
+            correct_text="把錯題分群，優先補同一錯因（觀念、題幹、公式、情境判斷）重複出現的部分。",
+            distractor_texts=[
+                "只重做同樣的題目，不分析錯因。",
+                "直接跳過錯題，先做新題目累積題量。",
+                "只記錄最終答案代號，不寫下錯誤原因。",
+            ],
+            seed=f"{day['date']}-r1",
+        ),
+        _build_choice_question(
+            qid=f"{day['date']}-r2",
+            question_type="reflection",
+            prompt="訂正錯題時，下列敘述何者正確？",
+            correct_text="重寫題幹關鍵字與正確判斷流程，並寫出排除其他選項的理由。",
+            distractor_texts=[
+                "只需要記住正確選項代號即可。",
+                "不需要重看題幹，直接背答案。",
+                "選項對了就好，不必說明排除其他選項的理由。",
+            ],
+            seed=f"{day['date']}-r2",
+        ),
     ]
 
 
 def _assessment_instruction(mode: str) -> str:
     if mode == "mock":
-        return "請限時作答，完成後立刻訂正並把錯題加入錯題本。"
+        return "請限時作答，逐題選出正確選項，作答完立刻核對並把錯題加入錯題本。"
     if mode == "quiz":
-        return "先不看答案作答，再用參考答案檢查是否漏掉條件、限制或風險。"
+        return "先選出你認為正確的選項，再核對正確答案與解析，確認是否漏掉條件、限制或風險。"
     if mode == "review":
-        return "今天不追求新題量，重點是把錯題變成可複習的規則。"
-    return "口頭回答即可；若答不出來，回到教學資訊的重點觀念。"
+        return "今天不追求新題量，重點是把錯題變成可反覆核對的選擇題規則。"
+    return "選出正確選項；若答錯，回到教學資訊的重點觀念再複習一次。"
 
 
 def _integrated_sources(matches: list[dict[str, Any]], materials: list[dict[str, Any]]) -> dict[str, Any]:

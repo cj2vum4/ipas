@@ -70,6 +70,7 @@ const state = {
   syncing: false,
   progress: new Map(),
   mistakes: new Map(),
+  selectedOptions: new Map(),
 };
 
 init();
@@ -184,6 +185,17 @@ function bindPlannerEvents() {
     switchTab("materials");
     await loadMaterials();
     renderMaterials();
+  });
+
+  document.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-option-select]");
+    if (!button) {
+      return;
+    }
+    const date = button.dataset.date;
+    const questionIndex = Number.parseInt(button.dataset.questionIndex, 10);
+    state.selectedOptions.set(mistakeKey(date, questionIndex), button.dataset.optionKey);
+    renderPlanner();
   });
 
   document.addEventListener("click", async (event) => {
@@ -457,13 +469,23 @@ function dayCard(day) {
 }
 
 function questionItem(day, question, index) {
-  const mistake = state.mistakes.get(mistakeKey(day.date, index));
+  const key = mistakeKey(day.date, index);
+  const mistake = state.mistakes.get(key);
   const active = mistake ? " is-mistake" : "";
   const resolved = mistake?.resolved ? " is-resolved" : "";
+  const selected = state.selectedOptions.get(key);
+  const options = question.options || [];
   return `
-    <details class="question-item${active}${resolved}"${mistake ? " open" : ""}>
+    <details class="question-item${active}${resolved}"${mistake || selected ? " open" : ""}>
       <summary>${index + 1}. ${escapeHtml(question.prompt)}</summary>
-      <p>${escapeHtml(question.answer)}</p>
+      <div class="option-list">
+        ${options.map((option) => optionButton(day.date, index, option, selected, question.correctKey)).join("")}
+      </div>
+      ${
+        selected
+          ? `<p class="option-explanation">${escapeHtml(question.answer)}</p>`
+          : ""
+      }
       <div class="question-actions">
         <button
           class="mistake-button${mistake ? " active" : ""}"
@@ -485,6 +507,31 @@ function questionItem(day, question, index) {
         }
       </div>
     </details>
+  `;
+}
+
+function optionButton(date, index, option, selected, correctKey) {
+  let state_ = "";
+  if (selected) {
+    if (option.key === correctKey) {
+      state_ = " is-correct";
+    } else if (option.key === selected) {
+      state_ = " is-incorrect";
+    }
+  }
+  return `
+    <button
+      class="option-button${state_}"
+      type="button"
+      data-option-select="1"
+      data-date="${escapeHtml(date)}"
+      data-question-index="${index}"
+      data-option-key="${escapeHtml(option.key)}"
+      ${selected ? "disabled" : ""}
+    >
+      <span class="option-key">${escapeHtml(option.key)}</span>
+      <span class="option-text">${escapeHtml(option.text)}</span>
+    </button>
   `;
 }
 
