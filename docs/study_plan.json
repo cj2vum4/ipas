@@ -1,0 +1,5240 @@
+{
+  "schema": "ipas-study-plan-v1",
+  "generatedAt": "2026-07-02T10:50:48.146759+00:00",
+  "startDate": "2026-07-03",
+  "examDate": "2026-10-30",
+  "examLabel": "2026-10-30",
+  "timezone": "Asia/Taipei",
+  "totalStudyDays": 119,
+  "phases": [
+    {
+      "id": "foundation",
+      "title": "基礎盤點與初級核心",
+      "start": "2026-07-03",
+      "end": "2026-07-16",
+      "goal": "建立 AI 基礎、生成式 AI、企業導入與負責任 AI 的共同語言。"
+    },
+    {
+      "id": "junior",
+      "title": "初級科目一與科目二",
+      "start": "2026-07-17",
+      "end": "2026-08-06",
+      "goal": "把初級兩科讀完一輪，建立可快速答題的基礎題感。"
+    },
+    {
+      "id": "l21",
+      "title": "中級 L21 人工智慧技術應用與規劃",
+      "start": "2026-08-07",
+      "end": "2026-08-30",
+      "goal": "熟悉 AI 技術選型、NLP、導入評估、部署與情境題判斷。"
+    },
+    {
+      "id": "l22",
+      "title": "中級 L22 大數據處理分析與應用",
+      "start": "2026-08-31",
+      "end": "2026-09-22",
+      "goal": "掌握統計、資料處理、分析工具、資料治理與大數據應用。"
+    },
+    {
+      "id": "l23",
+      "title": "中級 L23 機器學習技術與應用",
+      "start": "2026-09-23",
+      "end": "2026-10-13",
+      "goal": "把模型原理、建模參數、驗證調參與治理串成可答題的決策流程。"
+    },
+    {
+      "id": "final",
+      "title": "考前總複習與模擬考",
+      "start": "2026-10-14",
+      "end": "2026-10-29",
+      "goal": "用模擬考、考古題與錯題本把弱點壓到最低。"
+    }
+  ],
+  "days": [
+    {
+      "date": "2026-07-03",
+      "weekday": "五",
+      "dayIndex": 1,
+      "phaseId": "foundation",
+      "phase": "基礎盤點與初級核心",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "考試範圍盤點與診斷",
+      "chapters": [
+        "初級/中級範圍",
+        "個人弱點表"
+      ],
+      "materials": [
+        {
+          "id": "src_5fbfa081fec9d9",
+          "title": "考古題-AI應用規劃師(初級)-學習指引-科目2",
+          "path": "iPAS教材/考古題/考古題-AI應用規劃師(初級)-學習指引-科目2.docx"
+        },
+        {
+          "id": "src_0128681ddc24a6",
+          "title": "AI應用規劃師(初級)-學習指引-科目2生成式AI應用與規劃",
+          "path": "iPAS教材/公版教材/AI應用規劃師(初級)-學習指引-科目2生成式AI應用與規劃.pdf"
+        },
+        {
+          "id": "src_290b5d2ecc318d",
+          "title": "AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論(1)",
+          "path": "iPAS教材/公版教材/AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論(1).pdf"
+        },
+        {
+          "id": "src_c1ab5316ccdb3d",
+          "title": "情境題-AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論",
+          "path": "iPAS教材/考古題/情境題-AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論.docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-07-04",
+      "weekday": "六",
+      "dayIndex": 2,
+      "phaseId": "foundation",
+      "phase": "基礎盤點與初級核心",
+      "studyType": "mock",
+      "minutes": 150,
+      "focus": "AI 基礎名詞與生成式 AI 字彙",
+      "chapters": [
+        "名詞解釋",
+        "Q&A"
+      ],
+      "materials": [
+        {
+          "id": "src_d73541a6fd037c",
+          "title": "初級-人工智慧基礎概論+生成式 AI應用與規劃_Q&A",
+          "path": "iPAS教材/初級-人工智慧基礎概論+生成式 AI應用與規劃_Q&A.pdf"
+        },
+        {
+          "id": "src_0b74ea3e72231a",
+          "title": "初級-人工智慧基礎概論+生成式 AI應用與規劃_名詞解釋",
+          "path": "iPAS教材/初級-人工智慧基礎概論+生成式 AI應用與規劃_名詞解釋.pdf"
+        },
+        {
+          "id": "src_23ad513d7e7145",
+          "title": "生成式AI講義",
+          "path": "iPAS教材/中級/生成式AI講義.pdf"
+        },
+        {
+          "id": "src_90610e558133ca",
+          "title": "模擬考題  科目二 生成式AI應用與規劃",
+          "path": "iPAS教材/模擬考題  科目二 生成式AI應用與規劃.docx"
+        }
+      ],
+      "quiz": {
+        "type": "週測驗",
+        "questions": 50,
+        "source": "本週章節 + 模擬/考古題"
+      },
+      "deliverables": [
+        "完成週測驗",
+        "訂正錯題並標註原因",
+        "列出下週前三個弱點"
+      ]
+    },
+    {
+      "date": "2026-07-05",
+      "weekday": "日",
+      "dayIndex": 3,
+      "phaseId": "foundation",
+      "phase": "基礎盤點與初級核心",
+      "studyType": "review",
+      "minutes": 90,
+      "focus": "AI 基礎理論",
+      "chapters": [
+        "AI 定義",
+        "資料、模型、推論"
+      ],
+      "materials": [
+        {
+          "id": "src_e4ef5f9d79186d",
+          "title": "單元一 AI基礎理論",
+          "path": "iPAS教材/公版教材/單元一 AI基礎理論.pdf"
+        },
+        {
+          "id": "src_a7c8fa16c23d9b",
+          "title": "初級-人工智慧基礎概論+生成式 AI應用與規劃",
+          "path": "iPAS教材/初級-人工智慧基礎概論+生成式 AI應用與規劃.pdf"
+        },
+        {
+          "id": "src_31291225e6ded2",
+          "title": "20250503 初級 第一科 人工智慧基礎概論",
+          "path": "iPAS教材/20250503 初級 第一科 人工智慧基礎概論.docx"
+        },
+        {
+          "id": "src_d73541a6fd037c",
+          "title": "初級-人工智慧基礎概論+生成式 AI應用與規劃_Q&A",
+          "path": "iPAS教材/初級-人工智慧基礎概論+生成式 AI應用與規劃_Q&A.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "錯題回顧",
+        "questions": 30,
+        "source": "本週錯題與標記題"
+      },
+      "deliverables": [
+        "整理本週錯題 10 題",
+        "更新 10 張速記卡",
+        "回看本週最低分章節"
+      ]
+    },
+    {
+      "date": "2026-07-06",
+      "weekday": "一",
+      "dayIndex": 4,
+      "phaseId": "foundation",
+      "phase": "基礎盤點與初級核心",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "產業常見 AI 應用",
+      "chapters": [
+        "辨識、預測、推薦、生成"
+      ],
+      "materials": [
+        {
+          "id": "src_b5725ec3aad9cc",
+          "title": "單元二 產業常見的AI應用功能",
+          "path": "iPAS教材/公版教材/單元二 產業常見的AI應用功能.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-07-07",
+      "weekday": "二",
+      "dayIndex": 5,
+      "phaseId": "foundation",
+      "phase": "基礎盤點與初級核心",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "負責任 AI",
+      "chapters": [
+        "公平性",
+        "透明性",
+        "隱私",
+        "治理"
+      ],
+      "materials": [
+        {
+          "id": "src_1c3224c5e249f3",
+          "title": "單元三 負責任的AI應用",
+          "path": "iPAS教材/公版教材/單元三 負責任的AI應用.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-07-08",
+      "weekday": "三",
+      "dayIndex": 6,
+      "phaseId": "foundation",
+      "phase": "基礎盤點與初級核心",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "機器學習技術概覽",
+      "chapters": [
+        "監督式/非監督式",
+        "模型流程"
+      ],
+      "materials": [
+        {
+          "id": "src_686ef0b72f0953",
+          "title": "單元四 機器學習技術理論與案例",
+          "path": "iPAS教材/單元四 機器學習技術理論與案例.pdf"
+        },
+        {
+          "id": "src_9a413b2acfd3cf",
+          "title": "L2304機器學習治理",
+          "path": "iPAS教材/中級/L2304機器學習治理.docx"
+        },
+        {
+          "id": "src_69b5784b492601",
+          "title": "L23 機器學習考試重點",
+          "path": "iPAS教材/中級/L23 機器學習考試重點.txt"
+        },
+        {
+          "id": "src_8a8ad109f6332f",
+          "title": "機器學習模型原理一覽及比較表",
+          "path": "iPAS教材/中級/機器學習模型原理一覽及比較表.xlsx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-07-09",
+      "weekday": "四",
+      "dayIndex": 7,
+      "phaseId": "foundation",
+      "phase": "基礎盤點與初級核心",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "企業導入 AI 策略",
+      "chapters": [
+        "需求盤點",
+        "PoC",
+        "導入流程"
+      ],
+      "materials": [
+        {
+          "id": "src_00ebd37d790ca9",
+          "title": "單元七 企業導入AI策略.",
+          "path": "iPAS教材/公版教材/單元七 企業導入AI策略..pdf"
+        },
+        {
+          "id": "src_55664652c4ec24",
+          "title": "AI導入 -圖表",
+          "path": "iPAS教材/AI導入 -圖表.pdf"
+        },
+        {
+          "id": "src_79a02ecc7a4616",
+          "title": "AI導入詳細作業流程",
+          "path": "iPAS教材/AI導入詳細作業流程.pdf"
+        },
+        {
+          "id": "src_607fa6e2f40af7",
+          "title": "企業應具備的AI素養_生成式AI導入指引_",
+          "path": "iPAS教材/中級/企業應具備的AI素養_生成式AI導入指引_.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-07-10",
+      "weekday": "五",
+      "dayIndex": 8,
+      "phaseId": "foundation",
+      "phase": "基礎盤點與初級核心",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "考試範圍盤點與診斷",
+      "chapters": [
+        "初級/中級範圍",
+        "個人弱點表"
+      ],
+      "materials": [
+        {
+          "id": "src_5fbfa081fec9d9",
+          "title": "考古題-AI應用規劃師(初級)-學習指引-科目2",
+          "path": "iPAS教材/考古題/考古題-AI應用規劃師(初級)-學習指引-科目2.docx"
+        },
+        {
+          "id": "src_0128681ddc24a6",
+          "title": "AI應用規劃師(初級)-學習指引-科目2生成式AI應用與規劃",
+          "path": "iPAS教材/公版教材/AI應用規劃師(初級)-學習指引-科目2生成式AI應用與規劃.pdf"
+        },
+        {
+          "id": "src_290b5d2ecc318d",
+          "title": "AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論(1)",
+          "path": "iPAS教材/公版教材/AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論(1).pdf"
+        },
+        {
+          "id": "src_c1ab5316ccdb3d",
+          "title": "情境題-AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論",
+          "path": "iPAS教材/考古題/情境題-AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論.docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-07-11",
+      "weekday": "六",
+      "dayIndex": 9,
+      "phaseId": "foundation",
+      "phase": "基礎盤點與初級核心",
+      "studyType": "mock",
+      "minutes": 150,
+      "focus": "AI 基礎名詞與生成式 AI 字彙",
+      "chapters": [
+        "名詞解釋",
+        "Q&A"
+      ],
+      "materials": [
+        {
+          "id": "src_d73541a6fd037c",
+          "title": "初級-人工智慧基礎概論+生成式 AI應用與規劃_Q&A",
+          "path": "iPAS教材/初級-人工智慧基礎概論+生成式 AI應用與規劃_Q&A.pdf"
+        },
+        {
+          "id": "src_0b74ea3e72231a",
+          "title": "初級-人工智慧基礎概論+生成式 AI應用與規劃_名詞解釋",
+          "path": "iPAS教材/初級-人工智慧基礎概論+生成式 AI應用與規劃_名詞解釋.pdf"
+        },
+        {
+          "id": "src_23ad513d7e7145",
+          "title": "生成式AI講義",
+          "path": "iPAS教材/中級/生成式AI講義.pdf"
+        },
+        {
+          "id": "src_90610e558133ca",
+          "title": "模擬考題  科目二 生成式AI應用與規劃",
+          "path": "iPAS教材/模擬考題  科目二 生成式AI應用與規劃.docx"
+        }
+      ],
+      "quiz": {
+        "type": "週測驗",
+        "questions": 50,
+        "source": "本週章節 + 模擬/考古題"
+      },
+      "deliverables": [
+        "完成週測驗",
+        "訂正錯題並標註原因",
+        "列出下週前三個弱點"
+      ]
+    },
+    {
+      "date": "2026-07-12",
+      "weekday": "日",
+      "dayIndex": 10,
+      "phaseId": "foundation",
+      "phase": "基礎盤點與初級核心",
+      "studyType": "review",
+      "minutes": 90,
+      "focus": "AI 基礎理論",
+      "chapters": [
+        "AI 定義",
+        "資料、模型、推論"
+      ],
+      "materials": [
+        {
+          "id": "src_e4ef5f9d79186d",
+          "title": "單元一 AI基礎理論",
+          "path": "iPAS教材/公版教材/單元一 AI基礎理論.pdf"
+        },
+        {
+          "id": "src_a7c8fa16c23d9b",
+          "title": "初級-人工智慧基礎概論+生成式 AI應用與規劃",
+          "path": "iPAS教材/初級-人工智慧基礎概論+生成式 AI應用與規劃.pdf"
+        },
+        {
+          "id": "src_31291225e6ded2",
+          "title": "20250503 初級 第一科 人工智慧基礎概論",
+          "path": "iPAS教材/20250503 初級 第一科 人工智慧基礎概論.docx"
+        },
+        {
+          "id": "src_d73541a6fd037c",
+          "title": "初級-人工智慧基礎概論+生成式 AI應用與規劃_Q&A",
+          "path": "iPAS教材/初級-人工智慧基礎概論+生成式 AI應用與規劃_Q&A.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "錯題回顧",
+        "questions": 30,
+        "source": "本週錯題與標記題"
+      },
+      "deliverables": [
+        "整理本週錯題 10 題",
+        "更新 10 張速記卡",
+        "回看本週最低分章節"
+      ]
+    },
+    {
+      "date": "2026-07-13",
+      "weekday": "一",
+      "dayIndex": 11,
+      "phaseId": "foundation",
+      "phase": "基礎盤點與初級核心",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "產業常見 AI 應用",
+      "chapters": [
+        "辨識、預測、推薦、生成"
+      ],
+      "materials": [
+        {
+          "id": "src_b5725ec3aad9cc",
+          "title": "單元二 產業常見的AI應用功能",
+          "path": "iPAS教材/公版教材/單元二 產業常見的AI應用功能.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-07-14",
+      "weekday": "二",
+      "dayIndex": 12,
+      "phaseId": "foundation",
+      "phase": "基礎盤點與初級核心",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "負責任 AI",
+      "chapters": [
+        "公平性",
+        "透明性",
+        "隱私",
+        "治理"
+      ],
+      "materials": [
+        {
+          "id": "src_1c3224c5e249f3",
+          "title": "單元三 負責任的AI應用",
+          "path": "iPAS教材/公版教材/單元三 負責任的AI應用.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-07-15",
+      "weekday": "三",
+      "dayIndex": 13,
+      "phaseId": "foundation",
+      "phase": "基礎盤點與初級核心",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "機器學習技術概覽",
+      "chapters": [
+        "監督式/非監督式",
+        "模型流程"
+      ],
+      "materials": [
+        {
+          "id": "src_686ef0b72f0953",
+          "title": "單元四 機器學習技術理論與案例",
+          "path": "iPAS教材/單元四 機器學習技術理論與案例.pdf"
+        },
+        {
+          "id": "src_9a413b2acfd3cf",
+          "title": "L2304機器學習治理",
+          "path": "iPAS教材/中級/L2304機器學習治理.docx"
+        },
+        {
+          "id": "src_69b5784b492601",
+          "title": "L23 機器學習考試重點",
+          "path": "iPAS教材/中級/L23 機器學習考試重點.txt"
+        },
+        {
+          "id": "src_8a8ad109f6332f",
+          "title": "機器學習模型原理一覽及比較表",
+          "path": "iPAS教材/中級/機器學習模型原理一覽及比較表.xlsx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-07-16",
+      "weekday": "四",
+      "dayIndex": 14,
+      "phaseId": "foundation",
+      "phase": "基礎盤點與初級核心",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "企業導入 AI 策略",
+      "chapters": [
+        "需求盤點",
+        "PoC",
+        "導入流程"
+      ],
+      "materials": [
+        {
+          "id": "src_00ebd37d790ca9",
+          "title": "單元七 企業導入AI策略.",
+          "path": "iPAS教材/公版教材/單元七 企業導入AI策略..pdf"
+        },
+        {
+          "id": "src_55664652c4ec24",
+          "title": "AI導入 -圖表",
+          "path": "iPAS教材/AI導入 -圖表.pdf"
+        },
+        {
+          "id": "src_79a02ecc7a4616",
+          "title": "AI導入詳細作業流程",
+          "path": "iPAS教材/AI導入詳細作業流程.pdf"
+        },
+        {
+          "id": "src_607fa6e2f40af7",
+          "title": "企業應具備的AI素養_生成式AI導入指引_",
+          "path": "iPAS教材/中級/企業應具備的AI素養_生成式AI導入指引_.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-07-17",
+      "weekday": "五",
+      "dayIndex": 15,
+      "phaseId": "junior",
+      "phase": "初級科目一與科目二",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "人工智慧基礎概論",
+      "chapters": [
+        "AI 發展",
+        "資料與演算法",
+        "應用情境"
+      ],
+      "materials": [
+        {
+          "id": "src_290b5d2ecc318d",
+          "title": "AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論(1)",
+          "path": "iPAS教材/公版教材/AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論(1).pdf"
+        },
+        {
+          "id": "src_c1ab5316ccdb3d",
+          "title": "情境題-AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論",
+          "path": "iPAS教材/考古題/情境題-AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論.docx"
+        },
+        {
+          "id": "src_fab75fadfb95b3",
+          "title": "考古題-AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論",
+          "path": "iPAS教材/考古題/考古題-AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論.docx"
+        },
+        {
+          "id": "src_a7c8fa16c23d9b",
+          "title": "初級-人工智慧基礎概論+生成式 AI應用與規劃",
+          "path": "iPAS教材/初級-人工智慧基礎概論+生成式 AI應用與規劃.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-07-18",
+      "weekday": "六",
+      "dayIndex": 16,
+      "phaseId": "junior",
+      "phase": "初級科目一與科目二",
+      "studyType": "mock",
+      "minutes": 150,
+      "focus": "搜尋、推論與知識表示",
+      "chapters": [
+        "問題求解",
+        "推論",
+        "知識庫"
+      ],
+      "materials": [
+        {
+          "id": "src_290b5d2ecc318d",
+          "title": "AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論(1)",
+          "path": "iPAS教材/公版教材/AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論(1).pdf"
+        },
+        {
+          "id": "src_c1ab5316ccdb3d",
+          "title": "情境題-AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論",
+          "path": "iPAS教材/考古題/情境題-AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論.docx"
+        },
+        {
+          "id": "src_fab75fadfb95b3",
+          "title": "考古題-AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論",
+          "path": "iPAS教材/考古題/考古題-AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論.docx"
+        },
+        {
+          "id": "src_a7c8fa16c23d9b",
+          "title": "初級-人工智慧基礎概論+生成式 AI應用與規劃",
+          "path": "iPAS教材/初級-人工智慧基礎概論+生成式 AI應用與規劃.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "週測驗",
+        "questions": 50,
+        "source": "本週章節 + 模擬/考古題"
+      },
+      "deliverables": [
+        "完成週測驗",
+        "訂正錯題並標註原因",
+        "列出下週前三個弱點"
+      ]
+    },
+    {
+      "date": "2026-07-19",
+      "weekday": "日",
+      "dayIndex": 17,
+      "phaseId": "junior",
+      "phase": "初級科目一與科目二",
+      "studyType": "review",
+      "minutes": 90,
+      "focus": "機器學習基本流程",
+      "chapters": [
+        "資料切分",
+        "訓練/驗證/測試",
+        "過擬合"
+      ],
+      "materials": [
+        {
+          "id": "src_686ef0b72f0953",
+          "title": "單元四 機器學習技術理論與案例",
+          "path": "iPAS教材/單元四 機器學習技術理論與案例.pdf"
+        },
+        {
+          "id": "src_9a413b2acfd3cf",
+          "title": "L2304機器學習治理",
+          "path": "iPAS教材/中級/L2304機器學習治理.docx"
+        },
+        {
+          "id": "src_69b5784b492601",
+          "title": "L23 機器學習考試重點",
+          "path": "iPAS教材/中級/L23 機器學習考試重點.txt"
+        },
+        {
+          "id": "src_8a8ad109f6332f",
+          "title": "機器學習模型原理一覽及比較表",
+          "path": "iPAS教材/中級/機器學習模型原理一覽及比較表.xlsx"
+        }
+      ],
+      "quiz": {
+        "type": "錯題回顧",
+        "questions": 30,
+        "source": "本週錯題與標記題"
+      },
+      "deliverables": [
+        "整理本週錯題 10 題",
+        "更新 10 張速記卡",
+        "回看本週最低分章節"
+      ]
+    },
+    {
+      "date": "2026-07-20",
+      "weekday": "一",
+      "dayIndex": 18,
+      "phaseId": "junior",
+      "phase": "初級科目一與科目二",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "生成式 AI 應用與規劃",
+      "chapters": [
+        "LLM",
+        "RAG",
+        "Prompt",
+        "導入評估"
+      ],
+      "materials": [
+        {
+          "id": "src_90610e558133ca",
+          "title": "模擬考題  科目二 生成式AI應用與規劃",
+          "path": "iPAS教材/模擬考題  科目二 生成式AI應用與規劃.docx"
+        },
+        {
+          "id": "src_23ad513d7e7145",
+          "title": "生成式AI講義",
+          "path": "iPAS教材/中級/生成式AI講義.pdf"
+        },
+        {
+          "id": "src_0def81686bd7c8",
+          "title": "24-0517中級科目二考題探討",
+          "path": "iPAS教材/中級/24-0517中級科目二考題探討.pdf"
+        },
+        {
+          "id": "src_be7626ba49917f",
+          "title": "24-0517中級科目二考題探討",
+          "path": "iPAS教材/考古題/24-0517中級科目二考題探討.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-07-21",
+      "weekday": "二",
+      "dayIndex": 19,
+      "phaseId": "junior",
+      "phase": "初級科目一與科目二",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "提示設計與導入流程",
+      "chapters": [
+        "需求定義",
+        "資料準備",
+        "驗收指標"
+      ],
+      "materials": [
+        {
+          "id": "src_79a02ecc7a4616",
+          "title": "AI導入詳細作業流程",
+          "path": "iPAS教材/AI導入詳細作業流程.pdf"
+        },
+        {
+          "id": "src_738384225067f5",
+          "title": "CNN流程圖型",
+          "path": "iPAS教材/中級/CNN流程圖型.png"
+        },
+        {
+          "id": "src_55664652c4ec24",
+          "title": "AI導入 -圖表",
+          "path": "iPAS教材/AI導入 -圖表.pdf"
+        },
+        {
+          "id": "src_607fa6e2f40af7",
+          "title": "企業應具備的AI素養_生成式AI導入指引_",
+          "path": "iPAS教材/中級/企業應具備的AI素養_生成式AI導入指引_.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-07-22",
+      "weekday": "三",
+      "dayIndex": 20,
+      "phaseId": "junior",
+      "phase": "初級科目一與科目二",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "風險、隱私與治理",
+      "chapters": [
+        "個資",
+        "資安",
+        "責任歸屬"
+      ],
+      "materials": [
+        {
+          "id": "src_1c3224c5e249f3",
+          "title": "單元三 負責任的AI應用",
+          "path": "iPAS教材/公版教材/單元三 負責任的AI應用.pdf"
+        },
+        {
+          "id": "src_407c6dbc042302",
+          "title": "請說明 合規框架：GDPR、CCPA、ISO 27001、SOC 2、HIPAA",
+          "path": "iPAS教材/中級/請說明 合規框架：GDPR、CCPA、ISO 27001、SOC 2、HIPAA.docx"
+        },
+        {
+          "id": "src_45e3a88bf02282",
+          "title": "說明 _ 非結構資料與隱私技術：  _  1. 文本：TF-IDF、Embedding。_  2..._",
+          "path": "iPAS教材/中級/說明 _ 非結構資料與隱私技術：  _  1. 文本：TF-IDF、Embedding。_  2..._.docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-07-23",
+      "weekday": "四",
+      "dayIndex": 21,
+      "phaseId": "junior",
+      "phase": "初級科目一與科目二",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "初級模擬題與錯題整理",
+      "chapters": [
+        "科目一測驗",
+        "科目二測驗",
+        "錯題本"
+      ],
+      "materials": [
+        {
+          "id": "src_491d52953b1ba5",
+          "title": "模擬考題 初級",
+          "path": "iPAS教材/模擬考題 初級.docx"
+        },
+        {
+          "id": "src_c64597f09f5022",
+          "title": "模擬考題  科目一 人工智慧基本概論",
+          "path": "iPAS教材/模擬考題  科目一 人工智慧基本概論.docx"
+        },
+        {
+          "id": "src_90610e558133ca",
+          "title": "模擬考題  科目二 生成式AI應用與規劃",
+          "path": "iPAS教材/模擬考題  科目二 生成式AI應用與規劃.docx"
+        },
+        {
+          "id": "src_1ba00de19228c1",
+          "title": "HTML_考題小舖_iPAS_初級_第1場重點整理",
+          "path": "iPAS教材/HTML_考題小舖_iPAS_初級_第1場重點整理.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-07-24",
+      "weekday": "五",
+      "dayIndex": 22,
+      "phaseId": "junior",
+      "phase": "初級科目一與科目二",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "人工智慧基礎概論",
+      "chapters": [
+        "AI 發展",
+        "資料與演算法",
+        "應用情境"
+      ],
+      "materials": [
+        {
+          "id": "src_290b5d2ecc318d",
+          "title": "AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論(1)",
+          "path": "iPAS教材/公版教材/AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論(1).pdf"
+        },
+        {
+          "id": "src_c1ab5316ccdb3d",
+          "title": "情境題-AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論",
+          "path": "iPAS教材/考古題/情境題-AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論.docx"
+        },
+        {
+          "id": "src_fab75fadfb95b3",
+          "title": "考古題-AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論",
+          "path": "iPAS教材/考古題/考古題-AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論.docx"
+        },
+        {
+          "id": "src_a7c8fa16c23d9b",
+          "title": "初級-人工智慧基礎概論+生成式 AI應用與規劃",
+          "path": "iPAS教材/初級-人工智慧基礎概論+生成式 AI應用與規劃.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-07-25",
+      "weekday": "六",
+      "dayIndex": 23,
+      "phaseId": "junior",
+      "phase": "初級科目一與科目二",
+      "studyType": "mock",
+      "minutes": 150,
+      "focus": "搜尋、推論與知識表示",
+      "chapters": [
+        "問題求解",
+        "推論",
+        "知識庫"
+      ],
+      "materials": [
+        {
+          "id": "src_290b5d2ecc318d",
+          "title": "AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論(1)",
+          "path": "iPAS教材/公版教材/AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論(1).pdf"
+        },
+        {
+          "id": "src_c1ab5316ccdb3d",
+          "title": "情境題-AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論",
+          "path": "iPAS教材/考古題/情境題-AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論.docx"
+        },
+        {
+          "id": "src_fab75fadfb95b3",
+          "title": "考古題-AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論",
+          "path": "iPAS教材/考古題/考古題-AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論.docx"
+        },
+        {
+          "id": "src_a7c8fa16c23d9b",
+          "title": "初級-人工智慧基礎概論+生成式 AI應用與規劃",
+          "path": "iPAS教材/初級-人工智慧基礎概論+生成式 AI應用與規劃.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "週測驗",
+        "questions": 50,
+        "source": "本週章節 + 模擬/考古題"
+      },
+      "deliverables": [
+        "完成週測驗",
+        "訂正錯題並標註原因",
+        "列出下週前三個弱點"
+      ]
+    },
+    {
+      "date": "2026-07-26",
+      "weekday": "日",
+      "dayIndex": 24,
+      "phaseId": "junior",
+      "phase": "初級科目一與科目二",
+      "studyType": "review",
+      "minutes": 90,
+      "focus": "機器學習基本流程",
+      "chapters": [
+        "資料切分",
+        "訓練/驗證/測試",
+        "過擬合"
+      ],
+      "materials": [
+        {
+          "id": "src_686ef0b72f0953",
+          "title": "單元四 機器學習技術理論與案例",
+          "path": "iPAS教材/單元四 機器學習技術理論與案例.pdf"
+        },
+        {
+          "id": "src_9a413b2acfd3cf",
+          "title": "L2304機器學習治理",
+          "path": "iPAS教材/中級/L2304機器學習治理.docx"
+        },
+        {
+          "id": "src_69b5784b492601",
+          "title": "L23 機器學習考試重點",
+          "path": "iPAS教材/中級/L23 機器學習考試重點.txt"
+        },
+        {
+          "id": "src_8a8ad109f6332f",
+          "title": "機器學習模型原理一覽及比較表",
+          "path": "iPAS教材/中級/機器學習模型原理一覽及比較表.xlsx"
+        }
+      ],
+      "quiz": {
+        "type": "錯題回顧",
+        "questions": 30,
+        "source": "本週錯題與標記題"
+      },
+      "deliverables": [
+        "整理本週錯題 10 題",
+        "更新 10 張速記卡",
+        "回看本週最低分章節"
+      ]
+    },
+    {
+      "date": "2026-07-27",
+      "weekday": "一",
+      "dayIndex": 25,
+      "phaseId": "junior",
+      "phase": "初級科目一與科目二",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "生成式 AI 應用與規劃",
+      "chapters": [
+        "LLM",
+        "RAG",
+        "Prompt",
+        "導入評估"
+      ],
+      "materials": [
+        {
+          "id": "src_90610e558133ca",
+          "title": "模擬考題  科目二 生成式AI應用與規劃",
+          "path": "iPAS教材/模擬考題  科目二 生成式AI應用與規劃.docx"
+        },
+        {
+          "id": "src_23ad513d7e7145",
+          "title": "生成式AI講義",
+          "path": "iPAS教材/中級/生成式AI講義.pdf"
+        },
+        {
+          "id": "src_0def81686bd7c8",
+          "title": "24-0517中級科目二考題探討",
+          "path": "iPAS教材/中級/24-0517中級科目二考題探討.pdf"
+        },
+        {
+          "id": "src_be7626ba49917f",
+          "title": "24-0517中級科目二考題探討",
+          "path": "iPAS教材/考古題/24-0517中級科目二考題探討.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-07-28",
+      "weekday": "二",
+      "dayIndex": 26,
+      "phaseId": "junior",
+      "phase": "初級科目一與科目二",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "提示設計與導入流程",
+      "chapters": [
+        "需求定義",
+        "資料準備",
+        "驗收指標"
+      ],
+      "materials": [
+        {
+          "id": "src_79a02ecc7a4616",
+          "title": "AI導入詳細作業流程",
+          "path": "iPAS教材/AI導入詳細作業流程.pdf"
+        },
+        {
+          "id": "src_738384225067f5",
+          "title": "CNN流程圖型",
+          "path": "iPAS教材/中級/CNN流程圖型.png"
+        },
+        {
+          "id": "src_55664652c4ec24",
+          "title": "AI導入 -圖表",
+          "path": "iPAS教材/AI導入 -圖表.pdf"
+        },
+        {
+          "id": "src_607fa6e2f40af7",
+          "title": "企業應具備的AI素養_生成式AI導入指引_",
+          "path": "iPAS教材/中級/企業應具備的AI素養_生成式AI導入指引_.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-07-29",
+      "weekday": "三",
+      "dayIndex": 27,
+      "phaseId": "junior",
+      "phase": "初級科目一與科目二",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "風險、隱私與治理",
+      "chapters": [
+        "個資",
+        "資安",
+        "責任歸屬"
+      ],
+      "materials": [
+        {
+          "id": "src_1c3224c5e249f3",
+          "title": "單元三 負責任的AI應用",
+          "path": "iPAS教材/公版教材/單元三 負責任的AI應用.pdf"
+        },
+        {
+          "id": "src_407c6dbc042302",
+          "title": "請說明 合規框架：GDPR、CCPA、ISO 27001、SOC 2、HIPAA",
+          "path": "iPAS教材/中級/請說明 合規框架：GDPR、CCPA、ISO 27001、SOC 2、HIPAA.docx"
+        },
+        {
+          "id": "src_45e3a88bf02282",
+          "title": "說明 _ 非結構資料與隱私技術：  _  1. 文本：TF-IDF、Embedding。_  2..._",
+          "path": "iPAS教材/中級/說明 _ 非結構資料與隱私技術：  _  1. 文本：TF-IDF、Embedding。_  2..._.docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-07-30",
+      "weekday": "四",
+      "dayIndex": 28,
+      "phaseId": "junior",
+      "phase": "初級科目一與科目二",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "初級模擬題與錯題整理",
+      "chapters": [
+        "科目一測驗",
+        "科目二測驗",
+        "錯題本"
+      ],
+      "materials": [
+        {
+          "id": "src_491d52953b1ba5",
+          "title": "模擬考題 初級",
+          "path": "iPAS教材/模擬考題 初級.docx"
+        },
+        {
+          "id": "src_c64597f09f5022",
+          "title": "模擬考題  科目一 人工智慧基本概論",
+          "path": "iPAS教材/模擬考題  科目一 人工智慧基本概論.docx"
+        },
+        {
+          "id": "src_90610e558133ca",
+          "title": "模擬考題  科目二 生成式AI應用與規劃",
+          "path": "iPAS教材/模擬考題  科目二 生成式AI應用與規劃.docx"
+        },
+        {
+          "id": "src_1ba00de19228c1",
+          "title": "HTML_考題小舖_iPAS_初級_第1場重點整理",
+          "path": "iPAS教材/HTML_考題小舖_iPAS_初級_第1場重點整理.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-07-31",
+      "weekday": "五",
+      "dayIndex": 29,
+      "phaseId": "junior",
+      "phase": "初級科目一與科目二",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "人工智慧基礎概論",
+      "chapters": [
+        "AI 發展",
+        "資料與演算法",
+        "應用情境"
+      ],
+      "materials": [
+        {
+          "id": "src_290b5d2ecc318d",
+          "title": "AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論(1)",
+          "path": "iPAS教材/公版教材/AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論(1).pdf"
+        },
+        {
+          "id": "src_c1ab5316ccdb3d",
+          "title": "情境題-AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論",
+          "path": "iPAS教材/考古題/情境題-AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論.docx"
+        },
+        {
+          "id": "src_fab75fadfb95b3",
+          "title": "考古題-AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論",
+          "path": "iPAS教材/考古題/考古題-AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論.docx"
+        },
+        {
+          "id": "src_a7c8fa16c23d9b",
+          "title": "初級-人工智慧基礎概論+生成式 AI應用與規劃",
+          "path": "iPAS教材/初級-人工智慧基礎概論+生成式 AI應用與規劃.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-08-01",
+      "weekday": "六",
+      "dayIndex": 30,
+      "phaseId": "junior",
+      "phase": "初級科目一與科目二",
+      "studyType": "mock",
+      "minutes": 150,
+      "focus": "搜尋、推論與知識表示",
+      "chapters": [
+        "問題求解",
+        "推論",
+        "知識庫"
+      ],
+      "materials": [
+        {
+          "id": "src_290b5d2ecc318d",
+          "title": "AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論(1)",
+          "path": "iPAS教材/公版教材/AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論(1).pdf"
+        },
+        {
+          "id": "src_c1ab5316ccdb3d",
+          "title": "情境題-AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論",
+          "path": "iPAS教材/考古題/情境題-AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論.docx"
+        },
+        {
+          "id": "src_fab75fadfb95b3",
+          "title": "考古題-AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論",
+          "path": "iPAS教材/考古題/考古題-AI應用規劃師(初級)-學習指引-科目1人工智慧基礎概論.docx"
+        },
+        {
+          "id": "src_a7c8fa16c23d9b",
+          "title": "初級-人工智慧基礎概論+生成式 AI應用與規劃",
+          "path": "iPAS教材/初級-人工智慧基礎概論+生成式 AI應用與規劃.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "週測驗",
+        "questions": 50,
+        "source": "本週章節 + 模擬/考古題"
+      },
+      "deliverables": [
+        "完成週測驗",
+        "訂正錯題並標註原因",
+        "列出下週前三個弱點"
+      ]
+    },
+    {
+      "date": "2026-08-02",
+      "weekday": "日",
+      "dayIndex": 31,
+      "phaseId": "junior",
+      "phase": "初級科目一與科目二",
+      "studyType": "review",
+      "minutes": 90,
+      "focus": "機器學習基本流程",
+      "chapters": [
+        "資料切分",
+        "訓練/驗證/測試",
+        "過擬合"
+      ],
+      "materials": [
+        {
+          "id": "src_686ef0b72f0953",
+          "title": "單元四 機器學習技術理論與案例",
+          "path": "iPAS教材/單元四 機器學習技術理論與案例.pdf"
+        },
+        {
+          "id": "src_9a413b2acfd3cf",
+          "title": "L2304機器學習治理",
+          "path": "iPAS教材/中級/L2304機器學習治理.docx"
+        },
+        {
+          "id": "src_69b5784b492601",
+          "title": "L23 機器學習考試重點",
+          "path": "iPAS教材/中級/L23 機器學習考試重點.txt"
+        },
+        {
+          "id": "src_8a8ad109f6332f",
+          "title": "機器學習模型原理一覽及比較表",
+          "path": "iPAS教材/中級/機器學習模型原理一覽及比較表.xlsx"
+        }
+      ],
+      "quiz": {
+        "type": "錯題回顧",
+        "questions": 30,
+        "source": "本週錯題與標記題"
+      },
+      "deliverables": [
+        "整理本週錯題 10 題",
+        "更新 10 張速記卡",
+        "回看本週最低分章節"
+      ]
+    },
+    {
+      "date": "2026-08-03",
+      "weekday": "一",
+      "dayIndex": 32,
+      "phaseId": "junior",
+      "phase": "初級科目一與科目二",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "生成式 AI 應用與規劃",
+      "chapters": [
+        "LLM",
+        "RAG",
+        "Prompt",
+        "導入評估"
+      ],
+      "materials": [
+        {
+          "id": "src_90610e558133ca",
+          "title": "模擬考題  科目二 生成式AI應用與規劃",
+          "path": "iPAS教材/模擬考題  科目二 生成式AI應用與規劃.docx"
+        },
+        {
+          "id": "src_23ad513d7e7145",
+          "title": "生成式AI講義",
+          "path": "iPAS教材/中級/生成式AI講義.pdf"
+        },
+        {
+          "id": "src_0def81686bd7c8",
+          "title": "24-0517中級科目二考題探討",
+          "path": "iPAS教材/中級/24-0517中級科目二考題探討.pdf"
+        },
+        {
+          "id": "src_be7626ba49917f",
+          "title": "24-0517中級科目二考題探討",
+          "path": "iPAS教材/考古題/24-0517中級科目二考題探討.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-08-04",
+      "weekday": "二",
+      "dayIndex": 33,
+      "phaseId": "junior",
+      "phase": "初級科目一與科目二",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "提示設計與導入流程",
+      "chapters": [
+        "需求定義",
+        "資料準備",
+        "驗收指標"
+      ],
+      "materials": [
+        {
+          "id": "src_79a02ecc7a4616",
+          "title": "AI導入詳細作業流程",
+          "path": "iPAS教材/AI導入詳細作業流程.pdf"
+        },
+        {
+          "id": "src_738384225067f5",
+          "title": "CNN流程圖型",
+          "path": "iPAS教材/中級/CNN流程圖型.png"
+        },
+        {
+          "id": "src_55664652c4ec24",
+          "title": "AI導入 -圖表",
+          "path": "iPAS教材/AI導入 -圖表.pdf"
+        },
+        {
+          "id": "src_607fa6e2f40af7",
+          "title": "企業應具備的AI素養_生成式AI導入指引_",
+          "path": "iPAS教材/中級/企業應具備的AI素養_生成式AI導入指引_.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-08-05",
+      "weekday": "三",
+      "dayIndex": 34,
+      "phaseId": "junior",
+      "phase": "初級科目一與科目二",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "風險、隱私與治理",
+      "chapters": [
+        "個資",
+        "資安",
+        "責任歸屬"
+      ],
+      "materials": [
+        {
+          "id": "src_1c3224c5e249f3",
+          "title": "單元三 負責任的AI應用",
+          "path": "iPAS教材/公版教材/單元三 負責任的AI應用.pdf"
+        },
+        {
+          "id": "src_407c6dbc042302",
+          "title": "請說明 合規框架：GDPR、CCPA、ISO 27001、SOC 2、HIPAA",
+          "path": "iPAS教材/中級/請說明 合規框架：GDPR、CCPA、ISO 27001、SOC 2、HIPAA.docx"
+        },
+        {
+          "id": "src_45e3a88bf02282",
+          "title": "說明 _ 非結構資料與隱私技術：  _  1. 文本：TF-IDF、Embedding。_  2..._",
+          "path": "iPAS教材/中級/說明 _ 非結構資料與隱私技術：  _  1. 文本：TF-IDF、Embedding。_  2..._.docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-08-06",
+      "weekday": "四",
+      "dayIndex": 35,
+      "phaseId": "junior",
+      "phase": "初級科目一與科目二",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "初級模擬題與錯題整理",
+      "chapters": [
+        "科目一測驗",
+        "科目二測驗",
+        "錯題本"
+      ],
+      "materials": [
+        {
+          "id": "src_491d52953b1ba5",
+          "title": "模擬考題 初級",
+          "path": "iPAS教材/模擬考題 初級.docx"
+        },
+        {
+          "id": "src_c64597f09f5022",
+          "title": "模擬考題  科目一 人工智慧基本概論",
+          "path": "iPAS教材/模擬考題  科目一 人工智慧基本概論.docx"
+        },
+        {
+          "id": "src_90610e558133ca",
+          "title": "模擬考題  科目二 生成式AI應用與規劃",
+          "path": "iPAS教材/模擬考題  科目二 生成式AI應用與規劃.docx"
+        },
+        {
+          "id": "src_1ba00de19228c1",
+          "title": "HTML_考題小舖_iPAS_初級_第1場重點整理",
+          "path": "iPAS教材/HTML_考題小舖_iPAS_初級_第1場重點整理.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-08-07",
+      "weekday": "五",
+      "dayIndex": 36,
+      "phaseId": "l21",
+      "phase": "中級 L21 人工智慧技術應用與規劃",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "L21 總覽與考點地圖",
+      "chapters": [
+        "技術應用",
+        "規劃流程",
+        "考點整理"
+      ],
+      "materials": [
+        {
+          "id": "src_7002020b600ef7",
+          "title": "L21 人工智慧技術應用與規劃_課程",
+          "path": "iPAS教材/中級/L21 人工智慧技術應用與規劃_課程.docx"
+        },
+        {
+          "id": "src_90326c828d2c42",
+          "title": "L21人工智慧技術應用與規劃_NB_1",
+          "path": "iPAS教材/中級/L21人工智慧技術應用與規劃_NB_1.docx"
+        },
+        {
+          "id": "src_4482d3d66730c6",
+          "title": "科目一 L21 人工智慧技術應用與規劃",
+          "path": "iPAS教材/中級/科目一 L21 人工智慧技術應用與規劃.docx"
+        },
+        {
+          "id": "src_ca4ca40a73a7e5",
+          "title": "科目L21 人工智慧技術應用與規劃_01",
+          "path": "iPAS教材/中級/科目L21 人工智慧技術應用與規劃_01.docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-08-08",
+      "weekday": "六",
+      "dayIndex": 37,
+      "phaseId": "l21",
+      "phase": "中級 L21 人工智慧技術應用與規劃",
+      "studyType": "mock",
+      "minutes": 150,
+      "focus": "AI 相關技術應用",
+      "chapters": [
+        "辨識",
+        "預測",
+        "推薦",
+        "生成"
+      ],
+      "materials": [
+        {
+          "id": "src_d13207ed54cb27",
+          "title": "L211 AI 相關技術應用_整理過",
+          "path": "iPAS教材/中級/L211 AI 相關技術應用_整理過.docx"
+        },
+        {
+          "id": "src_355d19c012e0d6",
+          "title": "L211 AI 相關技術應用_整理過(1)",
+          "path": "iPAS教材/中級/L211 AI 相關技術應用_整理過(1).docx"
+        },
+        {
+          "id": "src_e5f2fa0ce5d873",
+          "title": "L21101 自然語言處理技術與應用",
+          "path": "iPAS教材/中級/L21101 自然語言處理技術與應用.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "週測驗",
+        "questions": 50,
+        "source": "本週章節 + 模擬/考古題"
+      },
+      "deliverables": [
+        "完成週測驗",
+        "訂正錯題並標註原因",
+        "列出下週前三個弱點"
+      ]
+    },
+    {
+      "date": "2026-08-09",
+      "weekday": "日",
+      "dayIndex": 38,
+      "phaseId": "l21",
+      "phase": "中級 L21 人工智慧技術應用與規劃",
+      "studyType": "review",
+      "minutes": 90,
+      "focus": "自然語言處理技術",
+      "chapters": [
+        "斷詞",
+        "向量化",
+        "語意搜尋",
+        "RAG"
+      ],
+      "materials": [
+        {
+          "id": "src_e5f2fa0ce5d873",
+          "title": "L21101 自然語言處理技術與應用",
+          "path": "iPAS教材/中級/L21101 自然語言處理技術與應用.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "錯題回顧",
+        "questions": 30,
+        "source": "本週錯題與標記題"
+      },
+      "deliverables": [
+        "整理本週錯題 10 題",
+        "更新 10 張速記卡",
+        "回看本週最低分章節"
+      ]
+    },
+    {
+      "date": "2026-08-10",
+      "weekday": "一",
+      "dayIndex": 39,
+      "phaseId": "l21",
+      "phase": "中級 L21 人工智慧技術應用與規劃",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "AI 導入評估規劃",
+      "chapters": [
+        "場景選擇",
+        "效益評估",
+        "風險"
+      ],
+      "materials": [
+        {
+          "id": "src_03a568c964a1e9",
+          "title": "L212 AI 導入評估規劃_整理過",
+          "path": "iPAS教材/中級/L212 AI 導入評估規劃_整理過.docx"
+        },
+        {
+          "id": "src_b38eec91a76284",
+          "title": "L212 AI 導入評估規劃_整理過(1)",
+          "path": "iPAS教材/中級/L212 AI 導入評估規劃_整理過(1).docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-08-11",
+      "weekday": "二",
+      "dayIndex": 40,
+      "phaseId": "l21",
+      "phase": "中級 L21 人工智慧技術應用與規劃",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "AI 技術應用與系統部署",
+      "chapters": [
+        "API",
+        "MLOps",
+        "監控",
+        "上線"
+      ],
+      "materials": [
+        {
+          "id": "src_8c45ca217e6f5d",
+          "title": "L213 AI 技術應用與系統部署_整理過",
+          "path": "iPAS教材/中級/L213 AI 技術應用與系統部署_整理過.docx"
+        },
+        {
+          "id": "src_666c928f1efc93",
+          "title": "L213 AI 技術應用與系統部署_整理過(1)",
+          "path": "iPAS教材/中級/L213 AI 技術應用與系統部署_整理過(1).docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-08-12",
+      "weekday": "三",
+      "dayIndex": 41,
+      "phaseId": "l21",
+      "phase": "中級 L21 人工智慧技術應用與規劃",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "企業 AI 素養與金融 AI 指引",
+      "chapters": [
+        "治理",
+        "模型風險",
+        "監管"
+      ],
+      "materials": [
+        {
+          "id": "src_ecbb168dcb6047",
+          "title": "金融業運用人工智慧(AI)指引",
+          "path": "iPAS教材/中級/金融業運用人工智慧(AI)指引.pdf"
+        },
+        {
+          "id": "src_607fa6e2f40af7",
+          "title": "企業應具備的AI素養_生成式AI導入指引_",
+          "path": "iPAS教材/中級/企業應具備的AI素養_生成式AI導入指引_.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-08-13",
+      "weekday": "四",
+      "dayIndex": 42,
+      "phaseId": "l21",
+      "phase": "中級 L21 人工智慧技術應用與規劃",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "L21 情境題演練",
+      "chapters": [
+        "案例判斷",
+        "方案選型",
+        "錯題回顧"
+      ],
+      "materials": [
+        {
+          "id": "src_d9ead2214bf4dd",
+          "title": "中級L21 情境題",
+          "path": "iPAS教材/中級/中級L21 情境題.docx"
+        },
+        {
+          "id": "src_a09b8fd7614416",
+          "title": "L21 中級情境考題_2",
+          "path": "iPAS教材/中級/L21 中級情境考題_2.docx"
+        },
+        {
+          "id": "src_59dd01d353aaf0",
+          "title": "L21_情境_NotebookLM",
+          "path": "iPAS教材/中級/L21_情境_NotebookLM.docx"
+        },
+        {
+          "id": "src_1e9437b009bcf2",
+          "title": "LC22_情境題",
+          "path": "iPAS教材/中級/LC22_情境題.docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-08-14",
+      "weekday": "五",
+      "dayIndex": 43,
+      "phaseId": "l21",
+      "phase": "中級 L21 人工智慧技術應用與規劃",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "L21 總覽與考點地圖",
+      "chapters": [
+        "技術應用",
+        "規劃流程",
+        "考點整理"
+      ],
+      "materials": [
+        {
+          "id": "src_7002020b600ef7",
+          "title": "L21 人工智慧技術應用與規劃_課程",
+          "path": "iPAS教材/中級/L21 人工智慧技術應用與規劃_課程.docx"
+        },
+        {
+          "id": "src_90326c828d2c42",
+          "title": "L21人工智慧技術應用與規劃_NB_1",
+          "path": "iPAS教材/中級/L21人工智慧技術應用與規劃_NB_1.docx"
+        },
+        {
+          "id": "src_4482d3d66730c6",
+          "title": "科目一 L21 人工智慧技術應用與規劃",
+          "path": "iPAS教材/中級/科目一 L21 人工智慧技術應用與規劃.docx"
+        },
+        {
+          "id": "src_ca4ca40a73a7e5",
+          "title": "科目L21 人工智慧技術應用與規劃_01",
+          "path": "iPAS教材/中級/科目L21 人工智慧技術應用與規劃_01.docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-08-15",
+      "weekday": "六",
+      "dayIndex": 44,
+      "phaseId": "l21",
+      "phase": "中級 L21 人工智慧技術應用與規劃",
+      "studyType": "mock",
+      "minutes": 150,
+      "focus": "AI 相關技術應用",
+      "chapters": [
+        "辨識",
+        "預測",
+        "推薦",
+        "生成"
+      ],
+      "materials": [
+        {
+          "id": "src_d13207ed54cb27",
+          "title": "L211 AI 相關技術應用_整理過",
+          "path": "iPAS教材/中級/L211 AI 相關技術應用_整理過.docx"
+        },
+        {
+          "id": "src_355d19c012e0d6",
+          "title": "L211 AI 相關技術應用_整理過(1)",
+          "path": "iPAS教材/中級/L211 AI 相關技術應用_整理過(1).docx"
+        },
+        {
+          "id": "src_e5f2fa0ce5d873",
+          "title": "L21101 自然語言處理技術與應用",
+          "path": "iPAS教材/中級/L21101 自然語言處理技術與應用.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "週測驗",
+        "questions": 50,
+        "source": "本週章節 + 模擬/考古題"
+      },
+      "deliverables": [
+        "完成週測驗",
+        "訂正錯題並標註原因",
+        "列出下週前三個弱點"
+      ]
+    },
+    {
+      "date": "2026-08-16",
+      "weekday": "日",
+      "dayIndex": 45,
+      "phaseId": "l21",
+      "phase": "中級 L21 人工智慧技術應用與規劃",
+      "studyType": "review",
+      "minutes": 90,
+      "focus": "自然語言處理技術",
+      "chapters": [
+        "斷詞",
+        "向量化",
+        "語意搜尋",
+        "RAG"
+      ],
+      "materials": [
+        {
+          "id": "src_e5f2fa0ce5d873",
+          "title": "L21101 自然語言處理技術與應用",
+          "path": "iPAS教材/中級/L21101 自然語言處理技術與應用.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "錯題回顧",
+        "questions": 30,
+        "source": "本週錯題與標記題"
+      },
+      "deliverables": [
+        "整理本週錯題 10 題",
+        "更新 10 張速記卡",
+        "回看本週最低分章節"
+      ]
+    },
+    {
+      "date": "2026-08-17",
+      "weekday": "一",
+      "dayIndex": 46,
+      "phaseId": "l21",
+      "phase": "中級 L21 人工智慧技術應用與規劃",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "AI 導入評估規劃",
+      "chapters": [
+        "場景選擇",
+        "效益評估",
+        "風險"
+      ],
+      "materials": [
+        {
+          "id": "src_03a568c964a1e9",
+          "title": "L212 AI 導入評估規劃_整理過",
+          "path": "iPAS教材/中級/L212 AI 導入評估規劃_整理過.docx"
+        },
+        {
+          "id": "src_b38eec91a76284",
+          "title": "L212 AI 導入評估規劃_整理過(1)",
+          "path": "iPAS教材/中級/L212 AI 導入評估規劃_整理過(1).docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-08-18",
+      "weekday": "二",
+      "dayIndex": 47,
+      "phaseId": "l21",
+      "phase": "中級 L21 人工智慧技術應用與規劃",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "AI 技術應用與系統部署",
+      "chapters": [
+        "API",
+        "MLOps",
+        "監控",
+        "上線"
+      ],
+      "materials": [
+        {
+          "id": "src_8c45ca217e6f5d",
+          "title": "L213 AI 技術應用與系統部署_整理過",
+          "path": "iPAS教材/中級/L213 AI 技術應用與系統部署_整理過.docx"
+        },
+        {
+          "id": "src_666c928f1efc93",
+          "title": "L213 AI 技術應用與系統部署_整理過(1)",
+          "path": "iPAS教材/中級/L213 AI 技術應用與系統部署_整理過(1).docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-08-19",
+      "weekday": "三",
+      "dayIndex": 48,
+      "phaseId": "l21",
+      "phase": "中級 L21 人工智慧技術應用與規劃",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "企業 AI 素養與金融 AI 指引",
+      "chapters": [
+        "治理",
+        "模型風險",
+        "監管"
+      ],
+      "materials": [
+        {
+          "id": "src_ecbb168dcb6047",
+          "title": "金融業運用人工智慧(AI)指引",
+          "path": "iPAS教材/中級/金融業運用人工智慧(AI)指引.pdf"
+        },
+        {
+          "id": "src_607fa6e2f40af7",
+          "title": "企業應具備的AI素養_生成式AI導入指引_",
+          "path": "iPAS教材/中級/企業應具備的AI素養_生成式AI導入指引_.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-08-20",
+      "weekday": "四",
+      "dayIndex": 49,
+      "phaseId": "l21",
+      "phase": "中級 L21 人工智慧技術應用與規劃",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "L21 情境題演練",
+      "chapters": [
+        "案例判斷",
+        "方案選型",
+        "錯題回顧"
+      ],
+      "materials": [
+        {
+          "id": "src_d9ead2214bf4dd",
+          "title": "中級L21 情境題",
+          "path": "iPAS教材/中級/中級L21 情境題.docx"
+        },
+        {
+          "id": "src_a09b8fd7614416",
+          "title": "L21 中級情境考題_2",
+          "path": "iPAS教材/中級/L21 中級情境考題_2.docx"
+        },
+        {
+          "id": "src_59dd01d353aaf0",
+          "title": "L21_情境_NotebookLM",
+          "path": "iPAS教材/中級/L21_情境_NotebookLM.docx"
+        },
+        {
+          "id": "src_1e9437b009bcf2",
+          "title": "LC22_情境題",
+          "path": "iPAS教材/中級/LC22_情境題.docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-08-21",
+      "weekday": "五",
+      "dayIndex": 50,
+      "phaseId": "l21",
+      "phase": "中級 L21 人工智慧技術應用與規劃",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "L21 總覽與考點地圖",
+      "chapters": [
+        "技術應用",
+        "規劃流程",
+        "考點整理"
+      ],
+      "materials": [
+        {
+          "id": "src_7002020b600ef7",
+          "title": "L21 人工智慧技術應用與規劃_課程",
+          "path": "iPAS教材/中級/L21 人工智慧技術應用與規劃_課程.docx"
+        },
+        {
+          "id": "src_90326c828d2c42",
+          "title": "L21人工智慧技術應用與規劃_NB_1",
+          "path": "iPAS教材/中級/L21人工智慧技術應用與規劃_NB_1.docx"
+        },
+        {
+          "id": "src_4482d3d66730c6",
+          "title": "科目一 L21 人工智慧技術應用與規劃",
+          "path": "iPAS教材/中級/科目一 L21 人工智慧技術應用與規劃.docx"
+        },
+        {
+          "id": "src_ca4ca40a73a7e5",
+          "title": "科目L21 人工智慧技術應用與規劃_01",
+          "path": "iPAS教材/中級/科目L21 人工智慧技術應用與規劃_01.docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-08-22",
+      "weekday": "六",
+      "dayIndex": 51,
+      "phaseId": "l21",
+      "phase": "中級 L21 人工智慧技術應用與規劃",
+      "studyType": "mock",
+      "minutes": 150,
+      "focus": "AI 相關技術應用",
+      "chapters": [
+        "辨識",
+        "預測",
+        "推薦",
+        "生成"
+      ],
+      "materials": [
+        {
+          "id": "src_d13207ed54cb27",
+          "title": "L211 AI 相關技術應用_整理過",
+          "path": "iPAS教材/中級/L211 AI 相關技術應用_整理過.docx"
+        },
+        {
+          "id": "src_355d19c012e0d6",
+          "title": "L211 AI 相關技術應用_整理過(1)",
+          "path": "iPAS教材/中級/L211 AI 相關技術應用_整理過(1).docx"
+        },
+        {
+          "id": "src_e5f2fa0ce5d873",
+          "title": "L21101 自然語言處理技術與應用",
+          "path": "iPAS教材/中級/L21101 自然語言處理技術與應用.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "週測驗",
+        "questions": 50,
+        "source": "本週章節 + 模擬/考古題"
+      },
+      "deliverables": [
+        "完成週測驗",
+        "訂正錯題並標註原因",
+        "列出下週前三個弱點"
+      ]
+    },
+    {
+      "date": "2026-08-23",
+      "weekday": "日",
+      "dayIndex": 52,
+      "phaseId": "l21",
+      "phase": "中級 L21 人工智慧技術應用與規劃",
+      "studyType": "review",
+      "minutes": 90,
+      "focus": "自然語言處理技術",
+      "chapters": [
+        "斷詞",
+        "向量化",
+        "語意搜尋",
+        "RAG"
+      ],
+      "materials": [
+        {
+          "id": "src_e5f2fa0ce5d873",
+          "title": "L21101 自然語言處理技術與應用",
+          "path": "iPAS教材/中級/L21101 自然語言處理技術與應用.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "錯題回顧",
+        "questions": 30,
+        "source": "本週錯題與標記題"
+      },
+      "deliverables": [
+        "整理本週錯題 10 題",
+        "更新 10 張速記卡",
+        "回看本週最低分章節"
+      ]
+    },
+    {
+      "date": "2026-08-24",
+      "weekday": "一",
+      "dayIndex": 53,
+      "phaseId": "l21",
+      "phase": "中級 L21 人工智慧技術應用與規劃",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "AI 導入評估規劃",
+      "chapters": [
+        "場景選擇",
+        "效益評估",
+        "風險"
+      ],
+      "materials": [
+        {
+          "id": "src_03a568c964a1e9",
+          "title": "L212 AI 導入評估規劃_整理過",
+          "path": "iPAS教材/中級/L212 AI 導入評估規劃_整理過.docx"
+        },
+        {
+          "id": "src_b38eec91a76284",
+          "title": "L212 AI 導入評估規劃_整理過(1)",
+          "path": "iPAS教材/中級/L212 AI 導入評估規劃_整理過(1).docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-08-25",
+      "weekday": "二",
+      "dayIndex": 54,
+      "phaseId": "l21",
+      "phase": "中級 L21 人工智慧技術應用與規劃",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "AI 技術應用與系統部署",
+      "chapters": [
+        "API",
+        "MLOps",
+        "監控",
+        "上線"
+      ],
+      "materials": [
+        {
+          "id": "src_8c45ca217e6f5d",
+          "title": "L213 AI 技術應用與系統部署_整理過",
+          "path": "iPAS教材/中級/L213 AI 技術應用與系統部署_整理過.docx"
+        },
+        {
+          "id": "src_666c928f1efc93",
+          "title": "L213 AI 技術應用與系統部署_整理過(1)",
+          "path": "iPAS教材/中級/L213 AI 技術應用與系統部署_整理過(1).docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-08-26",
+      "weekday": "三",
+      "dayIndex": 55,
+      "phaseId": "l21",
+      "phase": "中級 L21 人工智慧技術應用與規劃",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "企業 AI 素養與金融 AI 指引",
+      "chapters": [
+        "治理",
+        "模型風險",
+        "監管"
+      ],
+      "materials": [
+        {
+          "id": "src_ecbb168dcb6047",
+          "title": "金融業運用人工智慧(AI)指引",
+          "path": "iPAS教材/中級/金融業運用人工智慧(AI)指引.pdf"
+        },
+        {
+          "id": "src_607fa6e2f40af7",
+          "title": "企業應具備的AI素養_生成式AI導入指引_",
+          "path": "iPAS教材/中級/企業應具備的AI素養_生成式AI導入指引_.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-08-27",
+      "weekday": "四",
+      "dayIndex": 56,
+      "phaseId": "l21",
+      "phase": "中級 L21 人工智慧技術應用與規劃",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "L21 情境題演練",
+      "chapters": [
+        "案例判斷",
+        "方案選型",
+        "錯題回顧"
+      ],
+      "materials": [
+        {
+          "id": "src_d9ead2214bf4dd",
+          "title": "中級L21 情境題",
+          "path": "iPAS教材/中級/中級L21 情境題.docx"
+        },
+        {
+          "id": "src_a09b8fd7614416",
+          "title": "L21 中級情境考題_2",
+          "path": "iPAS教材/中級/L21 中級情境考題_2.docx"
+        },
+        {
+          "id": "src_59dd01d353aaf0",
+          "title": "L21_情境_NotebookLM",
+          "path": "iPAS教材/中級/L21_情境_NotebookLM.docx"
+        },
+        {
+          "id": "src_1e9437b009bcf2",
+          "title": "LC22_情境題",
+          "path": "iPAS教材/中級/LC22_情境題.docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-08-28",
+      "weekday": "五",
+      "dayIndex": 57,
+      "phaseId": "l21",
+      "phase": "中級 L21 人工智慧技術應用與規劃",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "L21 總覽與考點地圖",
+      "chapters": [
+        "技術應用",
+        "規劃流程",
+        "考點整理"
+      ],
+      "materials": [
+        {
+          "id": "src_7002020b600ef7",
+          "title": "L21 人工智慧技術應用與規劃_課程",
+          "path": "iPAS教材/中級/L21 人工智慧技術應用與規劃_課程.docx"
+        },
+        {
+          "id": "src_90326c828d2c42",
+          "title": "L21人工智慧技術應用與規劃_NB_1",
+          "path": "iPAS教材/中級/L21人工智慧技術應用與規劃_NB_1.docx"
+        },
+        {
+          "id": "src_4482d3d66730c6",
+          "title": "科目一 L21 人工智慧技術應用與規劃",
+          "path": "iPAS教材/中級/科目一 L21 人工智慧技術應用與規劃.docx"
+        },
+        {
+          "id": "src_ca4ca40a73a7e5",
+          "title": "科目L21 人工智慧技術應用與規劃_01",
+          "path": "iPAS教材/中級/科目L21 人工智慧技術應用與規劃_01.docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-08-29",
+      "weekday": "六",
+      "dayIndex": 58,
+      "phaseId": "l21",
+      "phase": "中級 L21 人工智慧技術應用與規劃",
+      "studyType": "mock",
+      "minutes": 150,
+      "focus": "AI 相關技術應用",
+      "chapters": [
+        "辨識",
+        "預測",
+        "推薦",
+        "生成"
+      ],
+      "materials": [
+        {
+          "id": "src_d13207ed54cb27",
+          "title": "L211 AI 相關技術應用_整理過",
+          "path": "iPAS教材/中級/L211 AI 相關技術應用_整理過.docx"
+        },
+        {
+          "id": "src_355d19c012e0d6",
+          "title": "L211 AI 相關技術應用_整理過(1)",
+          "path": "iPAS教材/中級/L211 AI 相關技術應用_整理過(1).docx"
+        },
+        {
+          "id": "src_e5f2fa0ce5d873",
+          "title": "L21101 自然語言處理技術與應用",
+          "path": "iPAS教材/中級/L21101 自然語言處理技術與應用.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "週測驗",
+        "questions": 50,
+        "source": "本週章節 + 模擬/考古題"
+      },
+      "deliverables": [
+        "完成週測驗",
+        "訂正錯題並標註原因",
+        "列出下週前三個弱點"
+      ]
+    },
+    {
+      "date": "2026-08-30",
+      "weekday": "日",
+      "dayIndex": 59,
+      "phaseId": "l21",
+      "phase": "中級 L21 人工智慧技術應用與規劃",
+      "studyType": "review",
+      "minutes": 90,
+      "focus": "自然語言處理技術",
+      "chapters": [
+        "斷詞",
+        "向量化",
+        "語意搜尋",
+        "RAG"
+      ],
+      "materials": [
+        {
+          "id": "src_e5f2fa0ce5d873",
+          "title": "L21101 自然語言處理技術與應用",
+          "path": "iPAS教材/中級/L21101 自然語言處理技術與應用.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "錯題回顧",
+        "questions": 30,
+        "source": "本週錯題與標記題"
+      },
+      "deliverables": [
+        "整理本週錯題 10 題",
+        "更新 10 張速記卡",
+        "回看本週最低分章節"
+      ]
+    },
+    {
+      "date": "2026-08-31",
+      "weekday": "一",
+      "dayIndex": 60,
+      "phaseId": "l22",
+      "phase": "中級 L22 大數據處理分析與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "機率統計基礎",
+      "chapters": [
+        "隨機變數",
+        "分佈",
+        "抽樣"
+      ],
+      "materials": [
+        {
+          "id": "src_d78e1c4c9cc17c",
+          "title": "L221 機率統計基礎 說明_整理過",
+          "path": "iPAS教材/中級/L221 機率統計基礎 說明_整理過.docx"
+        },
+        {
+          "id": "src_a1d76139463dbf",
+          "title": "L221 機率統計基礎 說明_整理過(1)",
+          "path": "iPAS教材/中級/L221 機率統計基礎 說明_整理過(1).docx"
+        },
+        {
+          "id": "src_189144863c297e",
+          "title": "L22101 敘述性統計與資料摘要技術",
+          "path": "iPAS教材/中級/L22101 敘述性統計與資料摘要技術.pdf"
+        },
+        {
+          "id": "src_f1c9b193cf2fdd",
+          "title": "L23101 機率-統計之機器學習基礎應用",
+          "path": "iPAS教材/中級/L23101 機率-統計之機器學習基礎應用.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-09-01",
+      "weekday": "二",
+      "dayIndex": 61,
+      "phaseId": "l22",
+      "phase": "中級 L22 大數據處理分析與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "敘述性統計與資料摘要",
+      "chapters": [
+        "平均/變異",
+        "相關",
+        "視覺化"
+      ],
+      "materials": [
+        {
+          "id": "src_189144863c297e",
+          "title": "L22101 敘述性統計與資料摘要技術",
+          "path": "iPAS教材/中級/L22101 敘述性統計與資料摘要技術.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-09-02",
+      "weekday": "三",
+      "dayIndex": 62,
+      "phaseId": "l22",
+      "phase": "中級 L22 大數據處理分析與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "資料清理與整合",
+      "chapters": [
+        "缺失值",
+        "異常值",
+        "JOIN",
+        "轉換"
+      ],
+      "materials": [
+        {
+          "id": "src_1fe54bd7e01a36",
+          "title": "請說明 缺失值處理：使用 迴歸、KNN、隨機森林方法",
+          "path": "iPAS教材/中級/請說明 缺失值處理：使用 迴歸、KNN、隨機森林方法.docx"
+        },
+        {
+          "id": "src_f80b611e0ed98d",
+          "title": "請說明    _  2.數據整合：   _   橫向整合 (JOIN)：合併不同表的數據。.._",
+          "path": "iPAS教材/中級/請說明    _  2.數據整合：   _   橫向整合 (JOIN)：合併不同表的數據。.._.docx"
+        },
+        {
+          "id": "src_d07d228ac78bdf",
+          "title": "請說明 _ _ 1. 數據轉換：   _   數值處理：Normalization（正規化）、Z-.._",
+          "path": "iPAS教材/中級/請說明 _ _ 1. 數據轉換：   _   數值處理：Normalization（正規化）、Z-.._.docx"
+        },
+        {
+          "id": "src_f1193b9ffaa26b",
+          "title": "請說明 異常值檢測：統計方法（Z-Score、IQR）、機器學習方法（Isolation Fore.._",
+          "path": "iPAS教材/中級/請說明 異常值檢測：統計方法（Z-Score、IQR）、機器學習方法（Isolation Fore.._.docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-09-03",
+      "weekday": "四",
+      "dayIndex": 63,
+      "phaseId": "l22",
+      "phase": "中級 L22 大數據處理分析與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "大數據處理技術",
+      "chapters": [
+        "批次",
+        "串流",
+        "Kafka",
+        "Spark"
+      ],
+      "materials": [
+        {
+          "id": "src_afab045f42266c",
+          "title": "L222大數據處理技術 說明_整理過",
+          "path": "iPAS教材/中級/L222大數據處理技術 說明_整理過.docx"
+        },
+        {
+          "id": "src_e2229e97132c6d",
+          "title": "L222大數據處理技術 說明_整理過(1)",
+          "path": "iPAS教材/中級/L222大數據處理技術 說明_整理過(1).docx"
+        },
+        {
+          "id": "src_1b6fccac938645",
+          "title": "請說明 即時串流數據：處理高速生成的數據流。工具：Kafka、Flink、Spark Stream.._",
+          "path": "iPAS教材/中級/請說明 即時串流數據：處理高速生成的數據流。工具：Kafka、Flink、Spark Stream.._.docx"
+        },
+        {
+          "id": "src_e5f2fa0ce5d873",
+          "title": "L21101 自然語言處理技術與應用",
+          "path": "iPAS教材/中級/L21101 自然語言處理技術與應用.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-09-04",
+      "weekday": "五",
+      "dayIndex": 64,
+      "phaseId": "l22",
+      "phase": "中級 L22 大數據處理分析與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "大數據分析方法與工具",
+      "chapters": [
+        "回歸",
+        "分群",
+        "Bootstrap",
+        "檢定"
+      ],
+      "materials": [
+        {
+          "id": "src_d159b0ada6c84b",
+          "title": "L223 大數據分析方法與工具說明_整理過",
+          "path": "iPAS教材/中級/L223 大數據分析方法與工具說明_整理過.docx"
+        },
+        {
+          "id": "src_79d8433d08daf9",
+          "title": "L223 大數據分析方法與工具說明_整理過(1)",
+          "path": "iPAS教材/中級/L223 大數據分析方法與工具說明_整理過(1).docx"
+        },
+        {
+          "id": "src_fe9026283039c1",
+          "title": "請說明  在大數據分析方法與工具 透過 Bootstrap重抽樣 (Bootstrapping).._",
+          "path": "iPAS教材/中級/請說明  在大數據分析方法與工具 透過 Bootstrap重抽樣 (Bootstrapping).._.docx"
+        },
+        {
+          "id": "src_3334b5ad4a80b7",
+          "title": "線性迴歸與邏輯回歸的對比說明圖",
+          "path": "iPAS教材/中級/線性迴歸與邏輯回歸的對比說明圖.png"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-09-05",
+      "weekday": "六",
+      "dayIndex": 65,
+      "phaseId": "l22",
+      "phase": "中級 L22 大數據處理分析與應用",
+      "studyType": "mock",
+      "minutes": 150,
+      "focus": "時間序列與預測",
+      "chapters": [
+        "ARIMA",
+        "Prophet",
+        "LSTM/GRU"
+      ],
+      "materials": [
+        {
+          "id": "src_24cc82d2f2d62a",
+          "title": "L22 大數據ARIMA, Prophet, LSTM_GRU比較",
+          "path": "iPAS教材/中級/L22 大數據ARIMA, Prophet, LSTM_GRU比較.docx"
+        },
+        {
+          "id": "src_565dcd6695db89",
+          "title": "請說明 ARIMA時間序列模型",
+          "path": "iPAS教材/中級/請說明 ARIMA時間序列模型.docx"
+        }
+      ],
+      "quiz": {
+        "type": "週測驗",
+        "questions": 50,
+        "source": "本週章節 + 模擬/考古題"
+      },
+      "deliverables": [
+        "完成週測驗",
+        "訂正錯題並標註原因",
+        "列出下週前三個弱點"
+      ]
+    },
+    {
+      "date": "2026-09-06",
+      "weekday": "日",
+      "dayIndex": 66,
+      "phaseId": "l22",
+      "phase": "中級 L22 大數據處理分析與應用",
+      "studyType": "review",
+      "minutes": 90,
+      "focus": "資料儲存、合規與成本",
+      "chapters": [
+        "Parquet",
+        "Partition",
+        "GDPR",
+        "ISO"
+      ],
+      "materials": [
+        {
+          "id": "src_407c6dbc042302",
+          "title": "請說明 合規框架：GDPR、CCPA、ISO 27001、SOC 2、HIPAA",
+          "path": "iPAS教材/中級/請說明 合規框架：GDPR、CCPA、ISO 27001、SOC 2、HIPAA.docx"
+        },
+        {
+          "id": "src_9b41cb02d81c90",
+          "title": "請說明 _ 性能調優與成本優化：  _  儲存結構：Partition、Sharding、Inde.._",
+          "path": "iPAS教材/中級/請說明 _ 性能調優與成本優化：  _  儲存結構：Partition、Sharding、Inde.._.docx"
+        },
+        {
+          "id": "src_8b2d8001fb23f0",
+          "title": "請說明 儲存格式：CSV、JSON、Parquet（列式儲存，高效）、Feather。",
+          "path": "iPAS教材/中級/請說明 儲存格式：CSV、JSON、Parquet（列式儲存，高效）、Feather。.docx"
+        },
+        {
+          "id": "src_b5265bedb32ba7",
+          "title": "說明 未來趨勢：Serverless資料庫、AI驅動管理、邊緣儲存、去中心化儲存 (IPFS、Fi.._",
+          "path": "iPAS教材/中級/說明 未來趨勢：Serverless資料庫、AI驅動管理、邊緣儲存、去中心化儲存 (IPFS、Fi.._.docx"
+        }
+      ],
+      "quiz": {
+        "type": "錯題回顧",
+        "questions": 30,
+        "source": "本週錯題與標記題"
+      },
+      "deliverables": [
+        "整理本週錯題 10 題",
+        "更新 10 張速記卡",
+        "回看本週最低分章節"
+      ]
+    },
+    {
+      "date": "2026-09-07",
+      "weekday": "一",
+      "dayIndex": 67,
+      "phaseId": "l22",
+      "phase": "中級 L22 大數據處理分析與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "大數據在 AI 之應用",
+      "chapters": [
+        "特徵工程",
+        "高維資料",
+        "隱私技術"
+      ],
+      "materials": [
+        {
+          "id": "src_af28eeff957d82",
+          "title": "L224 大數據在人工智慧之應用_整理過",
+          "path": "iPAS教材/中級/L224 大數據在人工智慧之應用_整理過.docx"
+        },
+        {
+          "id": "src_45e3a88bf02282",
+          "title": "說明 _ 非結構資料與隱私技術：  _  1. 文本：TF-IDF、Embedding。_  2..._",
+          "path": "iPAS教材/中級/說明 _ 非結構資料與隱私技術：  _  1. 文本：TF-IDF、Embedding。_  2..._.docx"
+        },
+        {
+          "id": "src_6bd81edfdae885",
+          "title": "請說明以下_   高維資料處理：結合特徵選擇、降維（PCA、t-SNE）避免「維度災難」。_  資.._",
+          "path": "iPAS教材/中級/請說明以下_   高維資料處理：結合特徵選擇、降維（PCA、t-SNE）避免「維度災難」。_  資.._.docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-09-08",
+      "weekday": "二",
+      "dayIndex": 68,
+      "phaseId": "l22",
+      "phase": "中級 L22 大數據處理分析與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "L22 情境題演練",
+      "chapters": [
+        "資料流程設計",
+        "工具選擇",
+        "錯題回顧"
+      ],
+      "materials": [
+        {
+          "id": "src_5ca4f3983a9fb0",
+          "title": "L22 _情境題目",
+          "path": "iPAS教材/中級/L22 _情境題目.docx"
+        },
+        {
+          "id": "src_277c44d5f2075c",
+          "title": "L22_情境題_NotebookLM",
+          "path": "iPAS教材/中級/L22_情境題_NotebookLM.docx"
+        },
+        {
+          "id": "src_2373aa920bb42a",
+          "title": "L22_情境題_NotebookLM_1",
+          "path": "iPAS教材/中級/L22_情境題_NotebookLM_1.docx"
+        },
+        {
+          "id": "src_1e9437b009bcf2",
+          "title": "LC22_情境題",
+          "path": "iPAS教材/中級/LC22_情境題.docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-09-09",
+      "weekday": "三",
+      "dayIndex": 69,
+      "phaseId": "l22",
+      "phase": "中級 L22 大數據處理分析與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "機率統計基礎",
+      "chapters": [
+        "隨機變數",
+        "分佈",
+        "抽樣"
+      ],
+      "materials": [
+        {
+          "id": "src_d78e1c4c9cc17c",
+          "title": "L221 機率統計基礎 說明_整理過",
+          "path": "iPAS教材/中級/L221 機率統計基礎 說明_整理過.docx"
+        },
+        {
+          "id": "src_a1d76139463dbf",
+          "title": "L221 機率統計基礎 說明_整理過(1)",
+          "path": "iPAS教材/中級/L221 機率統計基礎 說明_整理過(1).docx"
+        },
+        {
+          "id": "src_189144863c297e",
+          "title": "L22101 敘述性統計與資料摘要技術",
+          "path": "iPAS教材/中級/L22101 敘述性統計與資料摘要技術.pdf"
+        },
+        {
+          "id": "src_f1c9b193cf2fdd",
+          "title": "L23101 機率-統計之機器學習基礎應用",
+          "path": "iPAS教材/中級/L23101 機率-統計之機器學習基礎應用.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-09-10",
+      "weekday": "四",
+      "dayIndex": 70,
+      "phaseId": "l22",
+      "phase": "中級 L22 大數據處理分析與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "敘述性統計與資料摘要",
+      "chapters": [
+        "平均/變異",
+        "相關",
+        "視覺化"
+      ],
+      "materials": [
+        {
+          "id": "src_189144863c297e",
+          "title": "L22101 敘述性統計與資料摘要技術",
+          "path": "iPAS教材/中級/L22101 敘述性統計與資料摘要技術.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-09-11",
+      "weekday": "五",
+      "dayIndex": 71,
+      "phaseId": "l22",
+      "phase": "中級 L22 大數據處理分析與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "資料清理與整合",
+      "chapters": [
+        "缺失值",
+        "異常值",
+        "JOIN",
+        "轉換"
+      ],
+      "materials": [
+        {
+          "id": "src_1fe54bd7e01a36",
+          "title": "請說明 缺失值處理：使用 迴歸、KNN、隨機森林方法",
+          "path": "iPAS教材/中級/請說明 缺失值處理：使用 迴歸、KNN、隨機森林方法.docx"
+        },
+        {
+          "id": "src_f80b611e0ed98d",
+          "title": "請說明    _  2.數據整合：   _   橫向整合 (JOIN)：合併不同表的數據。.._",
+          "path": "iPAS教材/中級/請說明    _  2.數據整合：   _   橫向整合 (JOIN)：合併不同表的數據。.._.docx"
+        },
+        {
+          "id": "src_d07d228ac78bdf",
+          "title": "請說明 _ _ 1. 數據轉換：   _   數值處理：Normalization（正規化）、Z-.._",
+          "path": "iPAS教材/中級/請說明 _ _ 1. 數據轉換：   _   數值處理：Normalization（正規化）、Z-.._.docx"
+        },
+        {
+          "id": "src_f1193b9ffaa26b",
+          "title": "請說明 異常值檢測：統計方法（Z-Score、IQR）、機器學習方法（Isolation Fore.._",
+          "path": "iPAS教材/中級/請說明 異常值檢測：統計方法（Z-Score、IQR）、機器學習方法（Isolation Fore.._.docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-09-12",
+      "weekday": "六",
+      "dayIndex": 72,
+      "phaseId": "l22",
+      "phase": "中級 L22 大數據處理分析與應用",
+      "studyType": "mock",
+      "minutes": 150,
+      "focus": "大數據處理技術",
+      "chapters": [
+        "批次",
+        "串流",
+        "Kafka",
+        "Spark"
+      ],
+      "materials": [
+        {
+          "id": "src_afab045f42266c",
+          "title": "L222大數據處理技術 說明_整理過",
+          "path": "iPAS教材/中級/L222大數據處理技術 說明_整理過.docx"
+        },
+        {
+          "id": "src_e2229e97132c6d",
+          "title": "L222大數據處理技術 說明_整理過(1)",
+          "path": "iPAS教材/中級/L222大數據處理技術 說明_整理過(1).docx"
+        },
+        {
+          "id": "src_1b6fccac938645",
+          "title": "請說明 即時串流數據：處理高速生成的數據流。工具：Kafka、Flink、Spark Stream.._",
+          "path": "iPAS教材/中級/請說明 即時串流數據：處理高速生成的數據流。工具：Kafka、Flink、Spark Stream.._.docx"
+        },
+        {
+          "id": "src_e5f2fa0ce5d873",
+          "title": "L21101 自然語言處理技術與應用",
+          "path": "iPAS教材/中級/L21101 自然語言處理技術與應用.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "週測驗",
+        "questions": 50,
+        "source": "本週章節 + 模擬/考古題"
+      },
+      "deliverables": [
+        "完成週測驗",
+        "訂正錯題並標註原因",
+        "列出下週前三個弱點"
+      ]
+    },
+    {
+      "date": "2026-09-13",
+      "weekday": "日",
+      "dayIndex": 73,
+      "phaseId": "l22",
+      "phase": "中級 L22 大數據處理分析與應用",
+      "studyType": "review",
+      "minutes": 90,
+      "focus": "大數據分析方法與工具",
+      "chapters": [
+        "回歸",
+        "分群",
+        "Bootstrap",
+        "檢定"
+      ],
+      "materials": [
+        {
+          "id": "src_d159b0ada6c84b",
+          "title": "L223 大數據分析方法與工具說明_整理過",
+          "path": "iPAS教材/中級/L223 大數據分析方法與工具說明_整理過.docx"
+        },
+        {
+          "id": "src_79d8433d08daf9",
+          "title": "L223 大數據分析方法與工具說明_整理過(1)",
+          "path": "iPAS教材/中級/L223 大數據分析方法與工具說明_整理過(1).docx"
+        },
+        {
+          "id": "src_fe9026283039c1",
+          "title": "請說明  在大數據分析方法與工具 透過 Bootstrap重抽樣 (Bootstrapping).._",
+          "path": "iPAS教材/中級/請說明  在大數據分析方法與工具 透過 Bootstrap重抽樣 (Bootstrapping).._.docx"
+        },
+        {
+          "id": "src_3334b5ad4a80b7",
+          "title": "線性迴歸與邏輯回歸的對比說明圖",
+          "path": "iPAS教材/中級/線性迴歸與邏輯回歸的對比說明圖.png"
+        }
+      ],
+      "quiz": {
+        "type": "錯題回顧",
+        "questions": 30,
+        "source": "本週錯題與標記題"
+      },
+      "deliverables": [
+        "整理本週錯題 10 題",
+        "更新 10 張速記卡",
+        "回看本週最低分章節"
+      ]
+    },
+    {
+      "date": "2026-09-14",
+      "weekday": "一",
+      "dayIndex": 74,
+      "phaseId": "l22",
+      "phase": "中級 L22 大數據處理分析與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "時間序列與預測",
+      "chapters": [
+        "ARIMA",
+        "Prophet",
+        "LSTM/GRU"
+      ],
+      "materials": [
+        {
+          "id": "src_24cc82d2f2d62a",
+          "title": "L22 大數據ARIMA, Prophet, LSTM_GRU比較",
+          "path": "iPAS教材/中級/L22 大數據ARIMA, Prophet, LSTM_GRU比較.docx"
+        },
+        {
+          "id": "src_565dcd6695db89",
+          "title": "請說明 ARIMA時間序列模型",
+          "path": "iPAS教材/中級/請說明 ARIMA時間序列模型.docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-09-15",
+      "weekday": "二",
+      "dayIndex": 75,
+      "phaseId": "l22",
+      "phase": "中級 L22 大數據處理分析與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "資料儲存、合規與成本",
+      "chapters": [
+        "Parquet",
+        "Partition",
+        "GDPR",
+        "ISO"
+      ],
+      "materials": [
+        {
+          "id": "src_407c6dbc042302",
+          "title": "請說明 合規框架：GDPR、CCPA、ISO 27001、SOC 2、HIPAA",
+          "path": "iPAS教材/中級/請說明 合規框架：GDPR、CCPA、ISO 27001、SOC 2、HIPAA.docx"
+        },
+        {
+          "id": "src_9b41cb02d81c90",
+          "title": "請說明 _ 性能調優與成本優化：  _  儲存結構：Partition、Sharding、Inde.._",
+          "path": "iPAS教材/中級/請說明 _ 性能調優與成本優化：  _  儲存結構：Partition、Sharding、Inde.._.docx"
+        },
+        {
+          "id": "src_8b2d8001fb23f0",
+          "title": "請說明 儲存格式：CSV、JSON、Parquet（列式儲存，高效）、Feather。",
+          "path": "iPAS教材/中級/請說明 儲存格式：CSV、JSON、Parquet（列式儲存，高效）、Feather。.docx"
+        },
+        {
+          "id": "src_b5265bedb32ba7",
+          "title": "說明 未來趨勢：Serverless資料庫、AI驅動管理、邊緣儲存、去中心化儲存 (IPFS、Fi.._",
+          "path": "iPAS教材/中級/說明 未來趨勢：Serverless資料庫、AI驅動管理、邊緣儲存、去中心化儲存 (IPFS、Fi.._.docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-09-16",
+      "weekday": "三",
+      "dayIndex": 76,
+      "phaseId": "l22",
+      "phase": "中級 L22 大數據處理分析與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "大數據在 AI 之應用",
+      "chapters": [
+        "特徵工程",
+        "高維資料",
+        "隱私技術"
+      ],
+      "materials": [
+        {
+          "id": "src_af28eeff957d82",
+          "title": "L224 大數據在人工智慧之應用_整理過",
+          "path": "iPAS教材/中級/L224 大數據在人工智慧之應用_整理過.docx"
+        },
+        {
+          "id": "src_45e3a88bf02282",
+          "title": "說明 _ 非結構資料與隱私技術：  _  1. 文本：TF-IDF、Embedding。_  2..._",
+          "path": "iPAS教材/中級/說明 _ 非結構資料與隱私技術：  _  1. 文本：TF-IDF、Embedding。_  2..._.docx"
+        },
+        {
+          "id": "src_6bd81edfdae885",
+          "title": "請說明以下_   高維資料處理：結合特徵選擇、降維（PCA、t-SNE）避免「維度災難」。_  資.._",
+          "path": "iPAS教材/中級/請說明以下_   高維資料處理：結合特徵選擇、降維（PCA、t-SNE）避免「維度災難」。_  資.._.docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-09-17",
+      "weekday": "四",
+      "dayIndex": 77,
+      "phaseId": "l22",
+      "phase": "中級 L22 大數據處理分析與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "L22 情境題演練",
+      "chapters": [
+        "資料流程設計",
+        "工具選擇",
+        "錯題回顧"
+      ],
+      "materials": [
+        {
+          "id": "src_5ca4f3983a9fb0",
+          "title": "L22 _情境題目",
+          "path": "iPAS教材/中級/L22 _情境題目.docx"
+        },
+        {
+          "id": "src_277c44d5f2075c",
+          "title": "L22_情境題_NotebookLM",
+          "path": "iPAS教材/中級/L22_情境題_NotebookLM.docx"
+        },
+        {
+          "id": "src_2373aa920bb42a",
+          "title": "L22_情境題_NotebookLM_1",
+          "path": "iPAS教材/中級/L22_情境題_NotebookLM_1.docx"
+        },
+        {
+          "id": "src_1e9437b009bcf2",
+          "title": "LC22_情境題",
+          "path": "iPAS教材/中級/LC22_情境題.docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-09-18",
+      "weekday": "五",
+      "dayIndex": 78,
+      "phaseId": "l22",
+      "phase": "中級 L22 大數據處理分析與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "機率統計基礎",
+      "chapters": [
+        "隨機變數",
+        "分佈",
+        "抽樣"
+      ],
+      "materials": [
+        {
+          "id": "src_d78e1c4c9cc17c",
+          "title": "L221 機率統計基礎 說明_整理過",
+          "path": "iPAS教材/中級/L221 機率統計基礎 說明_整理過.docx"
+        },
+        {
+          "id": "src_a1d76139463dbf",
+          "title": "L221 機率統計基礎 說明_整理過(1)",
+          "path": "iPAS教材/中級/L221 機率統計基礎 說明_整理過(1).docx"
+        },
+        {
+          "id": "src_189144863c297e",
+          "title": "L22101 敘述性統計與資料摘要技術",
+          "path": "iPAS教材/中級/L22101 敘述性統計與資料摘要技術.pdf"
+        },
+        {
+          "id": "src_f1c9b193cf2fdd",
+          "title": "L23101 機率-統計之機器學習基礎應用",
+          "path": "iPAS教材/中級/L23101 機率-統計之機器學習基礎應用.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-09-19",
+      "weekday": "六",
+      "dayIndex": 79,
+      "phaseId": "l22",
+      "phase": "中級 L22 大數據處理分析與應用",
+      "studyType": "mock",
+      "minutes": 150,
+      "focus": "敘述性統計與資料摘要",
+      "chapters": [
+        "平均/變異",
+        "相關",
+        "視覺化"
+      ],
+      "materials": [
+        {
+          "id": "src_189144863c297e",
+          "title": "L22101 敘述性統計與資料摘要技術",
+          "path": "iPAS教材/中級/L22101 敘述性統計與資料摘要技術.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "週測驗",
+        "questions": 50,
+        "source": "本週章節 + 模擬/考古題"
+      },
+      "deliverables": [
+        "完成週測驗",
+        "訂正錯題並標註原因",
+        "列出下週前三個弱點"
+      ]
+    },
+    {
+      "date": "2026-09-20",
+      "weekday": "日",
+      "dayIndex": 80,
+      "phaseId": "l22",
+      "phase": "中級 L22 大數據處理分析與應用",
+      "studyType": "review",
+      "minutes": 90,
+      "focus": "資料清理與整合",
+      "chapters": [
+        "缺失值",
+        "異常值",
+        "JOIN",
+        "轉換"
+      ],
+      "materials": [
+        {
+          "id": "src_1fe54bd7e01a36",
+          "title": "請說明 缺失值處理：使用 迴歸、KNN、隨機森林方法",
+          "path": "iPAS教材/中級/請說明 缺失值處理：使用 迴歸、KNN、隨機森林方法.docx"
+        },
+        {
+          "id": "src_f80b611e0ed98d",
+          "title": "請說明    _  2.數據整合：   _   橫向整合 (JOIN)：合併不同表的數據。.._",
+          "path": "iPAS教材/中級/請說明    _  2.數據整合：   _   橫向整合 (JOIN)：合併不同表的數據。.._.docx"
+        },
+        {
+          "id": "src_d07d228ac78bdf",
+          "title": "請說明 _ _ 1. 數據轉換：   _   數值處理：Normalization（正規化）、Z-.._",
+          "path": "iPAS教材/中級/請說明 _ _ 1. 數據轉換：   _   數值處理：Normalization（正規化）、Z-.._.docx"
+        },
+        {
+          "id": "src_f1193b9ffaa26b",
+          "title": "請說明 異常值檢測：統計方法（Z-Score、IQR）、機器學習方法（Isolation Fore.._",
+          "path": "iPAS教材/中級/請說明 異常值檢測：統計方法（Z-Score、IQR）、機器學習方法（Isolation Fore.._.docx"
+        }
+      ],
+      "quiz": {
+        "type": "錯題回顧",
+        "questions": 30,
+        "source": "本週錯題與標記題"
+      },
+      "deliverables": [
+        "整理本週錯題 10 題",
+        "更新 10 張速記卡",
+        "回看本週最低分章節"
+      ]
+    },
+    {
+      "date": "2026-09-21",
+      "weekday": "一",
+      "dayIndex": 81,
+      "phaseId": "l22",
+      "phase": "中級 L22 大數據處理分析與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "大數據處理技術",
+      "chapters": [
+        "批次",
+        "串流",
+        "Kafka",
+        "Spark"
+      ],
+      "materials": [
+        {
+          "id": "src_afab045f42266c",
+          "title": "L222大數據處理技術 說明_整理過",
+          "path": "iPAS教材/中級/L222大數據處理技術 說明_整理過.docx"
+        },
+        {
+          "id": "src_e2229e97132c6d",
+          "title": "L222大數據處理技術 說明_整理過(1)",
+          "path": "iPAS教材/中級/L222大數據處理技術 說明_整理過(1).docx"
+        },
+        {
+          "id": "src_1b6fccac938645",
+          "title": "請說明 即時串流數據：處理高速生成的數據流。工具：Kafka、Flink、Spark Stream.._",
+          "path": "iPAS教材/中級/請說明 即時串流數據：處理高速生成的數據流。工具：Kafka、Flink、Spark Stream.._.docx"
+        },
+        {
+          "id": "src_e5f2fa0ce5d873",
+          "title": "L21101 自然語言處理技術與應用",
+          "path": "iPAS教材/中級/L21101 自然語言處理技術與應用.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-09-22",
+      "weekday": "二",
+      "dayIndex": 82,
+      "phaseId": "l22",
+      "phase": "中級 L22 大數據處理分析與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "大數據分析方法與工具",
+      "chapters": [
+        "回歸",
+        "分群",
+        "Bootstrap",
+        "檢定"
+      ],
+      "materials": [
+        {
+          "id": "src_d159b0ada6c84b",
+          "title": "L223 大數據分析方法與工具說明_整理過",
+          "path": "iPAS教材/中級/L223 大數據分析方法與工具說明_整理過.docx"
+        },
+        {
+          "id": "src_79d8433d08daf9",
+          "title": "L223 大數據分析方法與工具說明_整理過(1)",
+          "path": "iPAS教材/中級/L223 大數據分析方法與工具說明_整理過(1).docx"
+        },
+        {
+          "id": "src_fe9026283039c1",
+          "title": "請說明  在大數據分析方法與工具 透過 Bootstrap重抽樣 (Bootstrapping).._",
+          "path": "iPAS教材/中級/請說明  在大數據分析方法與工具 透過 Bootstrap重抽樣 (Bootstrapping).._.docx"
+        },
+        {
+          "id": "src_3334b5ad4a80b7",
+          "title": "線性迴歸與邏輯回歸的對比說明圖",
+          "path": "iPAS教材/中級/線性迴歸與邏輯回歸的對比說明圖.png"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-09-23",
+      "weekday": "三",
+      "dayIndex": 83,
+      "phaseId": "l23",
+      "phase": "中級 L23 機器學習技術與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "線性代數與 ML 基礎",
+      "chapters": [
+        "向量",
+        "矩陣",
+        "距離",
+        "降維"
+      ],
+      "materials": [
+        {
+          "id": "src_688680017814ca",
+          "title": "L2302 線性代數之機器學習基礎應用",
+          "path": "iPAS教材/中級/L2302 線性代數之機器學習基礎應用.docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-09-24",
+      "weekday": "四",
+      "dayIndex": 84,
+      "phaseId": "l23",
+      "phase": "中級 L23 機器學習技術與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "機率統計之 ML 應用",
+      "chapters": [
+        "估計",
+        "檢定",
+        "分佈假設"
+      ],
+      "materials": [
+        {
+          "id": "src_f1c9b193cf2fdd",
+          "title": "L23101 機率-統計之機器學習基礎應用",
+          "path": "iPAS教材/中級/L23101 機率-統計之機器學習基礎應用.pdf"
+        },
+        {
+          "id": "src_76098cf5e57ecb",
+          "title": "L23101 機率_統計之機器學習基礎應用",
+          "path": "iPAS教材/中級/L23101 機率_統計之機器學習基礎應用.docx"
+        },
+        {
+          "id": "src_d78e1c4c9cc17c",
+          "title": "L221 機率統計基礎 說明_整理過",
+          "path": "iPAS教材/中級/L221 機率統計基礎 說明_整理過.docx"
+        },
+        {
+          "id": "src_a1d76139463dbf",
+          "title": "L221 機率統計基礎 說明_整理過(1)",
+          "path": "iPAS教材/中級/L221 機率統計基礎 說明_整理過(1).docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-09-25",
+      "weekday": "五",
+      "dayIndex": 85,
+      "phaseId": "l23",
+      "phase": "中級 L23 機器學習技術與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "線性迴歸與邏輯迴歸",
+      "chapters": [
+        "損失函數",
+        "正則化",
+        "分類閾值"
+      ],
+      "materials": [
+        {
+          "id": "src_3334b5ad4a80b7",
+          "title": "線性迴歸與邏輯回歸的對比說明圖",
+          "path": "iPAS教材/中級/線性迴歸與邏輯回歸的對比說明圖.png"
+        },
+        {
+          "id": "src_65ae3c38fe523d",
+          "title": "1. 線性迴歸（Linear Regression）",
+          "path": "iPAS教材/考古題/1. 線性迴歸（Linear Regression）.pdf"
+        },
+        {
+          "id": "src_8e36ede81cde69",
+          "title": "請以範例並以中學生程度說明, 有關正則化 (Regularization)-Lasso (L1).._",
+          "path": "iPAS教材/中級/請以範例並以中學生程度說明, 有關正則化 (Regularization)-Lasso (L1).._.docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-09-26",
+      "weekday": "六",
+      "dayIndex": 86,
+      "phaseId": "l23",
+      "phase": "中級 L23 機器學習技術與應用",
+      "studyType": "mock",
+      "minutes": 150,
+      "focus": "樹模型與集成方法",
+      "chapters": [
+        "決策樹",
+        "隨機森林",
+        "XGBoost"
+      ],
+      "materials": [
+        {
+          "id": "src_21c5432d4dada1",
+          "title": "決策樹-隨機森林-Xgboost圖",
+          "path": "iPAS教材/中級/決策樹-隨機森林-Xgboost圖.png"
+        },
+        {
+          "id": "src_1fe54bd7e01a36",
+          "title": "請說明 缺失值處理：使用 迴歸、KNN、隨機森林方法",
+          "path": "iPAS教材/中級/請說明 缺失值處理：使用 迴歸、KNN、隨機森林方法.docx"
+        }
+      ],
+      "quiz": {
+        "type": "週測驗",
+        "questions": 50,
+        "source": "本週章節 + 模擬/考古題"
+      },
+      "deliverables": [
+        "完成週測驗",
+        "訂正錯題並標註原因",
+        "列出下週前三個弱點"
+      ]
+    },
+    {
+      "date": "2026-09-27",
+      "weekday": "日",
+      "dayIndex": 87,
+      "phaseId": "l23",
+      "phase": "中級 L23 機器學習技術與應用",
+      "studyType": "review",
+      "minutes": 90,
+      "focus": "KNN、SVM、DBSCAN",
+      "chapters": [
+        "距離",
+        "核函數",
+        "密度分群"
+      ],
+      "materials": [
+        {
+          "id": "src_7f0b22f026fe8a",
+          "title": "SVM 分類圖形",
+          "path": "iPAS教材/中級/SVM 分類圖形.png"
+        },
+        {
+          "id": "src_d52ca121784d89",
+          "title": "DBSCAN 的核心內容",
+          "path": "iPAS教材/中級/DBSCAN 的核心內容.png"
+        },
+        {
+          "id": "src_09c953e2572ba8",
+          "title": "KNN-CNN-RNN圖型",
+          "path": "iPAS教材/中級/KNN-CNN-RNN圖型.png"
+        },
+        {
+          "id": "src_1fe54bd7e01a36",
+          "title": "請說明 缺失值處理：使用 迴歸、KNN、隨機森林方法",
+          "path": "iPAS教材/中級/請說明 缺失值處理：使用 迴歸、KNN、隨機森林方法.docx"
+        }
+      ],
+      "quiz": {
+        "type": "錯題回顧",
+        "questions": 30,
+        "source": "本週錯題與標記題"
+      },
+      "deliverables": [
+        "整理本週錯題 10 題",
+        "更新 10 張速記卡",
+        "回看本週最低分章節"
+      ]
+    },
+    {
+      "date": "2026-09-28",
+      "weekday": "一",
+      "dayIndex": 88,
+      "phaseId": "l23",
+      "phase": "中級 L23 機器學習技術與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "CNN、RNN 與深度學習",
+      "chapters": [
+        "卷積",
+        "序列",
+        "特徵抽取"
+      ],
+      "materials": [
+        {
+          "id": "src_09c953e2572ba8",
+          "title": "KNN-CNN-RNN圖型",
+          "path": "iPAS教材/中級/KNN-CNN-RNN圖型.png"
+        },
+        {
+          "id": "src_738384225067f5",
+          "title": "CNN流程圖型",
+          "path": "iPAS教材/中級/CNN流程圖型.png"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-09-29",
+      "weekday": "二",
+      "dayIndex": 89,
+      "phaseId": "l23",
+      "phase": "中級 L23 機器學習技術與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "建模、驗證與參數調整",
+      "chapters": [
+        "交叉驗證",
+        "Grid/Random Search",
+        "指標"
+      ],
+      "materials": [
+        {
+          "id": "src_e90381e6ef6a01",
+          "title": "L2303 機器學習建模與參數",
+          "path": "iPAS教材/中級/L2303 機器學習建模與參數.docx"
+        },
+        {
+          "id": "src_f0a873c8b310af",
+          "title": "請說明參數估計(Parameter Estimation) , 最大似然估計(Maximum Li.._",
+          "path": "iPAS教材/中級/請說明參數估計(Parameter Estimation) , 最大似然估計(Maximum Li.._.docx"
+        },
+        {
+          "id": "src_d47270eeb2990e",
+          "title": "請說明模型驗證(Model Validation), 卡方檢定(Chi-square Test),.._",
+          "path": "iPAS教材/中級/請說明模型驗證(Model Validation), 卡方檢定(Chi-square Test),.._.docx"
+        },
+        {
+          "id": "src_65269a59897c3a",
+          "title": "請說明非參數檢定_(Non-parametric Tests)：當數據不符合常態分佈假設或為定序資.._",
+          "path": "iPAS教材/中級/請說明非參數檢定_(Non-parametric Tests)：當數據不符合常態分佈假設或為定序資.._.docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-09-30",
+      "weekday": "三",
+      "dayIndex": 90,
+      "phaseId": "l23",
+      "phase": "中級 L23 機器學習技術與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "機器學習治理",
+      "chapters": [
+        "漂移",
+        "監控",
+        "可解釋性",
+        "偏誤"
+      ],
+      "materials": [
+        {
+          "id": "src_9a413b2acfd3cf",
+          "title": "L2304機器學習治理",
+          "path": "iPAS教材/中級/L2304機器學習治理.docx"
+        },
+        {
+          "id": "src_2e9fadf1db76b0",
+          "title": "請說明 決策偏誤應對  AI 推薦的決策有偏誤，你該「怎麼辦」？",
+          "path": "iPAS教材/中級/請說明 決策偏誤應對  AI 推薦的決策有偏誤，你該「怎麼辦」？.docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-10-01",
+      "weekday": "四",
+      "dayIndex": 91,
+      "phaseId": "l23",
+      "phase": "中級 L23 機器學習技術與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "L23 情境模擬題",
+      "chapters": [
+        "模型選擇",
+        "錯題回顧",
+        "弱點補強"
+      ],
+      "materials": [
+        {
+          "id": "src_4099c5f5242041",
+          "title": "L23 機器學習技術與應用情境模擬試題",
+          "path": "iPAS教材/中級/L23 機器學習技術與應用情境模擬試題.docx"
+        },
+        {
+          "id": "src_80998083524f23",
+          "title": "L23機器學習技術與應用_情境題",
+          "path": "iPAS教材/中級/L23機器學習技術與應用_情境題.docx"
+        },
+        {
+          "id": "src_48a57aa7c68d07",
+          "title": "iPAS AI 應用規劃師-中級 (L23機器學習技術與應用) 模擬試題-2",
+          "path": "iPAS教材/考古題/iPAS AI 應用規劃師-中級 (L23機器學習技術與應用) 模擬試題-2.docx"
+        },
+        {
+          "id": "src_dfde4e235e2d5e",
+          "title": "iPAS AI 應用規劃師-中級 (L23機器學習技術與應用) 模擬試題-3",
+          "path": "iPAS教材/考古題/iPAS AI 應用規劃師-中級 (L23機器學習技術與應用) 模擬試題-3.docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-10-02",
+      "weekday": "五",
+      "dayIndex": 92,
+      "phaseId": "l23",
+      "phase": "中級 L23 機器學習技術與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "線性代數與 ML 基礎",
+      "chapters": [
+        "向量",
+        "矩陣",
+        "距離",
+        "降維"
+      ],
+      "materials": [
+        {
+          "id": "src_688680017814ca",
+          "title": "L2302 線性代數之機器學習基礎應用",
+          "path": "iPAS教材/中級/L2302 線性代數之機器學習基礎應用.docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-10-03",
+      "weekday": "六",
+      "dayIndex": 93,
+      "phaseId": "l23",
+      "phase": "中級 L23 機器學習技術與應用",
+      "studyType": "mock",
+      "minutes": 150,
+      "focus": "機率統計之 ML 應用",
+      "chapters": [
+        "估計",
+        "檢定",
+        "分佈假設"
+      ],
+      "materials": [
+        {
+          "id": "src_f1c9b193cf2fdd",
+          "title": "L23101 機率-統計之機器學習基礎應用",
+          "path": "iPAS教材/中級/L23101 機率-統計之機器學習基礎應用.pdf"
+        },
+        {
+          "id": "src_76098cf5e57ecb",
+          "title": "L23101 機率_統計之機器學習基礎應用",
+          "path": "iPAS教材/中級/L23101 機率_統計之機器學習基礎應用.docx"
+        },
+        {
+          "id": "src_d78e1c4c9cc17c",
+          "title": "L221 機率統計基礎 說明_整理過",
+          "path": "iPAS教材/中級/L221 機率統計基礎 說明_整理過.docx"
+        },
+        {
+          "id": "src_a1d76139463dbf",
+          "title": "L221 機率統計基礎 說明_整理過(1)",
+          "path": "iPAS教材/中級/L221 機率統計基礎 說明_整理過(1).docx"
+        }
+      ],
+      "quiz": {
+        "type": "週測驗",
+        "questions": 50,
+        "source": "本週章節 + 模擬/考古題"
+      },
+      "deliverables": [
+        "完成週測驗",
+        "訂正錯題並標註原因",
+        "列出下週前三個弱點"
+      ]
+    },
+    {
+      "date": "2026-10-04",
+      "weekday": "日",
+      "dayIndex": 94,
+      "phaseId": "l23",
+      "phase": "中級 L23 機器學習技術與應用",
+      "studyType": "review",
+      "minutes": 90,
+      "focus": "線性迴歸與邏輯迴歸",
+      "chapters": [
+        "損失函數",
+        "正則化",
+        "分類閾值"
+      ],
+      "materials": [
+        {
+          "id": "src_3334b5ad4a80b7",
+          "title": "線性迴歸與邏輯回歸的對比說明圖",
+          "path": "iPAS教材/中級/線性迴歸與邏輯回歸的對比說明圖.png"
+        },
+        {
+          "id": "src_65ae3c38fe523d",
+          "title": "1. 線性迴歸（Linear Regression）",
+          "path": "iPAS教材/考古題/1. 線性迴歸（Linear Regression）.pdf"
+        },
+        {
+          "id": "src_8e36ede81cde69",
+          "title": "請以範例並以中學生程度說明, 有關正則化 (Regularization)-Lasso (L1).._",
+          "path": "iPAS教材/中級/請以範例並以中學生程度說明, 有關正則化 (Regularization)-Lasso (L1).._.docx"
+        }
+      ],
+      "quiz": {
+        "type": "錯題回顧",
+        "questions": 30,
+        "source": "本週錯題與標記題"
+      },
+      "deliverables": [
+        "整理本週錯題 10 題",
+        "更新 10 張速記卡",
+        "回看本週最低分章節"
+      ]
+    },
+    {
+      "date": "2026-10-05",
+      "weekday": "一",
+      "dayIndex": 95,
+      "phaseId": "l23",
+      "phase": "中級 L23 機器學習技術與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "樹模型與集成方法",
+      "chapters": [
+        "決策樹",
+        "隨機森林",
+        "XGBoost"
+      ],
+      "materials": [
+        {
+          "id": "src_21c5432d4dada1",
+          "title": "決策樹-隨機森林-Xgboost圖",
+          "path": "iPAS教材/中級/決策樹-隨機森林-Xgboost圖.png"
+        },
+        {
+          "id": "src_1fe54bd7e01a36",
+          "title": "請說明 缺失值處理：使用 迴歸、KNN、隨機森林方法",
+          "path": "iPAS教材/中級/請說明 缺失值處理：使用 迴歸、KNN、隨機森林方法.docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-10-06",
+      "weekday": "二",
+      "dayIndex": 96,
+      "phaseId": "l23",
+      "phase": "中級 L23 機器學習技術與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "KNN、SVM、DBSCAN",
+      "chapters": [
+        "距離",
+        "核函數",
+        "密度分群"
+      ],
+      "materials": [
+        {
+          "id": "src_7f0b22f026fe8a",
+          "title": "SVM 分類圖形",
+          "path": "iPAS教材/中級/SVM 分類圖形.png"
+        },
+        {
+          "id": "src_d52ca121784d89",
+          "title": "DBSCAN 的核心內容",
+          "path": "iPAS教材/中級/DBSCAN 的核心內容.png"
+        },
+        {
+          "id": "src_09c953e2572ba8",
+          "title": "KNN-CNN-RNN圖型",
+          "path": "iPAS教材/中級/KNN-CNN-RNN圖型.png"
+        },
+        {
+          "id": "src_1fe54bd7e01a36",
+          "title": "請說明 缺失值處理：使用 迴歸、KNN、隨機森林方法",
+          "path": "iPAS教材/中級/請說明 缺失值處理：使用 迴歸、KNN、隨機森林方法.docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-10-07",
+      "weekday": "三",
+      "dayIndex": 97,
+      "phaseId": "l23",
+      "phase": "中級 L23 機器學習技術與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "CNN、RNN 與深度學習",
+      "chapters": [
+        "卷積",
+        "序列",
+        "特徵抽取"
+      ],
+      "materials": [
+        {
+          "id": "src_09c953e2572ba8",
+          "title": "KNN-CNN-RNN圖型",
+          "path": "iPAS教材/中級/KNN-CNN-RNN圖型.png"
+        },
+        {
+          "id": "src_738384225067f5",
+          "title": "CNN流程圖型",
+          "path": "iPAS教材/中級/CNN流程圖型.png"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-10-08",
+      "weekday": "四",
+      "dayIndex": 98,
+      "phaseId": "l23",
+      "phase": "中級 L23 機器學習技術與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "建模、驗證與參數調整",
+      "chapters": [
+        "交叉驗證",
+        "Grid/Random Search",
+        "指標"
+      ],
+      "materials": [
+        {
+          "id": "src_e90381e6ef6a01",
+          "title": "L2303 機器學習建模與參數",
+          "path": "iPAS教材/中級/L2303 機器學習建模與參數.docx"
+        },
+        {
+          "id": "src_f0a873c8b310af",
+          "title": "請說明參數估計(Parameter Estimation) , 最大似然估計(Maximum Li.._",
+          "path": "iPAS教材/中級/請說明參數估計(Parameter Estimation) , 最大似然估計(Maximum Li.._.docx"
+        },
+        {
+          "id": "src_d47270eeb2990e",
+          "title": "請說明模型驗證(Model Validation), 卡方檢定(Chi-square Test),.._",
+          "path": "iPAS教材/中級/請說明模型驗證(Model Validation), 卡方檢定(Chi-square Test),.._.docx"
+        },
+        {
+          "id": "src_65269a59897c3a",
+          "title": "請說明非參數檢定_(Non-parametric Tests)：當數據不符合常態分佈假設或為定序資.._",
+          "path": "iPAS教材/中級/請說明非參數檢定_(Non-parametric Tests)：當數據不符合常態分佈假設或為定序資.._.docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-10-09",
+      "weekday": "五",
+      "dayIndex": 99,
+      "phaseId": "l23",
+      "phase": "中級 L23 機器學習技術與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "機器學習治理",
+      "chapters": [
+        "漂移",
+        "監控",
+        "可解釋性",
+        "偏誤"
+      ],
+      "materials": [
+        {
+          "id": "src_9a413b2acfd3cf",
+          "title": "L2304機器學習治理",
+          "path": "iPAS教材/中級/L2304機器學習治理.docx"
+        },
+        {
+          "id": "src_2e9fadf1db76b0",
+          "title": "請說明 決策偏誤應對  AI 推薦的決策有偏誤，你該「怎麼辦」？",
+          "path": "iPAS教材/中級/請說明 決策偏誤應對  AI 推薦的決策有偏誤，你該「怎麼辦」？.docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-10-10",
+      "weekday": "六",
+      "dayIndex": 100,
+      "phaseId": "l23",
+      "phase": "中級 L23 機器學習技術與應用",
+      "studyType": "mock",
+      "minutes": 150,
+      "focus": "L23 情境模擬題",
+      "chapters": [
+        "模型選擇",
+        "錯題回顧",
+        "弱點補強"
+      ],
+      "materials": [
+        {
+          "id": "src_4099c5f5242041",
+          "title": "L23 機器學習技術與應用情境模擬試題",
+          "path": "iPAS教材/中級/L23 機器學習技術與應用情境模擬試題.docx"
+        },
+        {
+          "id": "src_80998083524f23",
+          "title": "L23機器學習技術與應用_情境題",
+          "path": "iPAS教材/中級/L23機器學習技術與應用_情境題.docx"
+        },
+        {
+          "id": "src_48a57aa7c68d07",
+          "title": "iPAS AI 應用規劃師-中級 (L23機器學習技術與應用) 模擬試題-2",
+          "path": "iPAS教材/考古題/iPAS AI 應用規劃師-中級 (L23機器學習技術與應用) 模擬試題-2.docx"
+        },
+        {
+          "id": "src_dfde4e235e2d5e",
+          "title": "iPAS AI 應用規劃師-中級 (L23機器學習技術與應用) 模擬試題-3",
+          "path": "iPAS教材/考古題/iPAS AI 應用規劃師-中級 (L23機器學習技術與應用) 模擬試題-3.docx"
+        }
+      ],
+      "quiz": {
+        "type": "週測驗",
+        "questions": 50,
+        "source": "本週章節 + 模擬/考古題"
+      },
+      "deliverables": [
+        "完成週測驗",
+        "訂正錯題並標註原因",
+        "列出下週前三個弱點"
+      ]
+    },
+    {
+      "date": "2026-10-11",
+      "weekday": "日",
+      "dayIndex": 101,
+      "phaseId": "l23",
+      "phase": "中級 L23 機器學習技術與應用",
+      "studyType": "review",
+      "minutes": 90,
+      "focus": "線性代數與 ML 基礎",
+      "chapters": [
+        "向量",
+        "矩陣",
+        "距離",
+        "降維"
+      ],
+      "materials": [
+        {
+          "id": "src_688680017814ca",
+          "title": "L2302 線性代數之機器學習基礎應用",
+          "path": "iPAS教材/中級/L2302 線性代數之機器學習基礎應用.docx"
+        }
+      ],
+      "quiz": {
+        "type": "錯題回顧",
+        "questions": 30,
+        "source": "本週錯題與標記題"
+      },
+      "deliverables": [
+        "整理本週錯題 10 題",
+        "更新 10 張速記卡",
+        "回看本週最低分章節"
+      ]
+    },
+    {
+      "date": "2026-10-12",
+      "weekday": "一",
+      "dayIndex": 102,
+      "phaseId": "l23",
+      "phase": "中級 L23 機器學習技術與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "機率統計之 ML 應用",
+      "chapters": [
+        "估計",
+        "檢定",
+        "分佈假設"
+      ],
+      "materials": [
+        {
+          "id": "src_f1c9b193cf2fdd",
+          "title": "L23101 機率-統計之機器學習基礎應用",
+          "path": "iPAS教材/中級/L23101 機率-統計之機器學習基礎應用.pdf"
+        },
+        {
+          "id": "src_76098cf5e57ecb",
+          "title": "L23101 機率_統計之機器學習基礎應用",
+          "path": "iPAS教材/中級/L23101 機率_統計之機器學習基礎應用.docx"
+        },
+        {
+          "id": "src_d78e1c4c9cc17c",
+          "title": "L221 機率統計基礎 說明_整理過",
+          "path": "iPAS教材/中級/L221 機率統計基礎 說明_整理過.docx"
+        },
+        {
+          "id": "src_a1d76139463dbf",
+          "title": "L221 機率統計基礎 說明_整理過(1)",
+          "path": "iPAS教材/中級/L221 機率統計基礎 說明_整理過(1).docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-10-13",
+      "weekday": "二",
+      "dayIndex": 103,
+      "phaseId": "l23",
+      "phase": "中級 L23 機器學習技術與應用",
+      "studyType": "learn",
+      "minutes": 120,
+      "focus": "線性迴歸與邏輯迴歸",
+      "chapters": [
+        "損失函數",
+        "正則化",
+        "分類閾值"
+      ],
+      "materials": [
+        {
+          "id": "src_3334b5ad4a80b7",
+          "title": "線性迴歸與邏輯回歸的對比說明圖",
+          "path": "iPAS教材/中級/線性迴歸與邏輯回歸的對比說明圖.png"
+        },
+        {
+          "id": "src_65ae3c38fe523d",
+          "title": "1. 線性迴歸（Linear Regression）",
+          "path": "iPAS教材/考古題/1. 線性迴歸（Linear Regression）.pdf"
+        },
+        {
+          "id": "src_8e36ede81cde69",
+          "title": "請以範例並以中學生程度說明, 有關正則化 (Regularization)-Lasso (L1).._",
+          "path": "iPAS教材/中級/請以範例並以中學生程度說明, 有關正則化 (Regularization)-Lasso (L1).._.docx"
+        }
+      ],
+      "quiz": {
+        "type": "章節測驗",
+        "questions": 25,
+        "source": "對應章節題庫/NotebookLM/RAG"
+      },
+      "deliverables": [
+        "完成章節筆記",
+        "完成章節測驗",
+        "錯題至少訂正 5 題"
+      ]
+    },
+    {
+      "date": "2026-10-14",
+      "weekday": "三",
+      "dayIndex": 104,
+      "phaseId": "final",
+      "phase": "考前總複習與模擬考",
+      "studyType": "learn",
+      "minutes": 150,
+      "focus": "初級與中級總複習",
+      "chapters": [
+        "初級科目一/二",
+        "L21/L22/L23 快速掃描"
+      ],
+      "materials": [
+        {
+          "id": "src_69b5784b492601",
+          "title": "L23 機器學習考試重點",
+          "path": "iPAS教材/中級/L23 機器學習考試重點.txt"
+        },
+        {
+          "id": "src_5fbfa081fec9d9",
+          "title": "考古題-AI應用規劃師(初級)-學習指引-科目2",
+          "path": "iPAS教材/考古題/考古題-AI應用規劃師(初級)-學習指引-科目2.docx"
+        },
+        {
+          "id": "src_1ba00de19228c1",
+          "title": "HTML_考題小舖_iPAS_初級_第1場重點整理",
+          "path": "iPAS教材/HTML_考題小舖_iPAS_初級_第1場重點整理.pdf"
+        },
+        {
+          "id": "src_fc95da51b5d27a",
+          "title": "HTML_考題小舖_iPAS_初級_第2場重點整理",
+          "path": "iPAS教材/HTML_考題小舖_iPAS_初級_第2場重點整理.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "模擬考/考古題",
+        "questions": 80,
+        "source": "考古題、樣題、模擬試題"
+      },
+      "deliverables": [
+        "計時作答",
+        "完成錯題訂正",
+        "把易混淆觀念寫成比較表"
+      ]
+    },
+    {
+      "date": "2026-10-15",
+      "weekday": "四",
+      "dayIndex": 105,
+      "phaseId": "final",
+      "phase": "考前總複習與模擬考",
+      "studyType": "learn",
+      "minutes": 150,
+      "focus": "L21 全科模擬",
+      "chapters": [
+        "技術選型",
+        "導入評估",
+        "部署"
+      ],
+      "materials": [
+        {
+          "id": "src_a09b8fd7614416",
+          "title": "L21 中級情境考題_2",
+          "path": "iPAS教材/中級/L21 中級情境考題_2.docx"
+        },
+        {
+          "id": "src_d9ead2214bf4dd",
+          "title": "中級L21 情境題",
+          "path": "iPAS教材/中級/中級L21 情境題.docx"
+        },
+        {
+          "id": "src_59dd01d353aaf0",
+          "title": "L21_情境_NotebookLM",
+          "path": "iPAS教材/中級/L21_情境_NotebookLM.docx"
+        },
+        {
+          "id": "src_491d52953b1ba5",
+          "title": "模擬考題 初級",
+          "path": "iPAS教材/模擬考題 初級.docx"
+        }
+      ],
+      "quiz": {
+        "type": "模擬考/考古題",
+        "questions": 80,
+        "source": "考古題、樣題、模擬試題"
+      },
+      "deliverables": [
+        "計時作答",
+        "完成錯題訂正",
+        "把易混淆觀念寫成比較表"
+      ]
+    },
+    {
+      "date": "2026-10-16",
+      "weekday": "五",
+      "dayIndex": 106,
+      "phaseId": "final",
+      "phase": "考前總複習與模擬考",
+      "studyType": "learn",
+      "minutes": 150,
+      "focus": "L22 全科模擬",
+      "chapters": [
+        "統計",
+        "處理",
+        "分析",
+        "治理"
+      ],
+      "materials": [
+        {
+          "id": "src_5ca4f3983a9fb0",
+          "title": "L22 _情境題目",
+          "path": "iPAS教材/中級/L22 _情境題目.docx"
+        },
+        {
+          "id": "src_a09b8fd7614416",
+          "title": "L21 中級情境考題_2",
+          "path": "iPAS教材/中級/L21 中級情境考題_2.docx"
+        },
+        {
+          "id": "src_277c44d5f2075c",
+          "title": "L22_情境題_NotebookLM",
+          "path": "iPAS教材/中級/L22_情境題_NotebookLM.docx"
+        },
+        {
+          "id": "src_2373aa920bb42a",
+          "title": "L22_情境題_NotebookLM_1",
+          "path": "iPAS教材/中級/L22_情境題_NotebookLM_1.docx"
+        }
+      ],
+      "quiz": {
+        "type": "模擬考/考古題",
+        "questions": 80,
+        "source": "考古題、樣題、模擬試題"
+      },
+      "deliverables": [
+        "計時作答",
+        "完成錯題訂正",
+        "把易混淆觀念寫成比較表"
+      ]
+    },
+    {
+      "date": "2026-10-17",
+      "weekday": "六",
+      "dayIndex": 107,
+      "phaseId": "final",
+      "phase": "考前總複習與模擬考",
+      "studyType": "mock",
+      "minutes": 150,
+      "focus": "L23 全科模擬",
+      "chapters": [
+        "模型",
+        "驗證",
+        "治理",
+        "情境"
+      ],
+      "materials": [
+        {
+          "id": "src_491d52953b1ba5",
+          "title": "模擬考題 初級",
+          "path": "iPAS教材/模擬考題 初級.docx"
+        },
+        {
+          "id": "src_c64597f09f5022",
+          "title": "模擬考題  科目一 人工智慧基本概論",
+          "path": "iPAS教材/模擬考題  科目一 人工智慧基本概論.docx"
+        },
+        {
+          "id": "src_4099c5f5242041",
+          "title": "L23 機器學習技術與應用情境模擬試題",
+          "path": "iPAS教材/中級/L23 機器學習技術與應用情境模擬試題.docx"
+        },
+        {
+          "id": "src_90610e558133ca",
+          "title": "模擬考題  科目二 生成式AI應用與規劃",
+          "path": "iPAS教材/模擬考題  科目二 生成式AI應用與規劃.docx"
+        }
+      ],
+      "quiz": {
+        "type": "模擬考/考古題",
+        "questions": 100,
+        "source": "考古題、樣題、模擬試題"
+      },
+      "deliverables": [
+        "計時作答",
+        "完成錯題訂正",
+        "把易混淆觀念寫成比較表"
+      ]
+    },
+    {
+      "date": "2026-10-18",
+      "weekday": "日",
+      "dayIndex": 108,
+      "phaseId": "final",
+      "phase": "考前總複習與模擬考",
+      "studyType": "review",
+      "minutes": 90,
+      "focus": "歷屆題與樣題",
+      "chapters": [
+        "考古題",
+        "樣題",
+        "錯題本"
+      ],
+      "materials": [
+        {
+          "id": "src_00a6b029e38f1e",
+          "title": "20-2iPAS AI應用規劃師樣題比較",
+          "path": "iPAS教材/考古題/20-2iPAS AI應用規劃師樣題比較.pdf"
+        },
+        {
+          "id": "src_79a1c0bb06495b",
+          "title": "19-iPAS AI測驗題庫（50題）解說版",
+          "path": "iPAS教材/考古題/19-iPAS AI測驗題庫（50題）解說版.pdf"
+        },
+        {
+          "id": "src_950db12a71ae34",
+          "title": "22-0517中級科目一考題探討",
+          "path": "iPAS教材/考古題/22-0517中級科目一考題探討.pdf"
+        },
+        {
+          "id": "src_6ec50c4fb2c803",
+          "title": "23-0517中級科目三考題探討",
+          "path": "iPAS教材/考古題/23-0517中級科目三考題探討.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "錯題回顧",
+        "questions": 30,
+        "source": "本週錯題與標記題"
+      },
+      "deliverables": [
+        "整理本週錯題 10 題",
+        "更新 10 張速記卡",
+        "回看本週最低分章節"
+      ]
+    },
+    {
+      "date": "2026-10-19",
+      "weekday": "一",
+      "dayIndex": 109,
+      "phaseId": "final",
+      "phase": "考前總複習與模擬考",
+      "studyType": "learn",
+      "minutes": 150,
+      "focus": "弱點補強與口訣速記",
+      "chapters": [
+        "錯題前 30 題",
+        "公式/名詞卡",
+        "易混淆比較"
+      ],
+      "materials": [
+        {
+          "id": "src_3eb976ec908ba5",
+          "title": "AI 考試比較表",
+          "path": "iPAS教材/中級/AI 考試比較表.docx"
+        },
+        {
+          "id": "src_8a8ad109f6332f",
+          "title": "機器學習模型原理一覽及比較表",
+          "path": "iPAS教材/中級/機器學習模型原理一覽及比較表.xlsx"
+        },
+        {
+          "id": "src_4607e1f5a1a47a",
+          "title": "科目L22 大數據_比較表_1",
+          "path": "iPAS教材/中級/科目L22 大數據_比較表_1.docx"
+        },
+        {
+          "id": "src_0b74ea3e72231a",
+          "title": "初級-人工智慧基礎概論+生成式 AI應用與規劃_名詞解釋",
+          "path": "iPAS教材/初級-人工智慧基礎概論+生成式 AI應用與規劃_名詞解釋.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "模擬考/考古題",
+        "questions": 80,
+        "source": "考古題、樣題、模擬試題"
+      },
+      "deliverables": [
+        "計時作答",
+        "完成錯題訂正",
+        "把易混淆觀念寫成比較表"
+      ]
+    },
+    {
+      "date": "2026-10-20",
+      "weekday": "二",
+      "dayIndex": 110,
+      "phaseId": "final",
+      "phase": "考前總複習與模擬考",
+      "studyType": "learn",
+      "minutes": 150,
+      "focus": "初級與中級總複習",
+      "chapters": [
+        "初級科目一/二",
+        "L21/L22/L23 快速掃描"
+      ],
+      "materials": [
+        {
+          "id": "src_69b5784b492601",
+          "title": "L23 機器學習考試重點",
+          "path": "iPAS教材/中級/L23 機器學習考試重點.txt"
+        },
+        {
+          "id": "src_5fbfa081fec9d9",
+          "title": "考古題-AI應用規劃師(初級)-學習指引-科目2",
+          "path": "iPAS教材/考古題/考古題-AI應用規劃師(初級)-學習指引-科目2.docx"
+        },
+        {
+          "id": "src_1ba00de19228c1",
+          "title": "HTML_考題小舖_iPAS_初級_第1場重點整理",
+          "path": "iPAS教材/HTML_考題小舖_iPAS_初級_第1場重點整理.pdf"
+        },
+        {
+          "id": "src_fc95da51b5d27a",
+          "title": "HTML_考題小舖_iPAS_初級_第2場重點整理",
+          "path": "iPAS教材/HTML_考題小舖_iPAS_初級_第2場重點整理.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "模擬考/考古題",
+        "questions": 80,
+        "source": "考古題、樣題、模擬試題"
+      },
+      "deliverables": [
+        "計時作答",
+        "完成錯題訂正",
+        "把易混淆觀念寫成比較表"
+      ]
+    },
+    {
+      "date": "2026-10-21",
+      "weekday": "三",
+      "dayIndex": 111,
+      "phaseId": "final",
+      "phase": "考前總複習與模擬考",
+      "studyType": "learn",
+      "minutes": 150,
+      "focus": "L21 全科模擬",
+      "chapters": [
+        "技術選型",
+        "導入評估",
+        "部署"
+      ],
+      "materials": [
+        {
+          "id": "src_a09b8fd7614416",
+          "title": "L21 中級情境考題_2",
+          "path": "iPAS教材/中級/L21 中級情境考題_2.docx"
+        },
+        {
+          "id": "src_d9ead2214bf4dd",
+          "title": "中級L21 情境題",
+          "path": "iPAS教材/中級/中級L21 情境題.docx"
+        },
+        {
+          "id": "src_59dd01d353aaf0",
+          "title": "L21_情境_NotebookLM",
+          "path": "iPAS教材/中級/L21_情境_NotebookLM.docx"
+        },
+        {
+          "id": "src_491d52953b1ba5",
+          "title": "模擬考題 初級",
+          "path": "iPAS教材/模擬考題 初級.docx"
+        }
+      ],
+      "quiz": {
+        "type": "模擬考/考古題",
+        "questions": 80,
+        "source": "考古題、樣題、模擬試題"
+      },
+      "deliverables": [
+        "計時作答",
+        "完成錯題訂正",
+        "把易混淆觀念寫成比較表"
+      ]
+    },
+    {
+      "date": "2026-10-22",
+      "weekday": "四",
+      "dayIndex": 112,
+      "phaseId": "final",
+      "phase": "考前總複習與模擬考",
+      "studyType": "learn",
+      "minutes": 150,
+      "focus": "L22 全科模擬",
+      "chapters": [
+        "統計",
+        "處理",
+        "分析",
+        "治理"
+      ],
+      "materials": [
+        {
+          "id": "src_5ca4f3983a9fb0",
+          "title": "L22 _情境題目",
+          "path": "iPAS教材/中級/L22 _情境題目.docx"
+        },
+        {
+          "id": "src_a09b8fd7614416",
+          "title": "L21 中級情境考題_2",
+          "path": "iPAS教材/中級/L21 中級情境考題_2.docx"
+        },
+        {
+          "id": "src_277c44d5f2075c",
+          "title": "L22_情境題_NotebookLM",
+          "path": "iPAS教材/中級/L22_情境題_NotebookLM.docx"
+        },
+        {
+          "id": "src_2373aa920bb42a",
+          "title": "L22_情境題_NotebookLM_1",
+          "path": "iPAS教材/中級/L22_情境題_NotebookLM_1.docx"
+        }
+      ],
+      "quiz": {
+        "type": "模擬考/考古題",
+        "questions": 80,
+        "source": "考古題、樣題、模擬試題"
+      },
+      "deliverables": [
+        "計時作答",
+        "完成錯題訂正",
+        "把易混淆觀念寫成比較表"
+      ]
+    },
+    {
+      "date": "2026-10-23",
+      "weekday": "五",
+      "dayIndex": 113,
+      "phaseId": "final",
+      "phase": "考前總複習與模擬考",
+      "studyType": "learn",
+      "minutes": 150,
+      "focus": "L23 全科模擬",
+      "chapters": [
+        "模型",
+        "驗證",
+        "治理",
+        "情境"
+      ],
+      "materials": [
+        {
+          "id": "src_491d52953b1ba5",
+          "title": "模擬考題 初級",
+          "path": "iPAS教材/模擬考題 初級.docx"
+        },
+        {
+          "id": "src_c64597f09f5022",
+          "title": "模擬考題  科目一 人工智慧基本概論",
+          "path": "iPAS教材/模擬考題  科目一 人工智慧基本概論.docx"
+        },
+        {
+          "id": "src_4099c5f5242041",
+          "title": "L23 機器學習技術與應用情境模擬試題",
+          "path": "iPAS教材/中級/L23 機器學習技術與應用情境模擬試題.docx"
+        },
+        {
+          "id": "src_90610e558133ca",
+          "title": "模擬考題  科目二 生成式AI應用與規劃",
+          "path": "iPAS教材/模擬考題  科目二 生成式AI應用與規劃.docx"
+        }
+      ],
+      "quiz": {
+        "type": "模擬考/考古題",
+        "questions": 80,
+        "source": "考古題、樣題、模擬試題"
+      },
+      "deliverables": [
+        "計時作答",
+        "完成錯題訂正",
+        "把易混淆觀念寫成比較表"
+      ]
+    },
+    {
+      "date": "2026-10-24",
+      "weekday": "六",
+      "dayIndex": 114,
+      "phaseId": "final",
+      "phase": "考前總複習與模擬考",
+      "studyType": "mock",
+      "minutes": 150,
+      "focus": "歷屆題與樣題",
+      "chapters": [
+        "考古題",
+        "樣題",
+        "錯題本"
+      ],
+      "materials": [
+        {
+          "id": "src_00a6b029e38f1e",
+          "title": "20-2iPAS AI應用規劃師樣題比較",
+          "path": "iPAS教材/考古題/20-2iPAS AI應用規劃師樣題比較.pdf"
+        },
+        {
+          "id": "src_79a1c0bb06495b",
+          "title": "19-iPAS AI測驗題庫（50題）解說版",
+          "path": "iPAS教材/考古題/19-iPAS AI測驗題庫（50題）解說版.pdf"
+        },
+        {
+          "id": "src_950db12a71ae34",
+          "title": "22-0517中級科目一考題探討",
+          "path": "iPAS教材/考古題/22-0517中級科目一考題探討.pdf"
+        },
+        {
+          "id": "src_6ec50c4fb2c803",
+          "title": "23-0517中級科目三考題探討",
+          "path": "iPAS教材/考古題/23-0517中級科目三考題探討.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "模擬考/考古題",
+        "questions": 100,
+        "source": "考古題、樣題、模擬試題"
+      },
+      "deliverables": [
+        "計時作答",
+        "完成錯題訂正",
+        "把易混淆觀念寫成比較表"
+      ]
+    },
+    {
+      "date": "2026-10-25",
+      "weekday": "日",
+      "dayIndex": 115,
+      "phaseId": "final",
+      "phase": "考前總複習與模擬考",
+      "studyType": "review",
+      "minutes": 90,
+      "focus": "弱點補強與口訣速記",
+      "chapters": [
+        "錯題前 30 題",
+        "公式/名詞卡",
+        "易混淆比較"
+      ],
+      "materials": [
+        {
+          "id": "src_3eb976ec908ba5",
+          "title": "AI 考試比較表",
+          "path": "iPAS教材/中級/AI 考試比較表.docx"
+        },
+        {
+          "id": "src_8a8ad109f6332f",
+          "title": "機器學習模型原理一覽及比較表",
+          "path": "iPAS教材/中級/機器學習模型原理一覽及比較表.xlsx"
+        },
+        {
+          "id": "src_4607e1f5a1a47a",
+          "title": "科目L22 大數據_比較表_1",
+          "path": "iPAS教材/中級/科目L22 大數據_比較表_1.docx"
+        },
+        {
+          "id": "src_0b74ea3e72231a",
+          "title": "初級-人工智慧基礎概論+生成式 AI應用與規劃_名詞解釋",
+          "path": "iPAS教材/初級-人工智慧基礎概論+生成式 AI應用與規劃_名詞解釋.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "錯題回顧",
+        "questions": 30,
+        "source": "本週錯題與標記題"
+      },
+      "deliverables": [
+        "整理本週錯題 10 題",
+        "更新 10 張速記卡",
+        "回看本週最低分章節"
+      ]
+    },
+    {
+      "date": "2026-10-26",
+      "weekday": "一",
+      "dayIndex": 116,
+      "phaseId": "final",
+      "phase": "考前總複習與模擬考",
+      "studyType": "learn",
+      "minutes": 150,
+      "focus": "初級與中級總複習",
+      "chapters": [
+        "初級科目一/二",
+        "L21/L22/L23 快速掃描"
+      ],
+      "materials": [
+        {
+          "id": "src_69b5784b492601",
+          "title": "L23 機器學習考試重點",
+          "path": "iPAS教材/中級/L23 機器學習考試重點.txt"
+        },
+        {
+          "id": "src_5fbfa081fec9d9",
+          "title": "考古題-AI應用規劃師(初級)-學習指引-科目2",
+          "path": "iPAS教材/考古題/考古題-AI應用規劃師(初級)-學習指引-科目2.docx"
+        },
+        {
+          "id": "src_1ba00de19228c1",
+          "title": "HTML_考題小舖_iPAS_初級_第1場重點整理",
+          "path": "iPAS教材/HTML_考題小舖_iPAS_初級_第1場重點整理.pdf"
+        },
+        {
+          "id": "src_fc95da51b5d27a",
+          "title": "HTML_考題小舖_iPAS_初級_第2場重點整理",
+          "path": "iPAS教材/HTML_考題小舖_iPAS_初級_第2場重點整理.pdf"
+        }
+      ],
+      "quiz": {
+        "type": "模擬考/考古題",
+        "questions": 80,
+        "source": "考古題、樣題、模擬試題"
+      },
+      "deliverables": [
+        "計時作答",
+        "完成錯題訂正",
+        "把易混淆觀念寫成比較表"
+      ]
+    },
+    {
+      "date": "2026-10-27",
+      "weekday": "二",
+      "dayIndex": 117,
+      "phaseId": "final",
+      "phase": "考前總複習與模擬考",
+      "studyType": "learn",
+      "minutes": 150,
+      "focus": "L21 全科模擬",
+      "chapters": [
+        "技術選型",
+        "導入評估",
+        "部署"
+      ],
+      "materials": [
+        {
+          "id": "src_a09b8fd7614416",
+          "title": "L21 中級情境考題_2",
+          "path": "iPAS教材/中級/L21 中級情境考題_2.docx"
+        },
+        {
+          "id": "src_d9ead2214bf4dd",
+          "title": "中級L21 情境題",
+          "path": "iPAS教材/中級/中級L21 情境題.docx"
+        },
+        {
+          "id": "src_59dd01d353aaf0",
+          "title": "L21_情境_NotebookLM",
+          "path": "iPAS教材/中級/L21_情境_NotebookLM.docx"
+        },
+        {
+          "id": "src_491d52953b1ba5",
+          "title": "模擬考題 初級",
+          "path": "iPAS教材/模擬考題 初級.docx"
+        }
+      ],
+      "quiz": {
+        "type": "模擬考/考古題",
+        "questions": 80,
+        "source": "考古題、樣題、模擬試題"
+      },
+      "deliverables": [
+        "計時作答",
+        "完成錯題訂正",
+        "把易混淆觀念寫成比較表"
+      ]
+    },
+    {
+      "date": "2026-10-28",
+      "weekday": "三",
+      "dayIndex": 118,
+      "phaseId": "final",
+      "phase": "考前總複習與模擬考",
+      "studyType": "learn",
+      "minutes": 150,
+      "focus": "L22 全科模擬",
+      "chapters": [
+        "統計",
+        "處理",
+        "分析",
+        "治理"
+      ],
+      "materials": [
+        {
+          "id": "src_5ca4f3983a9fb0",
+          "title": "L22 _情境題目",
+          "path": "iPAS教材/中級/L22 _情境題目.docx"
+        },
+        {
+          "id": "src_a09b8fd7614416",
+          "title": "L21 中級情境考題_2",
+          "path": "iPAS教材/中級/L21 中級情境考題_2.docx"
+        },
+        {
+          "id": "src_277c44d5f2075c",
+          "title": "L22_情境題_NotebookLM",
+          "path": "iPAS教材/中級/L22_情境題_NotebookLM.docx"
+        },
+        {
+          "id": "src_2373aa920bb42a",
+          "title": "L22_情境題_NotebookLM_1",
+          "path": "iPAS教材/中級/L22_情境題_NotebookLM_1.docx"
+        }
+      ],
+      "quiz": {
+        "type": "模擬考/考古題",
+        "questions": 80,
+        "source": "考古題、樣題、模擬試題"
+      },
+      "deliverables": [
+        "計時作答",
+        "完成錯題訂正",
+        "把易混淆觀念寫成比較表"
+      ]
+    },
+    {
+      "date": "2026-10-29",
+      "weekday": "四",
+      "dayIndex": 119,
+      "phaseId": "final",
+      "phase": "考前總複習與模擬考",
+      "studyType": "learn",
+      "minutes": 150,
+      "focus": "L23 全科模擬",
+      "chapters": [
+        "模型",
+        "驗證",
+        "治理",
+        "情境"
+      ],
+      "materials": [
+        {
+          "id": "src_491d52953b1ba5",
+          "title": "模擬考題 初級",
+          "path": "iPAS教材/模擬考題 初級.docx"
+        },
+        {
+          "id": "src_c64597f09f5022",
+          "title": "模擬考題  科目一 人工智慧基本概論",
+          "path": "iPAS教材/模擬考題  科目一 人工智慧基本概論.docx"
+        },
+        {
+          "id": "src_4099c5f5242041",
+          "title": "L23 機器學習技術與應用情境模擬試題",
+          "path": "iPAS教材/中級/L23 機器學習技術與應用情境模擬試題.docx"
+        },
+        {
+          "id": "src_90610e558133ca",
+          "title": "模擬考題  科目二 生成式AI應用與規劃",
+          "path": "iPAS教材/模擬考題  科目二 生成式AI應用與規劃.docx"
+        }
+      ],
+      "quiz": {
+        "type": "模擬考/考古題",
+        "questions": 80,
+        "source": "考古題、樣題、模擬試題"
+      },
+      "deliverables": [
+        "計時作答",
+        "完成錯題訂正",
+        "把易混淆觀念寫成比較表"
+      ]
+    }
+  ],
+  "examDay": {
+    "date": "2026-10-30",
+    "title": "考試日",
+    "tasks": [
+      "只看錯題本與速記卡",
+      "確認證件、文具、交通與到場時間",
+      "睡眠優先"
+    ]
+  }
+}

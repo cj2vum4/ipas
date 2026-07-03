@@ -20,7 +20,8 @@ import sys
 # Allow running as `python main.py` without installing the package.
 sys.path.insert(0, "src")
 
-from notebooklm import auth, config, extractor, storage  # noqa: E402
+from notebooklm import config  # noqa: E402
+from rag import builder as rag_builder  # noqa: E402
 
 
 def _add_headless_flag(p: argparse.ArgumentParser) -> None:
@@ -41,11 +42,15 @@ def _add_headless_flag(p: argparse.ArgumentParser) -> None:
 
 
 def cmd_login(args: argparse.Namespace) -> int:
+    from notebooklm import auth
+
     auth.login()
     return 0
 
 
 def cmd_list(args: argparse.Namespace) -> int:
+    from notebooklm import extractor, storage
+
     refs = extractor.list_notebooks(headless=args.headless)
     if not refs:
         print("No notebooks found. If you expected some, run `login` again.")
@@ -59,6 +64,8 @@ def cmd_list(args: argparse.Namespace) -> int:
 
 
 def cmd_extract(args: argparse.Namespace) -> int:
+    from notebooklm import extractor, storage
+
     nb = extractor.extract_notebook(args.notebook_id, headless=args.headless)
     out = storage.save_notebook(nb)
     print(
@@ -70,6 +77,8 @@ def cmd_extract(args: argparse.Namespace) -> int:
 
 
 def cmd_extract_all(args: argparse.Namespace) -> int:
+    from notebooklm import extractor, storage
+
     refs = extractor.list_notebooks(headless=args.headless)
     if not refs:
         print("No notebooks found.")
@@ -87,9 +96,41 @@ def cmd_extract_all(args: argparse.Namespace) -> int:
 
 
 def cmd_debug_dump(args: argparse.Namespace) -> int:
+    from notebooklm import extractor
+
     text = extractor.debug_dump(args.notebook_id, headless=args.headless)
     print(text)
     return 0
+
+
+def cmd_rag_build(args: argparse.Namespace) -> int:
+    source_paths = (
+        [config.PROJECT_ROOT / path for path in args.paths]
+        if args.paths
+        else rag_builder.default_source_paths()
+    )
+    output_path = config.PROJECT_ROOT / args.output
+    stats = rag_builder.build_index(
+        source_paths,
+        output_path=output_path,
+        chunk_size=args.chunk_size,
+        chunk_overlap=args.chunk_overlap,
+        max_chunks=args.max_chunks,
+    )
+
+    print(f"Files scanned: {stats.files_seen}")
+    print(f"Sources indexed: {stats.sources}")
+    print(f"Chunks indexed: {stats.chunks}")
+    print(f"Index written to: {stats.output_path}")
+
+    if stats.skipped:
+        print(f"\nSkipped {len(stats.skipped)} file(s):")
+        for issue in stats.skipped[:20]:
+            print(f"  - {issue.path}: {issue.reason}")
+        if len(stats.skipped) > 20:
+            print(f"  ... and {len(stats.skipped) - 20} more")
+
+    return 0 if stats.chunks else 1
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -123,6 +164,41 @@ def build_parser() -> argparse.ArgumentParser:
     )
     _add_headless_flag(p_dump)
     p_dump.set_defaults(func=cmd_debug_dump)
+
+    p_rag = sub.add_parser(
+        "rag-build",
+        help="Build docs/rag_index.json for the static RAG web app.",
+    )
+    p_rag.add_argument(
+        "paths",
+        nargs="*",
+        help="Files or folders to index. Defaults to iPAS教材 and data.",
+    )
+    p_rag.add_argument(
+        "-o",
+        "--output",
+        default="docs/rag_index.json",
+        help="Output JSON path relative to the project root.",
+    )
+    p_rag.add_argument(
+        "--chunk-size",
+        type=int,
+        default=rag_builder.DEFAULT_CHUNK_SIZE,
+        help="Approximate chunk size in characters.",
+    )
+    p_rag.add_argument(
+        "--chunk-overlap",
+        type=int,
+        default=rag_builder.DEFAULT_CHUNK_OVERLAP,
+        help="Characters to overlap between adjacent chunks.",
+    )
+    p_rag.add_argument(
+        "--max-chunks",
+        type=int,
+        default=0,
+        help="Stop after this many chunks (0 means no limit).",
+    )
+    p_rag.set_defaults(func=cmd_rag_build)
 
     return parser
 

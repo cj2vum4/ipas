@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>iPAS Study Planner</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">AI</span>
+        <div>
+          <h1>iPAS Study Planner</h1>
+          <p id="planStatus">Exam 2026-10-30</p>
+        </div>
+      </div>
+      <nav class="tabs" aria-label="Views">
+        <button class="tab-button active" type="button" data-tab="planner">讀書進度</button>
+        <button class="tab-button" type="button" data-tab="materials">教材庫</button>
+        <button class="tab-button" type="button" data-tab="rag">RAG 問答</button>
+      </nav>
+    </header>
+
+    <main>
+      <section id="plannerView" class="tab-view active" aria-label="Study planner">
+        <section class="metric-grid" aria-label="Study metrics">
+          <div class="metric">
+            <span>距離考試</span>
+            <strong id="daysLeft">--</strong>
+          </div>
+          <div class="metric">
+            <span>已完成</span>
+            <strong id="completedDays">0 / 119</strong>
+          </div>
+          <div class="metric">
+            <span>今日分鐘</span>
+            <strong id="todayMinutes">--</strong>
+          </div>
+        </section>
+
+        <section class="planner-layout">
+          <section class="today-panel">
+            <div class="panel-header">
+              <h2 id="selectedTitle">今日進度</h2>
+              <span id="selectedMeta">--</span>
+            </div>
+            <article id="todayCard" class="day-card"></article>
+          </section>
+
+          <section class="week-panel">
+            <div class="panel-header">
+              <h2>近期 7 天</h2>
+              <span id="weekMeta">--</span>
+            </div>
+            <div id="weekList" class="week-list"></div>
+          </section>
+
+          <section class="phase-panel">
+            <div class="panel-header">
+              <h2>階段</h2>
+              <span id="phaseMeta">6 phases</span>
+            </div>
+            <div id="phaseList" class="phase-list"></div>
+          </section>
+        </section>
+      </section>
+
+      <section id="materialsView" class="tab-view" aria-label="Study materials">
+        <section class="materials-toolbar" aria-label="Material filters">
+          <div>
+            <h2>教材庫</h2>
+            <p id="materialStatus">尚未載入教材</p>
+          </div>
+          <div class="materials-controls">
+            <input id="materialSearch" type="search" placeholder="搜尋章節、檔名、關鍵字" />
+            <select id="materialCategory" aria-label="Material category">
+              <option value="">全部分類</option>
+            </select>
+          </div>
+        </section>
+
+        <section class="materials-layout">
+          <section class="material-list-panel">
+            <div class="panel-header">
+              <h2>材料</h2>
+              <span id="materialListMeta">--</span>
+            </div>
+            <div id="materialList" class="materials-list"></div>
+          </section>
+
+          <section class="material-reader-panel">
+            <div class="panel-header">
+              <h2 id="readerTitle">選取教材</h2>
+              <span id="readerMeta">--</span>
+            </div>
+            <article id="materialReader" class="material-reader">
+              <p class="empty-state">從左側選取教材，或在每日進度中點教材名稱。</p>
+            </article>
+          </section>
+        </section>
+      </section>
+
+      <section id="ragView" class="tab-view" aria-label="RAG search">
+        <div class="rag-status">
+          <span id="indexStatus">RAG index idle</span>
+          <span id="sourceCount">0 sources</span>
+          <span id="chunkCount">0 chunks</span>
+        </div>
+
+        <section class="rag-shell">
+          <section class="query-panel" aria-label="Query controls">
+            <form id="askForm">
+              <label for="question">Question</label>
+              <textarea
+                id="question"
+                name="question"
+                rows="8"
+                placeholder="iPAS AI 應用規劃師的重點、題型或觀念"
+                required
+              ></textarea>
+
+              <div class="segmented" role="radiogroup" aria-label="Mode">
+                <label>
+                  <input type="radio" name="mode" value="search" />
+                  <span>Search</span>
+                </label>
+                <label>
+                  <input type="radio" name="mode" value="answer" checked />
+                  <span>Answer</span>
+                </label>
+              </div>
+
+              <div class="field-grid">
+                <label>
+                  <span>Top K</span>
+                  <input id="topK" type="number" min="1" max="12" value="5" />
+                </label>
+                <label>
+                  <span>API endpoint</span>
+                  <input id="apiEndpoint" type="url" placeholder="https://your-app.vercel.app/api/ask" />
+                </label>
+              </div>
+
+              <button id="askButton" type="submit">Ask</button>
+            </form>
+          </section>
+
+          <section class="answer-panel" aria-label="Answer">
+            <div class="panel-header">
+              <h2>Answer</h2>
+              <span id="runStatus">Ready</span>
+            </div>
+            <article id="answer" class="answer-body">
+              <p>Ready.</p>
+            </article>
+          </section>
+
+          <section class="sources-panel" aria-label="Sources">
+            <div class="panel-header">
+              <h2>Sources</h2>
+              <span id="scoreStatus">No query</span>
+            </div>
+            <div id="sources" class="source-list"></div>
+          </section>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

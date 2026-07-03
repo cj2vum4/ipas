@@ -1,136 +1,160 @@
-# ipas — NotebookLM 資料擷取工具
+# iPAS NotebookLM + RAG
 
-從 Google **NotebookLM** 取出資料（筆記本、來源、筆記、摘要），存成本地 JSON。
+這個專案有兩個部分：
 
-## 為什麼用瀏覽器自動化？
-
-NotebookLM **沒有官方公開 API** 可以程式化讀取筆記本內容。因此本工具用
-[Playwright](https://playwright.dev/python/) 驅動一個「已登入」的 Chromium，
-像使用者一樣瀏覽頁面並把內容抓下來。
-
-> 若你是 **NotebookLM Enterprise**（透過 Google Agentspace / Vertex AI）使用者，
-> 可改走官方 API，穩定度遠高於瀏覽器自動化。見文末〈企業版替代方案〉。
+- 依 2026-10-30 考試日產生手機可讀的每日讀書進度表。
+- 用 Playwright 從 Google NotebookLM 匯出筆記本 metadata、來源與筆記。
+- 把本機 `iPAS教材/` 與 `data/*.json` 建成可部署到 GitHub Pages 的 RAG 檢索索引，並透過 Vercel API 安全呼叫 Anthropic Claude 產生答案。
 
 ## 安裝
 
 ```bash
 pip install -r requirements.txt
-# 本 repo 執行環境已內建 Chromium；一般機器需額外執行：
 python -m playwright install chromium
 ```
 
-若使用系統既有的 Chromium，可用環境變數指定執行檔：
+PDF 解析會優先使用 `pypdf`。如果沒有安裝 PDF parser，`rag-build` 仍會處理 DOCX、XLSX、TXT、Markdown 與 NotebookLM JSON，並列出略過的 PDF。
+
+## 讀書進度表
+
+考試日：`2026-10-30`
+
+讀書計畫從 `2026-07-03` 排到 `2026-10-29`，共 119 個讀書日。前端會先顯示今日任務、近期 7 天、各階段進度，並用瀏覽器 `localStorage` 保存手機上的完成狀態。
 
 ```bash
-export NBLM_CHROMIUM_PATH=/opt/pw-browsers/chromium/chrome-linux/chrome
+python scripts/build_study_plan.py
+python scripts/build_study_materials.py
 ```
 
-## 使用流程
+輸出：
+
+- `docs/study_plan.json`
+- `docs/study_materials.json`
+- `docs/material_assets/`，放無法抽文字的圖片與掃描 PDF 附件
+
+階段安排：
+
+| 日期 | 階段 |
+| --- | --- |
+| 2026-07-03 ~ 2026-07-16 | 基礎盤點與初級核心 |
+| 2026-07-17 ~ 2026-08-06 | 初級科目一與科目二 |
+| 2026-08-07 ~ 2026-08-30 | 中級 L21 人工智慧技術應用與規劃 |
+| 2026-08-31 ~ 2026-09-22 | 中級 L22 大數據處理分析與應用 |
+| 2026-09-23 ~ 2026-10-13 | 中級 L23 機器學習技術與應用 |
+| 2026-10-14 ~ 2026-10-29 | 考前總複習與模擬考 |
+
+## NotebookLM 匯出
+
+NotebookLM 沒有公開匯出 API，所以這裡用已登入的瀏覽器 session 讀取頁面。
 
 ```bash
-# 1. 一次性登入。會用你電腦上「真正的 Edge」開啟一個視窗。
-#    在那個視窗完成 Google 登入 + 2FA，看到筆記本後回終端機按 ENTER。
-#    登入狀態存進持久化 profile（.nblm_profile/），之後不用再登入。
 python main.py login
-
-# 2. 列出你帳號裡的筆記本，取得 notebook id
 python main.py list
-
-# 3. 擷取單一筆記本 -> data/<title>__<id>.json
 python main.py extract <notebook_id>
-
-# 4. 或一次擷取全部
 python main.py extract-all
-```
-
-### 為什麼用真正的 Edge/Chrome，而不是內建 Chromium？
-
-Google 會偵測「被自動化控制的瀏覽器」，在內建 Chromium 上登入常被擋，顯示
-**「這個瀏覽器或應用程式可能不安全」**。因此本工具預設改用你電腦上**真正安裝的
-Microsoft Edge**（`channel=msedge`），並關閉 `navigator.webdriver` 自動化旗標，
-Google 較不會攔阻。
-
-- 想改用 Chrome：`set NBLM_BROWSER_CHANNEL=chrome`（PowerShell：`$env:NBLM_BROWSER_CHANNEL="chrome"`）
-- 想用內建 Chromium：把 `NBLM_BROWSER_CHANNEL` 設為空字串。
-
-### 登入務必「在跳出來的那個視窗」操作
-
-`login` 會開一個由程式控制的視窗。**一定要在那個視窗裡登入**——如果你另外開自己的
-Edge/Chrome 登入，程式這邊拿不到 session，會失敗。登入完看到筆記本後，回終端機按
-**ENTER** 存檔即可。
-
-登入是持久化的：狀態存在 `.nblm_profile/`，之後 `list` / `extract` 都能無頭
-（headless）重複使用，不用再登入。
-
-## 輸出格式
-
-每個筆記本存成一個 JSON：
-
-```json
-{
-  "id": "xxxxxxxx-xxxx-...",
-  "title": "我的研究筆記本",
-  "url": "https://notebooklm.google.com/notebook/...",
-  "summary": "……NotebookLM 產生的總覽……",
-  "sources": [{ "title": "報告.pdf", "kind": "unknown", "preview": "……" }],
-  "notes": [{ "title": "重點整理", "content": "……" }],
-  "extracted_at": "2026-07-01T00:00:00+00:00"
-}
-```
-
-`data/notebooks_index.json` 則是所有筆記本的索引。
-
-## 選擇器會失效——如何修
-
-NotebookLM 是 Google 的 Angular SPA，**DOM 沒有穩定契約**，改版後
-class/tag 名稱可能變動，導致擷取到空結果。修法：
-
-```bash
-# 印出實際渲染的頁面文字，用來重新對照選擇器
 python main.py debug-dump <notebook_id>
 ```
 
-然後更新 `src/notebooklm/extractor.py` 最上方的候選選擇器清單
-（`_SOURCE_ITEM_SELECTORS`、`_NOTE_ITEM_SELECTORS` 等）。所有需要維護的
-選擇器都集中在那裡。
+輸出會寫到 `data/`。`data/*.json` 已在 `.gitignore`，避免把個人筆記與來源內容誤 commit。
 
-## 設定（環境變數）
+常用環境變數：
 
 | 變數 | 預設 | 說明 |
-|------|------|------|
-| `NBLM_BROWSER_CHANNEL` | `msedge` | 要驅動的真實瀏覽器（`msedge`／`chrome`／空=內建 Chromium）|
-| `NBLM_USER_DATA_DIR` | `./.nblm_profile` | 持久化登入 profile 資料夾 |
-| `NBLM_DATA_DIR` | `./data` | 輸出資料夾 |
-| `NBLM_HEADLESS` | `1` | 擷取是否無頭（`0` 顯示視窗）|
-| `NBLM_CHROMIUM_PATH` | 無 | 指定 Chromium 執行檔（未用 channel 時）|
-| `NBLM_BASE_URL` | `https://notebooklm.google.com` | NotebookLM 網址 |
-| `NBLM_NAV_TIMEOUT_MS` | `60000` | 導覽逾時 |
+| --- | --- | --- |
+| `NBLM_BROWSER_CHANNEL` | `msedge` | 使用 Edge；也可設為 `chrome` 或空字串 |
+| `NBLM_USER_DATA_DIR` | `.nblm_profile` | 保存 Google login session |
+| `NBLM_DATA_DIR` | `data` | NotebookLM JSON 輸出資料夾 |
+| `NBLM_HEADLESS` | `1` | 設為 `0` 可顯示瀏覽器 |
+
+## 建立 RAG 索引
+
+```bash
+python main.py rag-build
+```
+
+預設會掃描：
+
+- `iPAS教材/`
+- `data/`
+
+並輸出：
+
+- `docs/rag_index.json`
+
+可調整 chunk：
+
+```bash
+python main.py rag-build --chunk-size 1400 --chunk-overlap 180
+python main.py rag-build iPAS教材/中級 -o docs/rag_index.json
+python main.py rag-build --max-chunks 200
+```
+
+索引格式是 `ipas-rag-index-v1`，使用 dependency-free 的 sparse hash embedding，前端可直接在瀏覽器做 cosine similarity 檢索。這不是 transformer 等級語意模型，但好處是可離線、可重現、部署簡單。
+
+注意：`docs/rag_index.json` 會包含教材文字片段。若 GitHub repo 或 Pages 是公開的，請先確認內容可以公開。
+
+## GitHub Pages 前端
+
+前端在 `docs/`：
+
+- `docs/index.html`
+- `docs/styles.css`
+- `docs/app.js`
+- `docs/study_plan.json`，由 `scripts/build_study_plan.py` 產生
+- `docs/rag_index.json`，由 `rag-build` 產生
+
+GitHub Pages 設定可選：
+
+- Source: `Deploy from a branch`
+- Branch: `main`
+- Folder: `/docs`
+
+頁面預設顯示讀書進度。`教材庫` 分頁會載入 `study_materials.json`，可在手機上搜尋、分類、閱讀抽出的教材文字；圖片與純掃描 PDF 會標記為需要 OCR/手動整理，並提供原始附件連結。切到 `RAG 問答` 分頁後才會載入 RAG index；在 `Search` 模式只顯示來源片段，在 `Answer` 模式會把 top-k context 送到 API endpoint。
+
+## Vercel Claude API
+
+Serverless function 在：
+
+- `api/ask.js`
+
+Vercel 環境變數：
+
+| 變數 | 必填 | 說明 |
+| --- | --- | --- |
+| `ANTHROPIC_API_KEY` | yes | Anthropic API key，只放在 Vercel |
+| `ANTHROPIC_MODEL` | no | 預設 `claude-sonnet-4-20250514` |
+| `ANTHROPIC_MAX_TOKENS` | no | 預設 `1000` |
+| `ALLOWED_ORIGINS` | no | 逗號分隔的 GitHub Pages origin |
+
+部署後，在前端的 `API endpoint` 填入：
+
+```text
+https://<your-vercel-app>.vercel.app/api/ask
+```
+
+如果前端也由 Vercel 提供，endpoint 可留空，預設會呼叫 `/api/ask`。
+
+## 測試
+
+```bash
+python tests/test_extraction.py
+python tests/test_rag.py
+python scripts/build_study_plan.py
+python scripts/build_study_materials.py
+```
+
+`tests/test_extraction.py` 需要 Playwright browser；`tests/test_rag.py` 不需要外部服務。
 
 ## 專案結構
 
-```
-main.py                     # CLI 進入點
-src/notebooklm/
-  config.py                 # 設定與環境變數
-  browser.py                # Playwright 瀏覽器生命週期
-  auth.py                   # 互動登入、儲存 session
-  extractor.py              # 核心擷取邏輯（選擇器集中處）
-  models.py                 # Notebook / Source / Note 資料結構
-  storage.py                # 輸出 JSON
-data/                       # 擷取結果（已被 gitignore）
-```
-
-## 注意事項
-
-- **`.nblm_profile/` 含你的 Google 登入 session，切勿 commit 或外流**（已列入 `.gitignore`）。
-- 瀏覽器自動化屬灰色地帶，請遵守 Google 服務條款，僅擷取你有權存取的資料，
-  並避免高頻率請求。
-- 選擇器與流程會隨 NotebookLM 改版而需要維護。
-
-## 企業版替代方案
-
-若貴組織使用 **NotebookLM Enterprise**（Google Agentspace / Vertex AI），
-可透過官方 API 以服務帳號存取，不需瀏覽器自動化、穩定度更高。屆時可另建一個
-`enterprise_client.py`，改用 Google Cloud 憑證與 REST/gRPC 端點。若要走這條路，
-告訴我你的 GCP 專案設定，我可以再補上對應實作。
+```text
+main.py
+src/
+  notebooklm/       # NotebookLM browser extraction
+  rag/              # local document loading, chunking, sparse index build
+docs/               # GitHub Pages RAG app
+api/                # Vercel serverless function
+iPAS教材/           # local study material
+data/               # NotebookLM exports
+tests/
 ```
