@@ -1,5 +1,5 @@
-const ANTHROPIC_URL = "https://api.anthropic.com/v1/messages";
-const DEFAULT_MODEL = "claude-sonnet-4-20250514";
+const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
+const DEFAULT_OPENROUTER_MODEL = "openrouter/free";
 
 module.exports = async function handler(req, res) {
   if (!applyCors(req, res)) {
@@ -16,9 +16,9 @@ module.exports = async function handler(req, res) {
     return;
   }
 
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  const apiKey = process.env.OPENROUTER_API_KEY;
   if (!apiKey) {
-    res.status(500).json({ error: "ANTHROPIC_API_KEY is not configured" });
+    res.status(500).json({ error: "OPENROUTER_API_KEY is not configured" });
     return;
   }
 
@@ -52,14 +52,17 @@ module.exports = async function handler(req, res) {
     .join("\n\n");
 
   const payload = {
-    model: process.env.ANTHROPIC_MODEL || DEFAULT_MODEL,
-    max_tokens: Number(process.env.ANTHROPIC_MAX_TOKENS || 1000),
+    model: process.env.OPENROUTER_MODEL || DEFAULT_OPENROUTER_MODEL,
+    max_tokens: Number(process.env.OPENROUTER_MAX_TOKENS || 1000),
     temperature: 0.2,
-    system:
-      "You answer iPAS AI study questions using only the supplied sources. " +
-      "Write in the user's language. Cite source numbers like [1] when using facts. " +
-      "If the sources are insufficient, say what is missing.",
     messages: [
+      {
+        role: "system",
+        content:
+          "You answer iPAS AI study questions using only the supplied sources. " +
+          "Write in the user's language. Cite source numbers like [1] when using facts. " +
+          "If the sources are insufficient, say what is missing.",
+      },
       {
         role: "user",
         content: `Question:\n${question}\n\nSources:\n${sourceBlock}`,
@@ -68,28 +71,25 @@ module.exports = async function handler(req, res) {
   };
 
   try {
-    const upstream = await fetch(ANTHROPIC_URL, {
+    const upstream = await fetch(OPENROUTER_URL, {
       method: "POST",
       headers: {
         "content-type": "application/json",
-        "x-api-key": apiKey,
-        "anthropic-version": "2023-06-01",
+        authorization: `Bearer ${apiKey}`,
+        "HTTP-Referer": process.env.OPENROUTER_SITE_URL || "https://cj2vum4.github.io/ipas/docs/",
+        "X-OpenRouter-Title": process.env.OPENROUTER_APP_TITLE || "iPAS Study Planner",
       },
       body: JSON.stringify(payload),
     });
     const data = await upstream.json();
     if (!upstream.ok) {
       res.status(upstream.status).json({
-        error: data?.error?.message || "Anthropic request failed",
+        error: data?.error?.message || "OpenRouter request failed",
       });
       return;
     }
 
-    const answer = (data.content || [])
-      .filter((part) => part.type === "text")
-      .map((part) => part.text)
-      .join("\n\n")
-      .trim();
+    const answer = data?.choices?.[0]?.message?.content?.trim() || "";
 
     res.status(200).json({
       answer,

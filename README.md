@@ -4,7 +4,7 @@
 
 - 依 2026-10-30 考試日產生手機可讀的每日讀書進度表。
 - 用 Playwright 從 Google NotebookLM 匯出筆記本 metadata、來源與筆記。
-- 把本機 `iPAS教材/` 與 `data/*.json` 建成可部署到 GitHub Pages 的 RAG 檢索索引，並透過 Vercel API 安全呼叫 Anthropic Claude 產生答案。
+- 把本機 `iPAS教材/` 與 `data/*.json` 建成可部署到 GitHub Pages 的 RAG 檢索索引，並透過 Vercel API 安全呼叫 OpenRouter 免費模型產生答案。
 
 ## 安裝
 
@@ -113,7 +113,7 @@ GitHub Pages 設定可選：
 
 頁面預設顯示 `curriculum.json` 的每日整合課程：難度、教學資訊、重點觀念、考點提醒，以及當日練習或測驗題。`教材庫` 分頁會載入 `study_materials.json`，可在手機上搜尋、分類、閱讀抽出的教材文字；圖片與純掃描 PDF 會標記為需要 OCR/手動整理，並提供原始附件連結。切到 `RAG 問答` 分頁後才會載入 RAG index；在 `Search` 模式只顯示來源片段，在 `Answer` 模式會把 top-k context 送到 API endpoint。
 
-## Vercel Claude API
+## Vercel OpenRouter API
 
 Serverless function 在：
 
@@ -121,12 +121,16 @@ Serverless function 在：
 
 Vercel 環境變數：
 
+Vercel Application Preset 可選 `Other` 或 `Node.js`，Root Directory 保持 `./`。不要新增 `DEFAULT_MODEL`；模型請填在 `OPENROUTER_MODEL`。
+
 | 變數 | 必填 | 說明 |
 | --- | --- | --- |
-| `ANTHROPIC_API_KEY` | yes | Anthropic API key，只放在 Vercel |
-| `ANTHROPIC_MODEL` | no | 預設 `claude-sonnet-4-20250514` |
-| `ANTHROPIC_MAX_TOKENS` | no | 預設 `1000` |
-| `ALLOWED_ORIGINS` | no | 逗號分隔的 GitHub Pages origin |
+| `OPENROUTER_API_KEY` | yes | OpenRouter API key，只放在 Vercel |
+| `OPENROUTER_MODEL` | no | 預設 `openrouter/free`；也可改成 OpenRouter 模型頁列出的 `:free` 模型 |
+| `OPENROUTER_MAX_TOKENS` | no | 預設 `1000` |
+| `OPENROUTER_SITE_URL` | no | 建議填 `https://cj2vum4.github.io/ipas/docs/` |
+| `OPENROUTER_APP_TITLE` | no | 建議填 `iPAS Study Planner` |
+| `ALLOWED_ORIGINS` | no | 建議填 `https://cj2vum4.github.io` |
 
 部署後，在前端的 `API endpoint` 填入：
 
