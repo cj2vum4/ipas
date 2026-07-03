@@ -158,6 +158,8 @@ window.IPAS_CONFIG = {
 };
 ```
 
+`supabaseUrl` 要填 Project URL，不要填到 `/rest/v1/` 結尾的 REST endpoint。
+
 5. 到 Authentication / URL Configuration 設定 Site URL：
 
 ```text
