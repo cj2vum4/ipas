@@ -1,4 +1,4 @@
-const PLAN_URL = "study_plan.json";
+const PLAN_URL = "curriculum.json";
 const MATERIALS_URL = "study_materials.json";
 const INDEX_URL = "rag_index.json";
 const DEFAULT_DIMENSIONS = 2048;
@@ -253,20 +253,10 @@ function renderPhases() {
 }
 
 function dayCard(day) {
-  const materialList = day.materials.length
-    ? day.materials
-        .map(
-          (item) => `
-            <li>
-              <button class="material-link" type="button" data-open-material="${escapeHtml(item.id)}">
-                ${escapeHtml(item.title)}
-              </button>
-              <span>${escapeHtml(item.path)}</span>
-            </li>
-          `,
-        )
-        .join("")
-    : "<li><strong>RAG/NotebookLM 補充材料</strong><span>依章節關鍵字搜尋</span></li>";
+  const teaching = day.teaching || {};
+  const difficulty = day.difficulty || {};
+  const assessment = day.assessment || {};
+  const sources = day.integratedSources || { materialCount: 0, sectionCount: 0, titles: [] };
 
   return `
     <div class="day-heading">
@@ -276,26 +266,67 @@ function dayCard(day) {
       </div>
       <strong>${escapeHtml(day.date)}</strong>
     </div>
+    <div class="difficulty-strip">
+      <span>難度 ${difficulty.score || "--"} / 5</span>
+      <strong>${escapeHtml(difficulty.label || "未標示")}</strong>
+      <em>${escapeHtml(difficulty.prerequisite || "")}</em>
+    </div>
     <div class="chapter-list">
       ${day.chapters.map((chapter) => `<span>${escapeHtml(chapter)}</span>`).join("")}
     </div>
     <div class="task-block">
-      <h4>教材</h4>
-      <ul class="material-list">${materialList}</ul>
+      <h4>1. 教學資訊</h4>
+      <p>${escapeHtml(teaching.overview || "")}</p>
+      <ul class="objective-list">
+        ${(teaching.objectives || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+      </ul>
     </div>
     <div class="task-block">
-      <h4>測驗</h4>
-      <p>${escapeHtml(day.quiz.type)}：${day.quiz.questions} 題</p>
-      <p>${escapeHtml(day.quiz.source)}</p>
+      <h4>重點觀念</h4>
+      <div class="concept-grid">
+        ${(teaching.keyConcepts || [])
+          .map(
+            (item) => `
+              <article class="concept-item">
+                <strong>${escapeHtml(item.term)}</strong>
+                <p>${escapeHtml(item.explanation)}</p>
+              </article>
+            `,
+          )
+          .join("")}
+      </div>
+    </div>
+    <div class="task-block">
+      <h4>考點與易錯提醒</h4>
+      <p>${escapeHtml(teaching.examFocus || "")}</p>
+      <ul>${(teaching.commonMistakes || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+    </div>
+    <div class="task-block">
+      <h4>2. 測驗 / 練習</h4>
+      <p>${escapeHtml(assessment.title || day.quiz?.type || "")}：${assessment.questionCount || day.quiz?.questions || 0} 題，${assessment.suggestedMinutes || 0} 分鐘</p>
+      <p>${escapeHtml(assessment.instructions || day.quiz?.source || "")}</p>
+      <div class="question-list">
+        ${(assessment.questions || [])
+          .map(
+            (question, index) => `
+              <details class="question-item">
+                <summary>${index + 1}. ${escapeHtml(question.prompt)}</summary>
+                <p>${escapeHtml(question.answer)}</p>
+              </details>
+            `,
+          )
+          .join("")}
+      </div>
     </div>
     <div class="check-grid">
-      ${progressCheck(day.date, "read", "章節")}
-      ${progressCheck(day.date, "quiz", "測驗")}
+      ${progressCheck(day.date, "read", "教學")}
+      ${progressCheck(day.date, "quiz", "練習")}
       ${progressCheck(day.date, "review", "訂正")}
     </div>
     <div class="task-block">
-      <h4>完成項目</h4>
+      <h4>完成項目與整合來源</h4>
       <ul>${day.deliverables.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+      <p>已整合 ${sources.materialCount} 份資料、${sources.sectionCount} 個教材段落；詳細來源可到「教材庫」查詢。</p>
     </div>
   `;
 }
@@ -307,7 +338,7 @@ function weekItem(day) {
     <button class="week-item${active}${complete}" type="button" data-select-date="${escapeHtml(day.date)}">
       <span>${escapeHtml(day.date.slice(5))} / ${escapeHtml(day.weekday)}</span>
       <strong>${escapeHtml(day.focus)}</strong>
-      <em>${escapeHtml(day.quiz.type)} ${day.quiz.questions} 題</em>
+      <em>${escapeHtml(day.difficulty?.label || "")} / ${escapeHtml(day.assessment?.title || day.quiz.type)} ${day.assessment?.questionCount || day.quiz.questions} 題</em>
     </button>
   `;
 }

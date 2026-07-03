@@ -24,12 +24,14 @@ PDF 解析會優先使用 `pypdf`。如果沒有安裝 PDF parser，`rag-build` 
 ```bash
 python scripts/build_study_plan.py
 python scripts/build_study_materials.py
+python scripts/build_curriculum.py
 ```
 
 輸出：
 
 - `docs/study_plan.json`
 - `docs/study_materials.json`
+- `docs/curriculum.json`，每日整理後教學資訊、難度分析與練習/測驗題
 - `docs/material_assets/`，放無法抽文字的圖片與掃描 PDF 附件
 
 階段安排：
@@ -109,7 +111,7 @@ GitHub Pages 設定可選：
 - Branch: `main`
 - Folder: `/docs`
 
-頁面預設顯示讀書進度。`教材庫` 分頁會載入 `study_materials.json`，可在手機上搜尋、分類、閱讀抽出的教材文字；圖片與純掃描 PDF 會標記為需要 OCR/手動整理，並提供原始附件連結。切到 `RAG 問答` 分頁後才會載入 RAG index；在 `Search` 模式只顯示來源片段，在 `Answer` 模式會把 top-k context 送到 API endpoint。
+頁面預設顯示 `curriculum.json` 的每日整合課程：難度、教學資訊、重點觀念、考點提醒，以及當日練習或測驗題。`教材庫` 分頁會載入 `study_materials.json`，可在手機上搜尋、分類、閱讀抽出的教材文字；圖片與純掃描 PDF 會標記為需要 OCR/手動整理，並提供原始附件連結。切到 `RAG 問答` 分頁後才會載入 RAG index；在 `Search` 模式只顯示來源片段，在 `Answer` 模式會把 top-k context 送到 API endpoint。
 
 ## Vercel Claude API
 
@@ -141,6 +143,7 @@ python tests/test_extraction.py
 python tests/test_rag.py
 python scripts/build_study_plan.py
 python scripts/build_study_materials.py
+python scripts/build_curriculum.py
 ```
 
 `tests/test_extraction.py` 需要 Playwright browser；`tests/test_rag.py` 不需要外部服務。
