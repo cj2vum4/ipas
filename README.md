@@ -142,6 +142,30 @@ https://<your-vercel-app>.vercel.app/api/ask
 
 如果前端也由 Vercel 提供，endpoint 可留空，預設會呼叫 `/api/ask`。
 
+## Supabase 登入與學習紀錄
+
+前端支援 Supabase Email magic link 登入。未設定 Supabase 時，進度與錯題仍會存在瀏覽器本機；設定後會把本機資料合併同步到雲端。
+
+1. 到 Supabase 建立 project。
+2. 到 SQL Editor 執行 `supabase/schema.sql`。
+3. 到 Project Settings / API 複製 Project URL 與 anon public key。
+4. 編輯 `docs/config.js`：
+
+```js
+window.IPAS_CONFIG = {
+  supabaseUrl: "https://your-project.supabase.co",
+  supabaseAnonKey: "your-anon-public-key",
+};
+```
+
+5. 到 Authentication / URL Configuration 設定 Site URL：
+
+```text
+https://cj2vum4.github.io/ipas/docs/
+```
+
+如果使用 Vercel 前端，也把 Vercel 網址加入 Redirect URLs。
+
 ## 測試
 
 ```bash
@@ -163,6 +187,7 @@ src/
   rag/              # local document loading, chunking, sparse index build
 docs/               # GitHub Pages RAG app
 api/                # Vercel serverless function
+supabase/           # auth and study-record database schema
 iPAS教材/           # local study material
 data/               # NotebookLM exports
 tests/

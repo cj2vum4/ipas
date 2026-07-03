@@ -18,8 +18,20 @@
       <nav class="tabs" aria-label="Views">
         <button class="tab-button active" type="button" data-tab="planner">讀書進度</button>
         <button class="tab-button" type="button" data-tab="materials">教材庫</button>
+        <button class="tab-button" type="button" data-tab="records">紀錄</button>
         <button class="tab-button" type="button" data-tab="rag">RAG 問答</button>
       </nav>
+      <section class="auth-box" aria-label="Account">
+        <div>
+          <strong id="authLabel">本機模式</strong>
+          <span id="syncStatus">尚未登入</span>
+        </div>
+        <form id="authForm" class="auth-form">
+          <input id="authEmail" type="email" autocomplete="email" placeholder="email@example.com" />
+          <button id="loginButton" type="submit">登入</button>
+        </form>
+        <button id="logoutButton" class="ghost-button" type="button" hidden>登出</button>
+      </section>
     </header>
 
     <main>
@@ -62,6 +74,39 @@
               <span id="phaseMeta">6 phases</span>
             </div>
             <div id="phaseList" class="phase-list"></div>
+          </section>
+        </section>
+      </section>
+
+      <section id="recordsView" class="tab-view" aria-label="Study records">
+        <section class="records-layout">
+          <section class="record-summary-panel">
+            <div class="panel-header">
+              <h2>學習紀錄</h2>
+              <span id="recordSyncMeta">本機模式</span>
+            </div>
+            <div class="record-metrics">
+              <div>
+                <span>完成天數</span>
+                <strong id="recordCompletedDays">0</strong>
+              </div>
+              <div>
+                <span>錯題</span>
+                <strong id="recordMistakeCount">0</strong>
+              </div>
+              <div>
+                <span>待訂正</span>
+                <strong id="recordOpenMistakes">0</strong>
+              </div>
+            </div>
+          </section>
+
+          <section class="mistake-panel">
+            <div class="panel-header">
+              <h2>錯題本</h2>
+              <span id="mistakeMeta">0 items</span>
+            </div>
+            <div id="mistakeList" class="mistake-list"></div>
           </section>
         </section>
       </section>
@@ -167,6 +212,8 @@
       </section>
     </main>
 
+    <script src="config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="app.js"></script>
   </body>
 </html>

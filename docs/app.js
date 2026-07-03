@@ -2,13 +2,22 @@ const PLAN_URL = "curriculum.json";
 const MATERIALS_URL = "study_materials.json";
 const INDEX_URL = "rag_index.json";
 const DEFAULT_DIMENSIONS = 2048;
+const LOCAL_MISTAKES_KEY = "ipas-mistakes-v1";
+const PROGRESS_KINDS = ["read", "quiz", "review"];
 const encoder = new TextEncoder();
 
 const els = {
   tabButtons: document.querySelectorAll(".tab-button"),
   plannerView: document.querySelector("#plannerView"),
   materialsView: document.querySelector("#materialsView"),
+  recordsView: document.querySelector("#recordsView"),
   ragView: document.querySelector("#ragView"),
+  authForm: document.querySelector("#authForm"),
+  authEmail: document.querySelector("#authEmail"),
+  loginButton: document.querySelector("#loginButton"),
+  logoutButton: document.querySelector("#logoutButton"),
+  authLabel: document.querySelector("#authLabel"),
+  syncStatus: document.querySelector("#syncStatus"),
   planStatus: document.querySelector("#planStatus"),
   daysLeft: document.querySelector("#daysLeft"),
   completedDays: document.querySelector("#completedDays"),
@@ -27,6 +36,12 @@ const els = {
   readerTitle: document.querySelector("#readerTitle"),
   readerMeta: document.querySelector("#readerMeta"),
   materialReader: document.querySelector("#materialReader"),
+  recordSyncMeta: document.querySelector("#recordSyncMeta"),
+  recordCompletedDays: document.querySelector("#recordCompletedDays"),
+  recordMistakeCount: document.querySelector("#recordMistakeCount"),
+  recordOpenMistakes: document.querySelector("#recordOpenMistakes"),
+  mistakeMeta: document.querySelector("#mistakeMeta"),
+  mistakeList: document.querySelector("#mistakeList"),
   form: document.querySelector("#askForm"),
   question: document.querySelector("#question"),
   topK: document.querySelector("#topK"),
@@ -50,17 +65,28 @@ const state = {
   index: null,
   indexPromise: null,
   dimensions: DEFAULT_DIMENSIONS,
+  supabase: null,
+  session: null,
+  syncing: false,
+  progress: new Map(),
+  mistakes: new Map(),
 };
 
 init();
 
 async function init() {
   els.endpoint.value = localStorage.getItem("ipas-rag-endpoint") || "";
+  loadLocalMistakes();
+  setupSupabase();
   bindTabs();
+  bindAuthEvents();
   bindPlannerEvents();
   bindMaterialsEvents();
+  bindRecordsEvents();
   bindRagEvents();
   await loadPlan();
+  await hydrateSession();
+  renderRecords();
 }
 
 function bindTabs() {
@@ -70,9 +96,13 @@ function bindTabs() {
       els.tabButtons.forEach((item) => item.classList.toggle("active", item === button));
       els.plannerView.classList.toggle("active", target === "planner");
       els.materialsView.classList.toggle("active", target === "materials");
+      els.recordsView.classList.toggle("active", target === "records");
       els.ragView.classList.toggle("active", target === "rag");
       if (target === "materials") {
         await loadMaterials();
+      }
+      if (target === "records") {
+        renderRecords();
       }
       if (target === "rag") {
         await loadRagIndex();
@@ -88,17 +118,52 @@ function switchTab(target) {
   });
   els.plannerView.classList.toggle("active", target === "planner");
   els.materialsView.classList.toggle("active", target === "materials");
+  els.recordsView.classList.toggle("active", target === "records");
   els.ragView.classList.toggle("active", target === "rag");
+  if (target === "records") {
+    renderRecords();
+  }
+}
+
+function bindAuthEvents() {
+  els.authForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!state.supabase) {
+      setSyncStatus("Supabase 尚未設定");
+      return;
+    }
+    const email = els.authEmail.value.trim();
+    if (!email) {
+      return;
+    }
+    els.loginButton.disabled = true;
+    setSyncStatus("登入連結寄送中");
+    const { error } = await state.supabase.auth.signInWithOtp({
+      email,
+      options: { emailRedirectTo: window.location.href.split("#")[0] },
+    });
+    els.loginButton.disabled = false;
+    setSyncStatus(error ? error.message : "已寄出登入連結，請檢查信箱");
+  });
+
+  els.logoutButton.addEventListener("click", async () => {
+    if (!state.supabase) {
+      return;
+    }
+    await state.supabase.auth.signOut();
+    state.session = null;
+    updateAuthUi();
+    renderRecords();
+  });
 }
 
 function bindPlannerEvents() {
-  document.addEventListener("change", (event) => {
+  document.addEventListener("change", async (event) => {
     const input = event.target;
-    if (!input.matches("[data-progress-key]")) {
+    if (!input.matches("[data-progress-date][data-progress-kind]")) {
       return;
     }
-    localStorage.setItem(input.dataset.progressKey, input.checked ? "1" : "0");
-    renderPlanner();
+    await updateProgress(input.dataset.progressDate, input.dataset.progressKind, input.checked);
   });
 
   document.addEventListener("click", (event) => {
@@ -120,6 +185,34 @@ function bindPlannerEvents() {
     await loadMaterials();
     renderMaterials();
   });
+
+  document.addEventListener("click", async (event) => {
+    const button = event.target.closest("[data-mistake-toggle]");
+    if (!button) {
+      return;
+    }
+    const date = button.dataset.date;
+    const questionIndex = Number.parseInt(button.dataset.questionIndex, 10);
+    const question = getQuestion(date, questionIndex);
+    if (!question) {
+      return;
+    }
+    await setMistake(date, questionIndex, question, !hasMistake(date, questionIndex));
+  });
+
+  document.addEventListener("click", async (event) => {
+    const button = event.target.closest("[data-mistake-resolved]");
+    if (!button) {
+      return;
+    }
+    const date = button.dataset.date;
+    const questionIndex = Number.parseInt(button.dataset.questionIndex, 10);
+    const mistake = state.mistakes.get(mistakeKey(date, questionIndex));
+    if (!mistake) {
+      return;
+    }
+    await updateMistake(date, questionIndex, { resolved: !mistake.resolved });
+  });
 }
 
 function bindMaterialsEvents() {
@@ -132,6 +225,44 @@ function bindMaterialsEvents() {
     }
     state.selectedMaterialId = button.dataset.materialId;
     renderMaterials();
+  });
+}
+
+function bindRecordsEvents() {
+  els.mistakeList.addEventListener("click", async (event) => {
+    const openButton = event.target.closest("[data-open-mistake-date]");
+    if (openButton) {
+      state.selectedDate = openButton.dataset.openMistakeDate;
+      switchTab("planner");
+      renderPlanner();
+      return;
+    }
+
+    const resolvedButton = event.target.closest("[data-record-resolved]");
+    if (resolvedButton) {
+      await updateMistake(resolvedButton.dataset.date, Number.parseInt(resolvedButton.dataset.questionIndex, 10), {
+        resolved: resolvedButton.dataset.nextResolved === "1",
+      });
+      return;
+    }
+
+    const removeButton = event.target.closest("[data-record-remove]");
+    if (removeButton) {
+      const date = removeButton.dataset.date;
+      const questionIndex = Number.parseInt(removeButton.dataset.questionIndex, 10);
+      const question = getQuestion(date, questionIndex);
+      await setMistake(date, questionIndex, question, false);
+    }
+  });
+
+  els.mistakeList.addEventListener("change", async (event) => {
+    const input = event.target;
+    if (!input.matches("[data-mistake-note]")) {
+      return;
+    }
+    await updateMistake(input.dataset.date, Number.parseInt(input.dataset.questionIndex, 10), {
+      note: input.value.trim(),
+    });
   });
 }
 
@@ -190,8 +321,10 @@ async function loadPlan() {
       throw new Error(`${response.status} ${response.statusText}`);
     }
     state.plan = await response.json();
+    loadLocalProgress();
     state.selectedDate = pickInitialDate();
     renderPlanner();
+    renderRecords();
   } catch (error) {
     els.planStatus.textContent = "Study plan not found";
     els.todayCard.innerHTML = `<p class="empty-state">${escapeHtml(error.message)}</p>`;
@@ -218,6 +351,7 @@ function renderPlanner() {
 
   renderWeek(selected.date);
   renderPhases();
+  renderRecords();
 }
 
 function renderWeek(anchorDate) {
@@ -306,16 +440,7 @@ function dayCard(day) {
       <p>${escapeHtml(assessment.title || day.quiz?.type || "")}：${assessment.questionCount || day.quiz?.questions || 0} 題，${assessment.suggestedMinutes || 0} 分鐘</p>
       <p>${escapeHtml(assessment.instructions || day.quiz?.source || "")}</p>
       <div class="question-list">
-        ${(assessment.questions || [])
-          .map(
-            (question, index) => `
-              <details class="question-item">
-                <summary>${index + 1}. ${escapeHtml(question.prompt)}</summary>
-                <p>${escapeHtml(question.answer)}</p>
-              </details>
-            `,
-          )
-          .join("")}
+        ${(assessment.questions || []).map((question, index) => questionItem(day, question, index)).join("")}
       </div>
     </div>
     <div class="check-grid">
@@ -328,6 +453,38 @@ function dayCard(day) {
       <ul>${day.deliverables.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
       <p>已整合 ${sources.materialCount} 份資料、${sources.sectionCount} 個教材段落；詳細來源可到「教材庫」查詢。</p>
     </div>
+  `;
+}
+
+function questionItem(day, question, index) {
+  const mistake = state.mistakes.get(mistakeKey(day.date, index));
+  const active = mistake ? " is-mistake" : "";
+  const resolved = mistake?.resolved ? " is-resolved" : "";
+  return `
+    <details class="question-item${active}${resolved}"${mistake ? " open" : ""}>
+      <summary>${index + 1}. ${escapeHtml(question.prompt)}</summary>
+      <p>${escapeHtml(question.answer)}</p>
+      <div class="question-actions">
+        <button
+          class="mistake-button${mistake ? " active" : ""}"
+          type="button"
+          data-mistake-toggle="1"
+          data-date="${escapeHtml(day.date)}"
+          data-question-index="${index}"
+        >${mistake ? "已加入錯題" : "加入錯題"}</button>
+        ${
+          mistake
+            ? `<button
+                class="ghost-button"
+                type="button"
+                data-mistake-resolved="1"
+                data-date="${escapeHtml(day.date)}"
+                data-question-index="${index}"
+              >${mistake.resolved ? "取消訂正" : "標記已訂正"}</button>`
+            : ""
+        }
+      </div>
+    </details>
   `;
 }
 
@@ -344,14 +501,465 @@ function weekItem(day) {
 }
 
 function progressCheck(date, key, label) {
-  const storageKey = progressKey(date, key);
-  const checked = localStorage.getItem(storageKey) === "1" ? " checked" : "";
+  const checked = isProgressChecked(date, key) ? " checked" : "";
   return `
     <label class="check-item">
-      <input type="checkbox" data-progress-key="${storageKey}"${checked} />
+      <input
+        type="checkbox"
+        data-progress-date="${escapeHtml(date)}"
+        data-progress-kind="${escapeHtml(key)}"
+        ${checked}
+      />
       <span>${escapeHtml(label)}</span>
     </label>
   `;
+}
+
+function setupSupabase() {
+  const config = window.IPAS_CONFIG || {};
+  if (!config.supabaseUrl || !config.supabaseAnonKey) {
+    updateAuthUi("Supabase 未設定，本機模式");
+    return;
+  }
+  if (!window.supabase?.createClient) {
+    updateAuthUi("Supabase SDK 未載入，本機模式");
+    return;
+  }
+  state.supabase = window.supabase.createClient(config.supabaseUrl, config.supabaseAnonKey);
+  state.supabase.auth.onAuthStateChange((_event, session) => {
+    void handleSession(session);
+  });
+  updateAuthUi();
+}
+
+async function hydrateSession() {
+  if (!state.supabase) {
+    updateAuthUi();
+    return;
+  }
+  const { data, error } = await state.supabase.auth.getSession();
+  if (error) {
+    setSyncStatus(error.message);
+    return;
+  }
+  await handleSession(data.session);
+}
+
+async function handleSession(session) {
+  const previousUserId = state.session?.user?.id || "";
+  const nextUserId = session?.user?.id || "";
+  state.session = session;
+  updateAuthUi();
+  if (!session || !state.plan || state.syncing) {
+    renderRecords();
+    return;
+  }
+  if (previousUserId !== nextUserId || !state.syncing) {
+    await syncCloudState();
+  }
+}
+
+function updateAuthUi(message) {
+  const email = state.session?.user?.email || "";
+  els.authLabel.textContent = email || "本機模式";
+  els.authForm.hidden = Boolean(state.session) || !state.supabase;
+  els.logoutButton.hidden = !state.session;
+  setSyncStatus(message || (state.session ? "已登入" : state.supabase ? "可登入同步" : "尚未設定同步"));
+}
+
+function setSyncStatus(message) {
+  els.syncStatus.textContent = message;
+  if (els.recordSyncMeta) {
+    els.recordSyncMeta.textContent = message;
+  }
+}
+
+function loadLocalProgress() {
+  state.progress.clear();
+  for (const day of state.plan?.days || []) {
+    const record = {};
+    for (const kind of PROGRESS_KINDS) {
+      record[kind] = localStorage.getItem(progressKey(day.date, kind)) === "1";
+    }
+    if (PROGRESS_KINDS.some((kind) => record[kind])) {
+      state.progress.set(day.date, record);
+    }
+  }
+}
+
+function saveLocalProgress(date, record) {
+  for (const kind of PROGRESS_KINDS) {
+    if (record[kind]) {
+      localStorage.setItem(progressKey(date, kind), "1");
+    } else {
+      localStorage.removeItem(progressKey(date, kind));
+    }
+  }
+}
+
+function getProgressRecord(date) {
+  return state.progress.get(date) || { read: false, quiz: false, review: false };
+}
+
+function isProgressChecked(date, key) {
+  return Boolean(getProgressRecord(date)[key]);
+}
+
+async function updateProgress(date, kind, checked) {
+  if (!PROGRESS_KINDS.includes(kind)) {
+    return;
+  }
+  const record = { ...getProgressRecord(date), [kind]: checked, updatedAt: new Date().toISOString() };
+  state.progress.set(date, record);
+  saveLocalProgress(date, record);
+  renderPlanner();
+  try {
+    await saveRemoteProgress(date, record);
+  } catch (error) {
+    setSyncStatus(error.message);
+  }
+}
+
+async function saveRemoteProgress(date, record) {
+  if (!state.supabase || !state.session) {
+    return;
+  }
+  const { error } = await state.supabase.from("study_progress").upsert(
+    {
+      user_id: state.session.user.id,
+      date,
+      read: Boolean(record.read),
+      quiz: Boolean(record.quiz),
+      review: Boolean(record.review),
+      updated_at: new Date().toISOString(),
+    },
+    { onConflict: "user_id,date" },
+  );
+  if (error) {
+    throw error;
+  }
+  setSyncStatus("已同步進度");
+}
+
+function loadLocalMistakes() {
+  state.mistakes.clear();
+  const payload = localStorage.getItem(LOCAL_MISTAKES_KEY);
+  if (!payload) {
+    return;
+  }
+  try {
+    const items = JSON.parse(payload);
+    for (const item of Array.isArray(items) ? items : []) {
+      const normalized = normalizeMistake(item);
+      if (normalized) {
+        state.mistakes.set(mistakeKey(normalized.date, normalized.questionIndex), normalized);
+      }
+    }
+  } catch (_error) {
+    localStorage.removeItem(LOCAL_MISTAKES_KEY);
+  }
+}
+
+function saveLocalMistakes() {
+  const items = [...state.mistakes.values()].sort(compareMistakes);
+  localStorage.setItem(LOCAL_MISTAKES_KEY, JSON.stringify(items));
+}
+
+function normalizeMistake(item) {
+  const date = String(item?.date || "");
+  const questionIndex = Number.parseInt(item?.questionIndex ?? item?.question_index, 10);
+  if (!date || Number.isNaN(questionIndex)) {
+    return null;
+  }
+  return {
+    date,
+    questionIndex,
+    prompt: String(item.prompt || ""),
+    answer: String(item.answer || ""),
+    note: String(item.note || ""),
+    resolved: Boolean(item.resolved),
+    updatedAt: item.updatedAt || item.updated_at || new Date().toISOString(),
+  };
+}
+
+function hasMistake(date, questionIndex) {
+  return state.mistakes.has(mistakeKey(date, questionIndex));
+}
+
+async function setMistake(date, questionIndex, question, shouldStore) {
+  const key = mistakeKey(date, questionIndex);
+  if (!shouldStore) {
+    state.mistakes.delete(key);
+    saveLocalMistakes();
+    renderPlanner();
+    renderRecords();
+    try {
+      await deleteRemoteMistake(date, questionIndex);
+    } catch (error) {
+      setSyncStatus(error.message);
+    }
+    return;
+  }
+  const mistake = {
+    date,
+    questionIndex,
+    prompt: question?.prompt || "",
+    answer: question?.answer || "",
+    note: state.mistakes.get(key)?.note || "",
+    resolved: false,
+    updatedAt: new Date().toISOString(),
+  };
+  state.mistakes.set(key, mistake);
+  saveLocalMistakes();
+  renderPlanner();
+  renderRecords();
+  try {
+    await saveRemoteMistake(mistake);
+  } catch (error) {
+    setSyncStatus(error.message);
+  }
+}
+
+async function updateMistake(date, questionIndex, patch) {
+  const key = mistakeKey(date, questionIndex);
+  const current = state.mistakes.get(key);
+  if (!current) {
+    return;
+  }
+  const next = { ...current, ...patch, updatedAt: new Date().toISOString() };
+  state.mistakes.set(key, next);
+  saveLocalMistakes();
+  renderPlanner();
+  renderRecords();
+  try {
+    await saveRemoteMistake(next);
+  } catch (error) {
+    setSyncStatus(error.message);
+  }
+}
+
+async function saveRemoteMistake(mistake) {
+  if (!state.supabase || !state.session) {
+    return;
+  }
+  const { error } = await state.supabase.from("quiz_mistakes").upsert(
+    {
+      user_id: state.session.user.id,
+      date: mistake.date,
+      question_index: mistake.questionIndex,
+      prompt: mistake.prompt,
+      answer: mistake.answer,
+      note: mistake.note,
+      resolved: Boolean(mistake.resolved),
+      updated_at: new Date().toISOString(),
+    },
+    { onConflict: "user_id,date,question_index" },
+  );
+  if (error) {
+    throw error;
+  }
+  setSyncStatus("已同步錯題");
+}
+
+async function deleteRemoteMistake(date, questionIndex) {
+  if (!state.supabase || !state.session) {
+    return;
+  }
+  const { error } = await state.supabase
+    .from("quiz_mistakes")
+    .delete()
+    .eq("user_id", state.session.user.id)
+    .eq("date", date)
+    .eq("question_index", questionIndex);
+  if (error) {
+    throw error;
+  }
+  setSyncStatus("已移除錯題");
+}
+
+async function syncCloudState() {
+  if (!state.supabase || !state.session || state.syncing) {
+    return;
+  }
+  state.syncing = true;
+  setSyncStatus("同步中");
+  try {
+    const userId = state.session.user.id;
+    const [progressResponse, mistakesResponse] = await Promise.all([
+      state.supabase.from("study_progress").select("*").eq("user_id", userId),
+      state.supabase.from("quiz_mistakes").select("*").eq("user_id", userId),
+    ]);
+    if (progressResponse.error) {
+      throw progressResponse.error;
+    }
+    if (mistakesResponse.error) {
+      throw mistakesResponse.error;
+    }
+    mergeRemoteProgress(progressResponse.data || []);
+    mergeRemoteMistakes(mistakesResponse.data || []);
+    await flushLocalStateToCloud();
+    renderPlanner();
+    renderRecords();
+    setSyncStatus("已同步");
+  } catch (error) {
+    setSyncStatus(error.message);
+  } finally {
+    state.syncing = false;
+  }
+}
+
+function mergeRemoteProgress(rows) {
+  for (const row of rows) {
+    const current = getProgressRecord(row.date);
+    const merged = {
+      read: Boolean(current.read || row.read),
+      quiz: Boolean(current.quiz || row.quiz),
+      review: Boolean(current.review || row.review),
+      updatedAt: row.updated_at || current.updatedAt || new Date().toISOString(),
+    };
+    state.progress.set(row.date, merged);
+    saveLocalProgress(row.date, merged);
+  }
+}
+
+function mergeRemoteMistakes(rows) {
+  for (const row of rows) {
+    const incoming = normalizeMistake(row);
+    if (!incoming) {
+      continue;
+    }
+    const key = mistakeKey(incoming.date, incoming.questionIndex);
+    const current = state.mistakes.get(key);
+    if (!current || new Date(incoming.updatedAt) >= new Date(current.updatedAt)) {
+      state.mistakes.set(key, incoming);
+    }
+  }
+  saveLocalMistakes();
+}
+
+async function flushLocalStateToCloud() {
+  const progressRows = [...state.progress.entries()]
+    .filter(([_date, record]) => PROGRESS_KINDS.some((kind) => record[kind]))
+    .map(([date, record]) => ({
+      user_id: state.session.user.id,
+      date,
+      read: Boolean(record.read),
+      quiz: Boolean(record.quiz),
+      review: Boolean(record.review),
+      updated_at: record.updatedAt || new Date().toISOString(),
+    }));
+  if (progressRows.length) {
+    const { error } = await state.supabase.from("study_progress").upsert(progressRows, {
+      onConflict: "user_id,date",
+    });
+    if (error) {
+      throw error;
+    }
+  }
+
+  const mistakeRows = [...state.mistakes.values()].map((mistake) => ({
+    user_id: state.session.user.id,
+    date: mistake.date,
+    question_index: mistake.questionIndex,
+    prompt: mistake.prompt,
+    answer: mistake.answer,
+    note: mistake.note,
+    resolved: Boolean(mistake.resolved),
+    updated_at: mistake.updatedAt || new Date().toISOString(),
+  }));
+  if (mistakeRows.length) {
+    const { error } = await state.supabase.from("quiz_mistakes").upsert(mistakeRows, {
+      onConflict: "user_id,date,question_index",
+    });
+    if (error) {
+      throw error;
+    }
+  }
+}
+
+function renderRecords() {
+  if (!state.plan) {
+    return;
+  }
+  const completed = state.plan.days.filter((day) => isDayComplete(day.date)).length;
+  const mistakes = [...state.mistakes.values()].sort(compareMistakes);
+  const openMistakes = mistakes.filter((item) => !item.resolved);
+
+  els.recordCompletedDays.textContent = `${completed} / ${state.plan.totalStudyDays}`;
+  els.recordMistakeCount.textContent = String(mistakes.length);
+  els.recordOpenMistakes.textContent = String(openMistakes.length);
+  els.mistakeMeta.textContent = `${mistakes.length} items`;
+
+  if (!mistakes.length) {
+    els.mistakeList.innerHTML = '<p class="empty-state">目前沒有錯題。</p>';
+    return;
+  }
+  els.mistakeList.innerHTML = mistakes.map(mistakeItem).join("");
+}
+
+function mistakeItem(mistake) {
+  const day = dayByDate(mistake.date);
+  const status = mistake.resolved ? "已訂正" : "待訂正";
+  return `
+    <article class="mistake-item${mistake.resolved ? " resolved" : ""}">
+      <div class="mistake-topline">
+        <button type="button" data-open-mistake-date="${escapeHtml(mistake.date)}">
+          ${escapeHtml(mistake.date)} / ${escapeHtml(day?.focus || "未找到課程")}
+        </button>
+        <span>${status}</span>
+      </div>
+      <strong>Q${mistake.questionIndex + 1}. ${escapeHtml(mistake.prompt)}</strong>
+      <details>
+        <summary>參考答案</summary>
+        <p>${escapeHtml(mistake.answer)}</p>
+      </details>
+      <label>
+        <span>訂正筆記</span>
+        <textarea
+          data-mistake-note="1"
+          data-date="${escapeHtml(mistake.date)}"
+          data-question-index="${mistake.questionIndex}"
+          rows="3"
+        >${escapeHtml(mistake.note)}</textarea>
+      </label>
+      <div class="mistake-actions">
+        <button
+          type="button"
+          class="ghost-button"
+          data-record-resolved="1"
+          data-date="${escapeHtml(mistake.date)}"
+          data-question-index="${mistake.questionIndex}"
+          data-next-resolved="${mistake.resolved ? "0" : "1"}"
+        >${mistake.resolved ? "改為待訂正" : "標記已訂正"}</button>
+        <button
+          type="button"
+          class="danger-button"
+          data-record-remove="1"
+          data-date="${escapeHtml(mistake.date)}"
+          data-question-index="${mistake.questionIndex}"
+        >移除</button>
+      </div>
+    </article>
+  `;
+}
+
+function getQuestion(date, questionIndex) {
+  const day = dayByDate(date);
+  return day?.assessment?.questions?.[questionIndex] || null;
+}
+
+function mistakeKey(date, questionIndex) {
+  return `${date}:${questionIndex}`;
+}
+
+function compareMistakes(a, b) {
+  if (a.resolved !== b.resolved) {
+    return a.resolved ? 1 : -1;
+  }
+  if (a.date !== b.date) {
+    return a.date.localeCompare(b.date);
+  }
+  return a.questionIndex - b.questionIndex;
 }
 
 async function loadMaterials() {
@@ -677,9 +1285,7 @@ function dayByDate(dateValue) {
 }
 
 function isDayComplete(dateValue) {
-  return ["read", "quiz", "review"].every(
-    (key) => localStorage.getItem(progressKey(dateValue, key)) === "1",
-  );
+  return PROGRESS_KINDS.every((key) => isProgressChecked(dateValue, key));
 }
 
 function progressKey(dateValue, key) {
