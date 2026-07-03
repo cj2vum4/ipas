@@ -123,6 +123,8 @@ Vercel 環境變數：
 
 Vercel Application Preset 可選 `Other` 或 `Node.js`，Root Directory 保持 `./`。不要新增 `DEFAULT_MODEL`；模型請填在 `OPENROUTER_MODEL`。
 
+本專案已在 `vercel.json` 指定 `framework: null`、`buildCommand: null`、`outputDirectory: docs`，所以不需要 `package.json`、`index.js` 或 `server.js`。如果 Vercel 顯示 `No entrypoint found`，請確認重新部署的是最新 commit，並且專案的 Root Directory 是 `./`。
+
 | 變數 | 必填 | 說明 |
 | --- | --- | --- |
 | `OPENROUTER_API_KEY` | yes | OpenRouter API key，只放在 Vercel |

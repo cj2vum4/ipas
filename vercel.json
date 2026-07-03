@@ -1,8 +1,12 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": null,
+  "installCommand": null,
+  "outputDirectory": "docs",
   "functions": {
     "api/ask.js": {
       "maxDuration": 30
     }
   }
 }
-
