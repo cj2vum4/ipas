@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>iPAS Study Planner</title>
-    <link rel="stylesheet" href="styles.css" />
+    <!-- bump ?v= on app.js/styles.css whenever they change, so GitHub Pages' CDN cache doesn't serve a stale copy -->
+    <link rel="stylesheet" href="styles.css?v=3" />
   </head>
   <body>
     <header class="topbar">
@@ -67,7 +68,6 @@
             </label>
             <div class="batch-kinds">
               <label><input id="batchKindRead" type="checkbox" checked /> 教學</label>
-              <label><input id="batchKindQuiz" type="checkbox" checked /> 練習</label>
               <label><input id="batchKindReview" type="checkbox" checked /> 訂正</label>
             </div>
             <div class="batch-actions">
@@ -76,7 +76,8 @@
             </div>
           </form>
           <p class="batch-hint">
-            忘記讀書也沒關係，回來後直接選日期範圍補記錄；想超前進度，也可以一次把之後好幾天標記完成。
+            忘記讀書也沒關係，回來後直接選日期範圍補記錄教學／訂正；「練習」項目改由每天的測驗自動判定——
+            答完當天的題目就會自動標記完成，答錯的題目也會自動加入錯題本。想超前進度，直接跳到那一天把題目作答完即可。
           </p>
         </section>
 
@@ -249,6 +250,6 @@
 
     <script src="config.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="app.js"></script>
+    <script src="app.js?v=3"></script>
   </body>
 </html>

@@ -3,6 +3,7 @@ const MATERIALS_URL = "study_materials.json";
 const INDEX_URL = "rag_index.json";
 const DEFAULT_DIMENSIONS = 2048;
 const LOCAL_MISTAKES_KEY = "ipas-mistakes-v1";
+const LOCAL_ANSWERS_KEY = "ipas-answers-v1";
 const PROGRESS_KINDS = ["read", "quiz", "review"];
 const encoder = new TextEncoder();
 
@@ -37,7 +38,6 @@ const els = {
   batchStart: document.querySelector("#batchStart"),
   batchEnd: document.querySelector("#batchEnd"),
   batchKindRead: document.querySelector("#batchKindRead"),
-  batchKindQuiz: document.querySelector("#batchKindQuiz"),
   batchKindReview: document.querySelector("#batchKindReview"),
   batchClearButton: document.querySelector("#batchClearButton"),
   materialStatus: document.querySelector("#materialStatus"),
@@ -82,7 +82,7 @@ const state = {
   syncing: false,
   progress: new Map(),
   mistakes: new Map(),
-  selectedOptions: new Map(),
+  answers: new Map(),
 };
 
 init();
@@ -90,6 +90,7 @@ init();
 async function init() {
   els.endpoint.value = localStorage.getItem("ipas-rag-endpoint") || "";
   loadLocalMistakes();
+  loadLocalAnswers();
   setupSupabase();
   bindTabs();
   bindAuthEvents();
@@ -199,29 +200,14 @@ function bindPlannerEvents() {
     renderMaterials();
   });
 
-  document.addEventListener("click", (event) => {
+  document.addEventListener("click", async (event) => {
     const button = event.target.closest("[data-option-select]");
     if (!button) {
       return;
     }
     const date = button.dataset.date;
     const questionIndex = Number.parseInt(button.dataset.questionIndex, 10);
-    state.selectedOptions.set(mistakeKey(date, questionIndex), button.dataset.optionKey);
-    renderPlanner();
-  });
-
-  document.addEventListener("click", async (event) => {
-    const button = event.target.closest("[data-mistake-toggle]");
-    if (!button) {
-      return;
-    }
-    const date = button.dataset.date;
-    const questionIndex = Number.parseInt(button.dataset.questionIndex, 10);
-    const question = getQuestion(date, questionIndex);
-    if (!question) {
-      return;
-    }
-    await setMistake(date, questionIndex, question, !hasMistake(date, questionIndex));
+    await recordAnswer(date, questionIndex, button.dataset.optionKey);
   });
 
   document.addEventListener("click", async (event) => {
@@ -280,9 +266,6 @@ function batchKinds() {
   const kinds = [];
   if (els.batchKindRead?.checked) {
     kinds.push("read");
-  }
-  if (els.batchKindQuiz?.checked) {
-    kinds.push("quiz");
   }
   if (els.batchKindReview?.checked) {
     kinds.push("review");
@@ -575,7 +558,7 @@ function dayCard(day) {
     </div>
     <div class="check-grid">
       ${progressCheck(day.date, "read", "教學")}
-      ${progressCheck(day.date, "quiz", "練習")}
+      ${progressCheck(day.date, "quiz", "練習（作答完自動判定）", { auto: true })}
       ${progressCheck(day.date, "review", "訂正")}
     </div>
     <div class="task-block">
@@ -589,51 +572,44 @@ function dayCard(day) {
 function questionItem(day, question, index) {
   const key = mistakeKey(day.date, index);
   const mistake = state.mistakes.get(key);
+  const answer = state.answers.get(key);
   const active = mistake ? " is-mistake" : "";
   const resolved = mistake?.resolved ? " is-resolved" : "";
-  const selected = state.selectedOptions.get(key);
   const options = question.options || [];
   return `
-    <details class="question-item${active}${resolved}"${mistake || selected ? " open" : ""}>
+    <details class="question-item${active}${resolved}"${mistake || answer ? " open" : ""}>
       <summary>${index + 1}. ${escapeHtml(question.prompt)}</summary>
       <div class="option-list">
-        ${options.map((option) => optionButton(day.date, index, option, selected, question.correctKey)).join("")}
+        ${options.map((option) => optionButton(day.date, index, option, answer, question.correctKey)).join("")}
       </div>
       ${
-        selected
-          ? `<p class="option-explanation">${escapeHtml(question.answer)}</p>`
+        answer
+          ? `<p class="option-explanation">${answer.correct ? "✅ 答對了。" : "❌ 答錯，已自動加入錯題。"} ${escapeHtml(question.answer)}</p>`
           : ""
       }
-      <div class="question-actions">
-        <button
-          class="mistake-button${mistake ? " active" : ""}"
-          type="button"
-          data-mistake-toggle="1"
-          data-date="${escapeHtml(day.date)}"
-          data-question-index="${index}"
-        >${mistake ? "已加入錯題" : "加入錯題"}</button>
-        ${
-          mistake
-            ? `<button
+      ${
+        mistake
+          ? `<div class="question-actions">
+              <button
                 class="ghost-button"
                 type="button"
                 data-mistake-resolved="1"
                 data-date="${escapeHtml(day.date)}"
                 data-question-index="${index}"
-              >${mistake.resolved ? "取消訂正" : "標記已訂正"}</button>`
-            : ""
-        }
-      </div>
+              >${mistake.resolved ? "取消訂正" : "標記已訂正"}</button>
+            </div>`
+          : ""
+      }
     </details>
   `;
 }
 
-function optionButton(date, index, option, selected, correctKey) {
+function optionButton(date, index, option, answer, correctKey) {
   let state_ = "";
-  if (selected) {
+  if (answer) {
     if (option.key === correctKey) {
       state_ = " is-correct";
-    } else if (option.key === selected) {
+    } else if (option.key === answer.optionKey) {
       state_ = " is-incorrect";
     }
   }
@@ -645,7 +621,7 @@ function optionButton(date, index, option, selected, correctKey) {
       data-date="${escapeHtml(date)}"
       data-question-index="${index}"
       data-option-key="${escapeHtml(option.key)}"
-      ${selected ? "disabled" : ""}
+      ${answer ? "disabled" : ""}
     >
       <span class="option-key">${escapeHtml(option.key)}</span>
       <span class="option-text">${escapeHtml(option.text)}</span>
@@ -665,15 +641,16 @@ function weekItem(day) {
   `;
 }
 
-function progressCheck(date, key, label) {
+function progressCheck(date, key, label, { auto = false } = {}) {
   const checked = isProgressChecked(date, key) ? " checked" : "";
   return `
-    <label class="check-item">
+    <label class="check-item${auto ? " is-auto" : ""}">
       <input
         type="checkbox"
         data-progress-date="${escapeHtml(date)}"
         data-progress-kind="${escapeHtml(key)}"
         ${checked}
+        ${auto ? "disabled" : ""}
       />
       <span>${escapeHtml(label)}</span>
     </label>
@@ -830,6 +807,37 @@ function saveLocalMistakes() {
   localStorage.setItem(LOCAL_MISTAKES_KEY, JSON.stringify(items));
 }
 
+function loadLocalAnswers() {
+  state.answers.clear();
+  const payload = localStorage.getItem(LOCAL_ANSWERS_KEY);
+  if (!payload) {
+    return;
+  }
+  try {
+    const items = JSON.parse(payload);
+    for (const item of Array.isArray(items) ? items : []) {
+      const date = String(item?.date || "");
+      const questionIndex = Number.parseInt(item?.questionIndex, 10);
+      if (!date || Number.isNaN(questionIndex) || !item.optionKey) {
+        continue;
+      }
+      state.answers.set(mistakeKey(date, questionIndex), {
+        date,
+        questionIndex,
+        optionKey: String(item.optionKey),
+        correct: Boolean(item.correct),
+        updatedAt: item.updatedAt || new Date().toISOString(),
+      });
+    }
+  } catch (_error) {
+    localStorage.removeItem(LOCAL_ANSWERS_KEY);
+  }
+}
+
+function saveLocalAnswers() {
+  localStorage.setItem(LOCAL_ANSWERS_KEY, JSON.stringify([...state.answers.values()]));
+}
+
 function normalizeMistake(item) {
   const date = String(item?.date || "");
   const questionIndex = Number.parseInt(item?.questionIndex ?? item?.question_index, 10);
@@ -847,8 +855,42 @@ function normalizeMistake(item) {
   };
 }
 
-function hasMistake(date, questionIndex) {
-  return state.mistakes.has(mistakeKey(date, questionIndex));
+async function recordAnswer(date, questionIndex, optionKey) {
+  const key = mistakeKey(date, questionIndex);
+  if (state.answers.has(key)) {
+    return;
+  }
+  const question = getQuestion(date, questionIndex);
+  if (!question || !optionKey) {
+    return;
+  }
+  const correct = optionKey === question.correctKey;
+  state.answers.set(key, {
+    date,
+    questionIndex,
+    optionKey,
+    correct,
+    updatedAt: new Date().toISOString(),
+  });
+  saveLocalAnswers();
+  if (correct) {
+    renderPlanner();
+  } else {
+    await setMistake(date, questionIndex, question, true);
+  }
+  await maybeCompleteQuiz(date);
+}
+
+async function maybeCompleteQuiz(date) {
+  const day = dayByDate(date);
+  const questions = day?.assessment?.questions || [];
+  if (!questions.length) {
+    return;
+  }
+  const allAnswered = questions.every((_question, index) => state.answers.has(mistakeKey(date, index)));
+  if (allAnswered && !isProgressChecked(date, "quiz")) {
+    await updateProgress(date, "quiz", true);
+  }
 }
 
 async function setMistake(date, questionIndex, question, shouldStore) {

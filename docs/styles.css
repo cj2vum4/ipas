@@ -521,7 +521,6 @@ main {
   padding: 0 12px 12px;
 }
 
-.mistake-button,
 .ghost-button,
 .danger-button,
 .auth-form button {
@@ -534,15 +533,13 @@ main {
   font-weight: 800;
 }
 
-.auth-form button,
-.mistake-button.active {
+.auth-form button {
   border-color: var(--teal);
   background: var(--teal);
   color: white;
 }
 
 .ghost-button:hover,
-.mistake-button:hover,
 .auth-form button:hover {
   border-color: var(--teal-strong);
 }
@@ -621,6 +618,15 @@ main {
   width: 18px;
   height: 18px;
   accent-color: var(--teal);
+}
+
+.check-item.is-auto {
+  background: var(--surface-2);
+}
+
+.check-item.is-auto span {
+  color: var(--muted);
+  font-weight: 700;
 }
 
 .week-list,
