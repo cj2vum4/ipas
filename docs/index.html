@@ -51,6 +51,35 @@
           </div>
         </section>
 
+        <section class="batch-panel" aria-label="Batch mark progress">
+          <div class="panel-header">
+            <h2>批次標記進度</h2>
+            <span id="batchMeta">--</span>
+          </div>
+          <form id="batchForm" class="batch-form">
+            <label>
+              <span>開始日期</span>
+              <input id="batchStart" type="date" required />
+            </label>
+            <label>
+              <span>結束日期</span>
+              <input id="batchEnd" type="date" required />
+            </label>
+            <div class="batch-kinds">
+              <label><input id="batchKindRead" type="checkbox" checked /> 教學</label>
+              <label><input id="batchKindQuiz" type="checkbox" checked /> 練習</label>
+              <label><input id="batchKindReview" type="checkbox" checked /> 訂正</label>
+            </div>
+            <div class="batch-actions">
+              <button id="batchCompleteButton" type="submit">標記為已完成</button>
+              <button id="batchClearButton" type="button" class="ghost-button">取消完成</button>
+            </div>
+          </form>
+          <p class="batch-hint">
+            忘記讀書也沒關係，回來後直接選日期範圍補記錄；想超前進度，也可以一次把之後好幾天標記完成。
+          </p>
+        </section>
+
         <section class="planner-layout">
           <section class="today-panel">
             <div class="panel-header">
@@ -64,6 +93,12 @@
             <div class="panel-header">
               <h2>近期 7 天</h2>
               <span id="weekMeta">--</span>
+            </div>
+            <div class="week-nav">
+              <button id="weekPrevButton" type="button" class="ghost-button" aria-label="上一週">‹ 上一週</button>
+              <input id="weekJumpDate" type="date" aria-label="跳到日期" />
+              <button id="weekTodayButton" type="button" class="ghost-button">回到今天</button>
+              <button id="weekNextButton" type="button" class="ghost-button" aria-label="下一週">下一週 ›</button>
             </div>
             <div id="weekList" class="week-list"></div>
           </section>

@@ -27,7 +27,19 @@ const els = {
   todayCard: document.querySelector("#todayCard"),
   weekMeta: document.querySelector("#weekMeta"),
   weekList: document.querySelector("#weekList"),
+  weekPrevButton: document.querySelector("#weekPrevButton"),
+  weekNextButton: document.querySelector("#weekNextButton"),
+  weekTodayButton: document.querySelector("#weekTodayButton"),
+  weekJumpDate: document.querySelector("#weekJumpDate"),
   phaseList: document.querySelector("#phaseList"),
+  batchMeta: document.querySelector("#batchMeta"),
+  batchForm: document.querySelector("#batchForm"),
+  batchStart: document.querySelector("#batchStart"),
+  batchEnd: document.querySelector("#batchEnd"),
+  batchKindRead: document.querySelector("#batchKindRead"),
+  batchKindQuiz: document.querySelector("#batchKindQuiz"),
+  batchKindReview: document.querySelector("#batchKindReview"),
+  batchClearButton: document.querySelector("#batchClearButton"),
   materialStatus: document.querySelector("#materialStatus"),
   materialSearch: document.querySelector("#materialSearch"),
   materialCategory: document.querySelector("#materialCategory"),
@@ -225,6 +237,108 @@ function bindPlannerEvents() {
     }
     await updateMistake(date, questionIndex, { resolved: !mistake.resolved });
   });
+
+  els.weekJumpDate?.addEventListener("change", () => {
+    const value = els.weekJumpDate.value;
+    if (!value || !dayByDate(value)) {
+      return;
+    }
+    state.selectedDate = value;
+    renderPlanner();
+  });
+
+  els.weekPrevButton?.addEventListener("click", () => shiftSelectedWeek(-7));
+  els.weekNextButton?.addEventListener("click", () => shiftSelectedWeek(7));
+  els.weekTodayButton?.addEventListener("click", () => {
+    state.selectedDate = pickInitialDate();
+    renderPlanner();
+  });
+
+  els.batchForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    await runBatchProgress(true);
+  });
+  els.batchClearButton?.addEventListener("click", async () => {
+    await runBatchProgress(false);
+  });
+}
+
+function shiftSelectedWeek(days) {
+  if (!state.plan) {
+    return;
+  }
+  const current = dayByDate(state.selectedDate) || state.plan.days[0];
+  const shifted = addDays(parseDate(current.date), days);
+  const shiftedIso = toIsoDate(shifted);
+  const first = state.plan.days[0].date;
+  const last = state.plan.days[state.plan.days.length - 1].date;
+  state.selectedDate = shiftedIso < first ? first : shiftedIso > last ? last : shiftedIso;
+  renderPlanner();
+}
+
+function batchKinds() {
+  const kinds = [];
+  if (els.batchKindRead?.checked) {
+    kinds.push("read");
+  }
+  if (els.batchKindQuiz?.checked) {
+    kinds.push("quiz");
+  }
+  if (els.batchKindReview?.checked) {
+    kinds.push("review");
+  }
+  return kinds;
+}
+
+async function runBatchProgress(checked) {
+  const start = els.batchStart?.value;
+  const end = els.batchEnd?.value;
+  if (!start || !end) {
+    setBatchMeta("請先選擇開始與結束日期。");
+    return;
+  }
+  const kinds = batchKinds();
+  if (!kinds.length) {
+    setBatchMeta("請至少勾選一個項目（教學／練習／訂正）。");
+    return;
+  }
+  await applyBatchProgress(start, end, kinds, checked);
+}
+
+async function applyBatchProgress(startDate, endDate, kinds, checked) {
+  if (!state.plan) {
+    return;
+  }
+  const [from, to] = startDate <= endDate ? [startDate, endDate] : [endDate, startDate];
+  const days = state.plan.days.filter((day) => day.date >= from && day.date <= to);
+  if (!days.length) {
+    setBatchMeta("找不到區間內的讀書日。");
+    return;
+  }
+  for (const day of days) {
+    const record = { ...getProgressRecord(day.date), updatedAt: new Date().toISOString() };
+    for (const kind of kinds) {
+      record[kind] = checked;
+    }
+    state.progress.set(day.date, record);
+    saveLocalProgress(day.date, record);
+  }
+  renderPlanner();
+  setBatchMeta(`已將 ${days.length} 天標記為${checked ? "完成" : "未完成"}。`);
+  try {
+    if (state.supabase && state.session) {
+      await flushLocalStateToCloud();
+      setSyncStatus("已同步進度");
+    }
+  } catch (error) {
+    setSyncStatus(error.message);
+  }
+}
+
+function setBatchMeta(message) {
+  if (els.batchMeta) {
+    els.batchMeta.textContent = message;
+  }
 }
 
 function bindMaterialsEvents() {
@@ -335,6 +449,7 @@ async function loadPlan() {
     state.plan = await response.json();
     loadLocalProgress();
     state.selectedDate = pickInitialDate();
+    setupDateInputs();
     renderPlanner();
     renderRecords();
   } catch (error) {
@@ -360,6 +475,9 @@ function renderPlanner() {
   els.selectedTitle.textContent = selected.date === todayIso() ? "今日進度" : "選取日期";
   els.selectedMeta.textContent = `Day ${selected.dayIndex} / ${selected.weekday}`;
   els.todayCard.innerHTML = dayCard(selected);
+  if (els.weekJumpDate && els.weekJumpDate.value !== selected.date) {
+    els.weekJumpDate.value = selected.date;
+  }
 
   renderWeek(selected.date);
   renderPhases();
@@ -1314,6 +1432,18 @@ function sparseDot(query, vector) {
   return score;
 }
 
+function setupDateInputs() {
+  const first = state.plan.days[0].date;
+  const last = state.plan.days[state.plan.days.length - 1].date;
+  for (const input of [els.weekJumpDate, els.batchStart, els.batchEnd]) {
+    if (!input) {
+      continue;
+    }
+    input.min = first;
+    input.max = last;
+  }
+}
+
 function pickInitialDate() {
   const today = todayIso();
   const first = state.plan.days[0].date;
@@ -1356,6 +1486,16 @@ function parseDate(value) {
 
 function dateDiff(start, end) {
   return Math.ceil((end.getTime() - start.getTime()) / 86400000);
+}
+
+function addDays(date, amount) {
+  const result = new Date(date);
+  result.setDate(result.getDate() + amount);
+  return result;
+}
+
+function toIsoDate(date) {
+  return `${date.getFullYear()}-${pad2(date.getMonth() + 1)}-${pad2(date.getDate())}`;
 }
 
 function pad2(value) {
